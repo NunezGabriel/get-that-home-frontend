@@ -12,7 +12,7 @@ import InputBody from "../components/input";
 import { MainInput, CheckboxInput, MainSelect, OptionInput, TextAreaInput } from "../components/input";
 import { ChooseButton, MainButton } from "../components/button";
 
-const MainContainer = styled.div`
+export const MainContainer = styled.div`
     width: 1200px;
     margin: 0 auto;
     padding: 32px;
@@ -20,21 +20,21 @@ const MainContainer = styled.div`
     gap: 16px;
 `
 
-const SimpleContainer = styled.div`
+export const SimpleContainer = styled.div`
     display: grid;
     gap: 4px;
 `
-const SimpleFlexContainer = styled.div`
+export const SimpleFlexContainer = styled.div`
     display: flex;
     gap: 16px;
 `
-const FlexContainerL = styled.div`
+export const FlexContainerL = styled.div`
     display: flex; 
     gap: 4px;
     align-items: center;
 `
 
-const SwitchContainer = styled.div`
+export const SwitchContainer = styled.div`
     display: flex;
     align-items: center;
     border-radius: 8px;
@@ -43,7 +43,7 @@ const SwitchContainer = styled.div`
     height: 37px;
     overflow: hidden;
 `
-const ImgContainer = styled.div`
+export const ImgContainer = styled.div`
     display: inline-flex;
     padding: 8px;
     align-items: flex-start;
