@@ -22,3 +22,37 @@ export const MainButton = styled.div`
     font-size: 18px;
     color: white;
 `
+export const JoinButton = styled.div`
+    display: flex;
+    padding: 8px 16px;
+    align-items: center;
+    gap: 8px;
+    border-radius: 16px;
+    border: 1px solid #F48FB1;
+    height: 20px;
+    color: #616161;
+    text-align: center;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 1.25px;
+    text-transform: uppercase;
+`
+export const LoginButton = styled.div`
+    display: flex;
+    padding: 8px 16px;
+    align-items: center;
+    gap: 8px;
+    border-radius: 16px;
+    height: 20px;
+    color: white;
+    text-align: center;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 1.25px;
+    text-transform: uppercase;
+    background-color: #F48FB1;
+`
