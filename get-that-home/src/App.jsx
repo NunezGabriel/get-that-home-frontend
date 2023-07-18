@@ -1,8 +1,13 @@
-function App() {
-  const [count, setCount] = useState(0)
+import { BrowserRouter, Routes, Route} from "react-router-dom"
+import Form from "./views/form"
 
+function App() {
   return (
-    <div></div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/form" element={<Form/>} />
+        </Routes>
+      </BrowserRouter>
   )
 }
 
