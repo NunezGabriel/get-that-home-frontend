@@ -130,7 +130,28 @@ const ChooseButton = styled.div`
     background: #F48FB1;
     height: 35px;
 `
-
+const MainButton = styled.div`
+    display: flex;
+    padding: 16px 24px;
+    place-content: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 16px;
+    background: #F48FB1;
+    width: 275px;
+    height: 40px;
+    font-size: 18px;
+    color: white;
+`
+const ImgContainer = styled.div`
+    display: inline-flex;
+    padding: 8px;
+    align-items: flex-start;
+    gap: 16px;
+    width: 600px;
+    height: 136px;
+    background: #F5F5F6;
+`
 const Form = () => {
     return (
         <MainContainer>
@@ -280,7 +301,10 @@ const Form = () => {
                     <Text>Only images, max 5MB</Text>
                 </SimpleContainer>
             </SimpleContainer>
-
+            <ImgContainer></ImgContainer>
+            <MainButton>
+                Publish property listing 
+            </MainButton>
         </MainContainer> 
 
      );
