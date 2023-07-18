@@ -7,7 +7,7 @@ export const ChooseButton = styled.div`
     gap: 8px;
     border-radius: 8px;
     background: #F48FB1;
-    height: 35px;
+    height: 25px;
 `
 export const MainButton = styled.div`
     display: flex;
