@@ -1,8 +1,9 @@
+import LandingPage from "./pages/landing-page"
+
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <div></div>
+    <LandingPage />
   )
 }
 
