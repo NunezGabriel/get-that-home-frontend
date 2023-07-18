@@ -60,7 +60,7 @@ export const typography = {
     line-height: 88px;
     `,
     xxl: `
-    font-size: 3.75rem;
+    font-size: 3rem;
     line-height: 3.75rem;
     `,
   },

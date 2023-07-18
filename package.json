@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "prop-types": "^15.8.1",
+    "react-icons": "^4.10.1"
+  }
+}
