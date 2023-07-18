@@ -5,6 +5,9 @@ import { BsArrowBarUp } from 'react-icons/bs';
 import { Link } from "react-router-dom";
 
 import NoLoggedNavBar from "../components/navBar/noLoggedNavBar";
+import SeekerNavBar from "../components/navBar/seekerNavBar";
+import LanlordNavBar from "../components/navBar/lanlordNavBar";
+
 import MainTitle from "../components/mainTitle";
 import Label from "../components/label";
 import { Text, SubTitle } from "../components/simpleText";
@@ -38,7 +41,7 @@ const FormSale = ({b_color}) => {
     `
     return (
         <div>
-         <NoLoggedNavBar></NoLoggedNavBar>   
+         <LanlordNavBar></LanlordNavBar>   
         <MainContainer>
             <MainTitle>
                 Create a property listing
