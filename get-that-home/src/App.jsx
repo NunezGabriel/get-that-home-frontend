@@ -1,8 +1,11 @@
+import PropertyNotLogged from "./components/property-not-logged"
+
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <div></div>
+    <div>
+      <PropertyNotLogged />
+    </div>
   )
 }
 
