@@ -5,13 +5,14 @@ import { BsArrowBarUp } from 'react-icons/bs';
 
 import MainTitle from "../components/mainTitle";
 import Label from "../components/label";
+import { Text, SubTitle } from "../components/simpleText";
 import SimpleText from "../components/simpleText";
-import Input from "../components/input";
-
+import InputBody from "../components/input";
+import { MainInput, CheckboxInput, MainSelect, OptionInput, TextAreaInput } from "../components/input";
+import { ChooseButton, MainButton } from "../components/button";
 
 const MainContainer = styled.div`
     width: 1200px;
-    border: 1px solid red;
     margin: 0 auto;
     padding: 32px;
     display: grid;
@@ -52,97 +53,6 @@ const SwitchOption = styled.div`
     background-color: white;
 `
 
-const MainInput = styled.input`
-    color: #8E8E8E;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 24px; /* 150% */
-    letter-spacing: 0.5px;
-    border: none;
-    outline: none;
-    width: 100%;
-`
-
-const CheckboxInput = styled.input`
-    width: 20px;
-    height: 20px;
-    padding: 2px;
-    gap: 10px;
-    border: 1px solid #F48FB1;
-`
-const MainSelect = styled.select`
-    display: flex;
-    padding: 8px;
-    align-items: center;
-    gap: 8px;
-    align-self: stretch;
-    border-radius: 8px;
-    border: 1px solid #F48FB1;
-    outline: none;
-    width: 100px;
-`
-const OptionInput = styled.input`
-    display: flex;
-    padding: 8px;
-    align-items: center;
-    gap: 8px;
-    align-self: stretch;
-    border-radius: 8px;
-    border: 1px solid #F48FB1;
-    outline: none;
-    width: 100px;
-`
-
-const Text = styled.p`
-    color: #616161;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 16px; /* 133.333% */
-    letter-spacing: 0.4px;
-`
-const TextAreaInput = styled.textarea`
-    height: 60px;
-    width: 600px;
-    display: flex;
-    padding: 8px;
-    align-items: flex-start;
-    gap: 8px;
-    align-self: stretch;
-    border-radius: 8px;
-    border: 1px solid #F48FB1;
-    outline: none;
-`
-const SubTitle = styled.h1`
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 28px;
-    letter-spacing: 0.15px;
-`
-const ChooseButton = styled.div`
-    display: flex;
-    padding: 8px;
-    align-items: center;
-    gap: 8px;
-    border-radius: 8px;
-    background: #F48FB1;
-    height: 35px;
-`
-const MainButton = styled.div`
-    display: flex;
-    padding: 16px 24px;
-    place-content: center;
-    align-items: center;
-    gap: 8px;
-    border-radius: 16px;
-    background: #F48FB1;
-    width: 275px;
-    height: 40px;
-    font-size: 18px;
-    color: white;
-`
 const ImgContainer = styled.div`
     display: inline-flex;
     padding: 8px;
@@ -182,30 +92,30 @@ const Form = () => {
                 <Label>
                   Address
                 </Label>
-                <Input>
+                <InputBody>
                     <BiSearch color="#8E8E8E"/>
                     <MainInput placeholder="start typing to autocomplete"/>
-                </Input>
+                </InputBody>
             </SimpleContainer>
 
             <SimpleContainer>
                 <Label>
                  montly rent
                 </Label>
-                <Input>
+                <InputBody>
                     <RiMoneyDollarCircleLine color="#8E8E8E"/>
                     <MainInput placeholder="start typing to autocomplete"/>
-                </Input>
+                </InputBody>
             </SimpleContainer>
 
             <SimpleContainer>
                 <Label>
                 Maintanance
                 </Label>
-                <Input>
+                <InputBody>
                     <RiMoneyDollarCircleLine color="#8E8E8E"/>
                     <MainInput placeholder="start typing to autocomplete"/>
-                </Input>
+                </InputBody>
             </SimpleContainer>
 
             <SimpleContainer>
