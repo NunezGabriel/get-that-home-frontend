@@ -6,7 +6,7 @@ import PropertyNotLogged from "./pages/property-not-logged"
 import PropertEdit from "./pages/property-edit"
 import PropertShowContact from "./pages/propery-show-contact"
 import PropertShowLogged from "./pages/property-show-logged"
-
+import JoinSelect from "./pages/join-select"
 
 function App() {
   return (
@@ -19,6 +19,7 @@ function App() {
           <Route path="/property-edit-details" element={<PropertEdit/>} />
           <Route path="/property-show-contact" element={<PropertShowContact/>} />
           <Route path="/property-show-logged" element={<PropertShowLogged/>} />
+          <Route path="/join-select" element={<JoinSelect/>} />
         </Routes>
       </BrowserRouter>
   )
