@@ -3,6 +3,9 @@ import Form from "./pages/form"
 import FormSale from "./pages/form-sale"
 import LandingPage from "./pages/landing-page"
 import PropertyNotLogged from "./pages/property-not-logged"
+import PropertEdit from "./pages/property-edit"
+import PropertShowContact from "./pages/propery-show-contact"
+import PropertShowLogged from "./pages/property-show-logged"
 
 
 function App() {
@@ -13,6 +16,9 @@ function App() {
           <Route path="/form" element={<Form b_color={"#F48FB1"}/>} />
           <Route path="/form-sale" element={<FormSale b_color={"#F48FB1"}/>} />
           <Route path="/property-detail" element={<PropertyNotLogged/>} />
+          <Route path="/property-edit-details" element={<PropertEdit/>} />
+          <Route path="/property-show-contact" element={<PropertShowContact/>} />
+          <Route path="/property-show-logged" element={<PropertShowLogged/>} />
         </Routes>
       </BrowserRouter>
   )
