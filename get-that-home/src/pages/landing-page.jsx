@@ -35,12 +35,12 @@ margin-top: 60px;;
 gap: 8px;
 `
 
-const TitleText = styled.p`
+export const TitleText = styled.p`
 ${typography.head.xl}
 font-weight: 300;
 margin: 0;
 `
-const SubtitleText = styled.p`
+export const SubtitleText = styled.p`
 ${typography.head.sm}
 font-weight: 400;
 color: #616161;
