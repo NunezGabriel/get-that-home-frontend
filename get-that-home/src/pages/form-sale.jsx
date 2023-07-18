@@ -43,6 +43,8 @@ const SwitchContainer = styled.div`
     height: 37px;
     overflow: hidden;
 `
+
+
 const ImgContainer = styled.div`
     display: inline-flex;
     padding: 8px;
@@ -52,7 +54,7 @@ const ImgContainer = styled.div`
     height: 136px;
     background: #F5F5F6;
 `
-const Form = ({b_color}) => {
+const FormSale = ({b_color}) => {
 
     const SwitchOption = styled.div`
         display: flex;
@@ -61,7 +63,7 @@ const Form = ({b_color}) => {
         justify-content: center;
         align-items: center;
         gap: 10px;
-        background-color: ${b_color};
+        background-color: white;
         border-right: 1px solid #8E8E8E;
     `
     const SecondSwitchOption = styled.div`
@@ -71,7 +73,7 @@ const Form = ({b_color}) => {
         justify-content: center;
         align-items: center;
         gap: 10px;
-        background-color: white;
+        background-color: ${b_color};
     `
     return (
         <MainContainer>
@@ -84,18 +86,18 @@ const Form = ({b_color}) => {
                     Operation Type
                 </Label>
                 <SwitchContainer>
-                    <SwitchOption>
-                        <SimpleText TextColor={"white"}>
-                            Rent
-                        </SimpleText>
-                    </SwitchOption>
-                        <SecondSwitchOption>
-                            <Link to={"/form-sale"} style={{textDecoration: "none"}}>
+                        <SwitchOption>
+                            <Link to={"/form"} style={{textDecoration: "none"}}>
                                 <SimpleText TextColor={"#616161"}>
-                                    Sale
+                                    Rent
                                 </SimpleText>
                             </Link>
-                        </SecondSwitchOption>
+                        </SwitchOption>
+                    <SecondSwitchOption>
+                        <SimpleText TextColor={"white"}>
+                            Sale
+                        </SimpleText>
+                    </SecondSwitchOption>
                 </SwitchContainer>
             </SimpleContainer>
 
@@ -112,21 +114,11 @@ const Form = ({b_color}) => {
 
             <SimpleContainer>
                 <Label>
-                 montly rent
+                    Price
                 </Label>
                 <InputBody>
                     <RiMoneyDollarCircleLine color="#8E8E8E"/>
                     <MainInput placeholder="2000"/>
-                </InputBody>
-            </SimpleContainer>
-
-            <SimpleContainer>
-                <Label>
-                Maintanance
-                </Label>
-                <InputBody>
-                    <RiMoneyDollarCircleLine color="#8E8E8E"/>
-                    <MainInput placeholder="100"/>
                 </InputBody>
             </SimpleContainer>
 
@@ -182,19 +174,6 @@ const Form = ({b_color}) => {
                     <OptionInput type="number" placeholder="##"/>
                 </SimpleContainer>
             </SimpleFlexContainer>
-
-            <SimpleContainer>
-                <FlexContainerL>
-                            <CheckboxInput type="checkbox"/>
-                            <SimpleText>
-                                Pets Allowed
-                            </SimpleText>
-                </FlexContainerL>
-                <Text style={{width: "467px"}}>
-                    Allowing pets increases the likehood of renters  liking the property by 9001%.
-                    It also makes you a better person.
-                </Text>
-            </SimpleContainer>
             
             <SimpleContainer>
                 <Label>About this property</Label>
@@ -232,4 +211,4 @@ const Form = ({b_color}) => {
      );
 }
  
-export default Form;
+export default FormSale;
