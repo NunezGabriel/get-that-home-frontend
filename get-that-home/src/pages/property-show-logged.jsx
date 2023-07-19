@@ -340,6 +340,7 @@ function PropertShowLogged(){
                 </BoxLogin>
             </PropertyRigth>
         </Container>
+        <FooterContent/>
         </>
     )
 }

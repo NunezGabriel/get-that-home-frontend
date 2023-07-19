@@ -317,6 +317,7 @@ function PropertShowContact(){
                 </BoxLogin>
             </PropertyRigth>
         </Container>
+        <FooterContent/>
         </>
     )
 }
