@@ -2,17 +2,23 @@ import { BiSearch } from 'react-icons/bi';
 import { GoPerson } from 'react-icons/go';
 import { RiHome8Line } from 'react-icons/ri';
 import { LuArrowUpLeftFromCircle } from 'react-icons/lu';
+import logo from "../../assets/logo.svg"
+import { Link } from 'react-router-dom';
 
 import { NavContainer, ImgContainer, OptionsContianer, Finder } from "./noLoggedNavBar";
 import { MainInput } from '../input';
 import { JoinButton, LoginButton } from '../button';
 
+
 const LanlordNavBar = () => {
     return ( 
         <NavContainer>
-            <ImgContainer>
-                esta es una imagen
-            </ImgContainer>
+            <Link to={"/"}>
+                <ImgContainer>
+                    <img src={logo}/>
+                </ImgContainer>
+            </Link>
+
             <OptionsContianer>
                 <Finder>
                     <BiSearch fontSize={24} color="#616161"/>

@@ -2,6 +2,8 @@ import { BiSearch } from 'react-icons/bi';
 import { GoPerson } from 'react-icons/go';
 import { AiFillHeart } from 'react-icons/ai';
 import { LuArrowUpLeftFromCircle } from 'react-icons/lu';
+import logo from "../../assets/logo.svg"
+import { Link } from 'react-router-dom';
 
 import { NavContainer, ImgContainer, OptionsContianer, Finder } from "./noLoggedNavBar";
 import { MainInput } from '../input';
@@ -10,9 +12,11 @@ import { JoinButton, LoginButton } from '../button';
 const SeekerNavBar = () => {
     return ( 
         <NavContainer>
-            <ImgContainer>
-                esta es una imagen
-            </ImgContainer>
+            <Link to={"/"}>
+                <ImgContainer>
+                    <img src={logo}/>
+                </ImgContainer>
+            </Link>
             <OptionsContianer>
                 <Finder>
                     <BiSearch fontSize={24} color="#616161"/>
