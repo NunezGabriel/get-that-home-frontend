@@ -7,6 +7,8 @@ import PropertEdit from "./pages/property-edit"
 import PropertShowContact from "./pages/propery-show-contact"
 import PropertShowLogged from "./pages/property-show-logged"
 import JoinSelect from "./pages/join-select"
+import LandlordSignUp from "./pages/lanlord-signup"
+import SeekerSignUp from "./pages/seeker-signup"
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
           <Route path="/property-show-contact" element={<PropertShowContact/>} />
           <Route path="/property-show-logged" element={<PropertShowLogged/>} />
           <Route path="/join-select" element={<JoinSelect/>} />
+          <Route path="/landlord-signup" element={<LandlordSignUp/>} />
+          <Route path="/seeker-signup" element={<SeekerSignUp/>} />
         </Routes>
       </BrowserRouter>
   )
