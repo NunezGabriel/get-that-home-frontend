@@ -5,7 +5,9 @@ import { BsGithub } from 'react-icons/bs';
 import { BsSuitHeartFill } from 'react-icons/bs';
 import Logo from '../assets/logo.svg';
 
+
 const Footer = styled.footer`
+    width: 100%;
     margin-top: 2rem;
     background: #F5F5F6;
     color: var(--gray, #616161);
@@ -15,6 +17,8 @@ const Footer = styled.footer`
     font-weight: 400;
     line-height: 1.25rem; /* 142.857% */
     letter-spacing: 0.01563rem;
+    position: relative;
+
 `
 
 const ContainerFooter = styled.div`
@@ -23,7 +27,8 @@ const ContainerFooter = styled.div`
     justify-content: space-between;
     margin: 0 auto;
     flex-wrap: wrap;
-    
+    postion: absolute;
+    bottom: 0;
 `
 
 const InfoCompany = styled.div`

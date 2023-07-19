@@ -5,6 +5,7 @@ import { fonts } from "./typography";
 
 export const reset = css`
   @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400&family=Montserrat&display=swap');
 
   /* Box sizing rules */
   *,
