@@ -10,6 +10,7 @@ import { Global} from '@emotion/react'
 
 import imgProperty from '../assets/property.svg';
 import  mapLocation  from '../assets/mappro.svg';
+import FooterContent from '../components/footer';
 
 const Container  = styled.div
 `   
@@ -316,6 +317,7 @@ function PropertyNotLogged(){
                 </ContainerLogin>
             </PropertyRigth>
         </Container>
+        <FooterContent/>
         </>
     )
 }

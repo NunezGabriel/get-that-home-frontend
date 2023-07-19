@@ -11,6 +11,7 @@ import {FaEdit} from 'react-icons/fa';
 
 import imgProperty from '../assets/property.svg';
 import  mapLocation  from '../assets/mappro.svg';
+import FooterContent from "../components/footer";
 
 const Container  = styled.div
 `   
@@ -304,7 +305,9 @@ function PropertEdit(){
                     <a href=""><FaEdit/> EDIT PROPERTY</a>
                 </BoxLogin>
             </PropertyRigth>
+            
         </Container>
+            <FooterContent/>
         </>
     )
 }
