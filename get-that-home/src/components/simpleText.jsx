@@ -26,6 +26,7 @@ const SimpleText = ({TextColor, children}) => {
         line-height: 20px; /* 142.857% */
         letter-spacing: 0.25px;
         text-decoration: none;
+        margin: 0;
     `
     
     return ( 
