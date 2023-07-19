@@ -6,6 +6,7 @@ import { FaPaw } from 'react-icons/fa';
 import {RiMoneyDollarCircleLine} from 'react-icons/ri';
 import { Global} from '@emotion/react'
 import {AiOutlineHeart} from 'react-icons/ai';
+import FooterContent from '../components/footer';
 // import {AiFillHeart} from 'react-icons/ai';
 
 
