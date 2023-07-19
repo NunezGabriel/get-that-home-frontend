@@ -41,7 +41,7 @@ const FormSale = ({b_color}) => {
     `
     return (
         <div>
-         <LanlordNavBar></LanlordNavBar>   
+        <SeekerNavBar/>
         <MainContainer>
             <MainTitle>
                 Create a property listing

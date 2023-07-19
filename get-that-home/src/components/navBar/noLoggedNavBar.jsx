@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
 import { BiSearch } from 'react-icons/bi';
 import { TbUserPlus } from 'react-icons/tb';
+import logo from "../../assets/logo.svg"
+import { Link } from "react-router-dom";
 
 import { JoinButton, LoginButton } from "../button";
 import { MainInput } from "../input";
@@ -36,9 +38,11 @@ export const Finder = styled.div`
 const NoLoggedNavBar = () => {
     return ( 
         <NavContainer>
-            <ImgContainer>
-                esta es una imagen
-            </ImgContainer>
+            <Link to={"/"}>
+                <ImgContainer>
+                    <img src={logo}/>
+                </ImgContainer>
+            </Link>
             <OptionsContianer>
                 <Finder>
                     <BiSearch fontSize={24} color="#616161"/>
