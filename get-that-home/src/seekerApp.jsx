@@ -18,5 +18,5 @@ const SeekerApp = () => {
         </BrowserRouter>
      );
 }
- 
+
 export default SeekerApp;

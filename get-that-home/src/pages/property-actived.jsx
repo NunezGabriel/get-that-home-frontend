@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { Link } from "react-router-dom";
 
 import ButtomOn from "../components/buttomOn";
 import ButtomOff from "../components/buttonOf";
@@ -36,8 +37,11 @@ function PropertyActive(){
         <LanlordNavBar/>      
         <Container> 
             <BoxButtons>
+
                 <ButtomOn>ACTIVE</ButtomOn>
-                <ButtomOff>CLOSED</ButtomOff>
+                <Link to={"/property-close"} style={{textDecoration: "none"}}>
+                    <ButtomOff>CLOSED</ButtomOff>
+                </Link>
             </BoxButtons>
 
             <h4>4 Properties found</h4>
