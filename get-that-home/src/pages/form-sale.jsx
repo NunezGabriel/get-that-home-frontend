@@ -4,15 +4,7 @@ import { RiMoneyDollarCircleLine } from 'react-icons/ri';
 import { BsArrowBarUp } from 'react-icons/bs';
 import { Link } from "react-router-dom";
 
-import NoLoggedNavBar from "../components/navBar/noLoggedNavBar";
-import SeekerNavBar from "../components/navBar/seekerNavBar";
 import LanlordNavBar from "../components/navBar/lanlordNavBar";
-
-import PriceModal from "../components/modals/price-modal";
-import PropertyTypeModal from "../components/modals/property-type-modal";
-import MoreModal from "../components/modals/more-modal";
-import BedModal from "../components/modals/beds-modal";
-
 import MainTitle from "../components/mainTitle";
 import Label from "../components/label";
 import { Text, SubTitle } from "../components/simpleText";
@@ -46,8 +38,7 @@ const FormSale = ({b_color}) => {
     `
     return (
         <div>
-        <BedModal/>
-        <SeekerNavBar/>
+        <LanlordNavBar/>
         <MainContainer>
             <MainTitle>
                 Create a property listing

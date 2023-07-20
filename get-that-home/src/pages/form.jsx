@@ -4,6 +4,7 @@ import { RiMoneyDollarCircleLine } from 'react-icons/ri';
 import { BsArrowBarUp } from 'react-icons/bs';
 import { Link } from "react-router-dom";
 
+import LanlordNavBar from "../components/navBar/lanlordNavBar";
 import MainTitle from "../components/mainTitle";
 import Label from "../components/label";
 import { Text, SubTitle } from "../components/simpleText";
@@ -74,6 +75,8 @@ const Form = ({b_color}) => {
         background-color: white;
     `
     return (
+        <div>
+        <LanlordNavBar/>
         <MainContainer>
             <MainTitle>
                 Create a property listing
@@ -228,7 +231,7 @@ const Form = ({b_color}) => {
                 Publish property listing 
             </MainButton>
         </MainContainer> 
-
+        </div>
      );
 }
  

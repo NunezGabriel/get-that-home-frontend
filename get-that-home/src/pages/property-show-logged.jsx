@@ -10,7 +10,7 @@ import FooterContent from '../components/footer';
 // import {AiFillHeart} from 'react-icons/ai';
 
 
-
+import SeekerNavBar from '../components/navBar/seekerNavBar';
 import imgProperty from '../assets/property.svg';
 import  mapLocation  from '../assets/mappro.svg';
 
@@ -256,6 +256,7 @@ function PropertShowLogged(){
           }
 
         `}/>
+        <SeekerNavBar/>     
         <Container>
             <PropertyLeft>
 

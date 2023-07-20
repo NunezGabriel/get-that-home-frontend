@@ -6,7 +6,7 @@ import { FaPaw } from 'react-icons/fa';
 import {RiMoneyDollarCircleLine} from 'react-icons/ri';
 import { Global} from '@emotion/react'
 import {FaEdit} from 'react-icons/fa';
-
+import LanlordNavBar from '../components/navBar/lanlordNavBar';
 
 
 import imgProperty from '../assets/property.svg';
@@ -229,6 +229,7 @@ function PropertEdit(){
           }
 
         `}/>
+        <LanlordNavBar/>      
         <Container>
             <PropertyLeft>
 

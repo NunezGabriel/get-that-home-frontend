@@ -4,7 +4,7 @@ import FormSale from "./pages/form-sale";
 import PropertyActive from "./pages/property-actived";
 import PropertyClose from "./pages/property-closed";
 import PropertEdit from "./pages/property-edit";
-import LandingPage from "./pages/landing-page";
+import LandlordLanding from "./pages/landlord-landing";
 
 const LandLordApp = () => {
     return ( 
@@ -15,7 +15,7 @@ const LandLordApp = () => {
                 <Route path="/property-active" element={<PropertyActive/>}/>
                 <Route path="/property-close" element={<PropertyClose/>}/>
                 <Route path="/property-edit" element={<PropertEdit/>}/>
-                <Route path="/" element={<LandingPage/>}/>
+                <Route path="/" element={<LandlordLanding/>}/>
             </Routes>
         </BrowserRouter>
      );

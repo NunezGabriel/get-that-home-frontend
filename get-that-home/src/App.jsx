@@ -5,7 +5,7 @@ import SeekerApp from "./seekerApp"
 function App() {
   return (
       <div>
-          <NotLoggedApp/>
+          <SeekerApp/>
       </div>
   )
 }

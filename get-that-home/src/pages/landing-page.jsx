@@ -11,6 +11,7 @@ import jorgepic from "../assets/prov-5.jpg"
 import RentalCard from "../components/rental-card";
 import rentalImage from "../assets/home-img/home-1.svg"
 
+
 const GeneralContainer = styled.div`
 display: flex;
 justify-content: center;

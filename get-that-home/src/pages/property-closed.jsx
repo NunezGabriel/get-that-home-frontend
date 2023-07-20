@@ -4,7 +4,7 @@ import ButtomOn from "../components/buttomOn";
 import ButtomOff from "../components/buttonOf";
 import RentalCard from "../components/rental-card";
 // import FooterContent from "../components/footer";
-import SeekerNavBar from "../components/navBar/seekerNavBar";
+import LanlordNavBar from "../components/navBar/lanlordNavBar";
 
 
 const Container = styled.div`
@@ -33,7 +33,7 @@ function PropertyClose(){
 
     return(
         <>
-        <SeekerNavBar/>      
+        <LanlordNavBar/>          
         <Container> 
             <BoxButtons>
                 <ButtomOff>ACTIVE</ButtomOff>

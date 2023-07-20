@@ -7,7 +7,7 @@ import {RiMoneyDollarCircleLine} from 'react-icons/ri';
 import {RiUserReceivedFill} from 'react-icons/ri';
 import { Global} from '@emotion/react'
 
-
+import NoLoggedNavBar from '../components/navBar/noLoggedNavBar';
 import imgProperty from '../assets/property.svg';
 import  mapLocation  from '../assets/mappro.svg';
 import FooterContent from '../components/footer';
@@ -237,6 +237,7 @@ function PropertyNotLogged(){
           }
 
         `}/>
+        <NoLoggedNavBar/>     
         <Container>
             <PropertyLeft>
 

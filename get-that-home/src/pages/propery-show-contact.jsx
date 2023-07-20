@@ -237,6 +237,7 @@ function PropertShowContact(){
           }
 
         `}/>
+        <SeekerNavBar/>     
         <Container>
             <PropertyLeft>
 
