@@ -48,10 +48,12 @@ const NoLoggedNavBar = () => {
                     <BiSearch fontSize={24} color="#616161"/>
                     <MainInput placeholder="FIND A HOME"/>
                 </Finder>
-                <JoinButton>
-                    <TbUserPlus fontSize={20} color="#616161"/>
-                    join
-                </JoinButton>
+                <Link to={"/join-select"} style={{textDecoration: "none"}}>
+                    <JoinButton>
+                        <TbUserPlus fontSize={20} color="#616161"/>
+                        join
+                    </JoinButton>
+                </Link>
                 <LoginButton>
                     <TbUserPlus fontSize={20} color="white"/>
                     login
