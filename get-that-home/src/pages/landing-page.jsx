@@ -1,30 +1,29 @@
 import styled from "@emotion/styled";
-import LandingImage from "../assets/landing-cover.svg"
+import LandingImage from "../assets/landing-cover.svg";
 import { typography } from "../styles/typography";
 
 import TeamMemberCard from "../components/team-card";
-import gabrielpic from "../assets/prov-1.jpg"
-import danielpic from "../assets/prov-2.jpg"
-import pedropic from "../assets/prov-3.jpg"
-import diegopic from "../assets/prov-4.jpg"
-import jorgepic from "../assets/prov-5.jpg"
+import gabrielpic from "../assets/prov-1.jpg";
+import danielpic from "../assets/prov-2.jpg";
+import pedropic from "../assets/prov-3.jpg";
+import diegopic from "../assets/prov-4.jpg";
+import jorgepic from "../assets/prov-5.jpg";
 import RentalCard from "../components/rental-card";
-import rentalImage from "../assets/home-img/home-1.svg"
-
+import rentalImage from "../assets/home-img/home-1.svg";
 
 const GeneralContainer = styled.div`
-display: flex;
-justify-content: center;
-`
+  display: flex;
+  justify-content: center;
+`;
 
 const Container = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: center;
-place-items: center;
-padding-top: 32px;
-width: 1440px;
-`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  place-items: center;
+  padding-top: 32px;
+  width: 1440px;
+`;
 
 const FirstSection = styled.div`
   display: flex;
@@ -34,29 +33,29 @@ const FirstSection = styled.div`
   width: 100%;
   height: 600px;
   position: relative;
-`
+`;
 
 const TextContainer = styled.div`
-display: flex;
-flex-direction: column;
-align-items: center;
-width: 679px;
-height: 128px;
-margin-top: 60px;;
-gap: 8px;
-`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 679px;
+  height: 128px;
+  margin-top: 60px;
+  gap: 8px;
+`;
 
 const TitleText = styled.p`
-${typography.head.xl}
-font-weight: 300;
-margin: 0;
-`
+  ${typography.head.xl}
+  font-weight: 300;
+  margin: 0;
+`;
 const SubtitleText = styled.p`
-${typography.head.sm}
-font-weight: 400;
-color: #616161;
-margin: 0;
-`
+  ${typography.head.sm}
+  font-weight: 400;
+  color: #616161;
+  margin: 0;
+`;
 
 const SearchContainer = styled.form`
   display: flex;
@@ -76,7 +75,7 @@ const FilterBox = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: left;
-  border-right: 1px solid #E1E2E1;
+  border-right: 1px solid #e1e2e1;
   padding: 0px 8px;
   gap: 8px;
 `;
@@ -97,7 +96,7 @@ const Selector = styled.select`
   letterSpacing: 0.5px, 
   color: #373737;
   padding-left: 0;
-`
+`;
 
 const OptionP = styled.option`
   ${typography.text.sm}
@@ -117,7 +116,7 @@ const ButtonDiv = styled.div`
 const SearchButton = styled.button`
   width: 96px;
   height: 40px;
-  background: #F48FB1;
+  background: #f48fb1;
   border-radius: 16px;
   border: none;
   display: inline-flex;
@@ -129,7 +128,7 @@ const ButtonText = styled.p`
   ${typography.text.sm}
   font-weight: 500;
   letter-spacing: 1.25px;
-  color: #FFFFFF;
+  color: #ffffff;
 `;
 
 const SecondSection = styled.div`
@@ -140,22 +139,22 @@ const SecondSection = styled.div`
   width: 100%;
   height: 476px;
   padding: 64px 0px;
-`
+`;
 
 const DemoText = styled.p`
-${typography.text.sm}
-font-weight: 500;
-margin: 0;
-`
+  ${typography.text.sm}
+  font-weight: 500;
+  margin: 0;
+`;
 
 const DemoTitleText = styled.p`
-${typography.head.lg}
-font-weight: 400;
-color: #BF5F82;
-margin: 0;
-padding-top: 16px;
-padding-bottom: 32px;
-`
+  ${typography.head.lg}
+  font-weight: 400;
+  color: #bf5f82;
+  margin: 0;
+  padding-top: 16px;
+  padding-bottom: 32px;
+`;
 
 const RentalContainer = styled.div`
   width: fit-content;
@@ -165,7 +164,6 @@ const RentalContainer = styled.div`
   align-items: center;
 `;
 
-
 const SignupSection = styled.div`
   height: 184px;
   padding: 64px 0px;
@@ -173,29 +171,29 @@ const SignupSection = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   place-items: center;
-  background-color: var(--shallow-pink, rgba(244, 143, 177, 0.15));;
+  background-color: var(--shallow-pink, rgba(244, 143, 177, 0.15));
   width: 100%;
   position: relative;
-`
+`;
 const SignupText = styled.p`
-${typography.head.lg}
-font-weight: 400;
-letter-spacing: 1px;
-margin: 0;
-width: 823px;
-text-align: center;
-padding-bottom: 32px;
-`
+  ${typography.head.lg}
+  font-weight: 400;
+  letter-spacing: 1px;
+  margin: 0;
+  width: 823px;
+  text-align: center;
+  padding-bottom: 32px;
+`;
 
 const SignupButton = styled.button`
   ${typography.text.sm}
   width: 264px;
   height: 56px;
   border: none;
-  background: #F48FB1;
+  background: #f48fb1;
   border-radius: 16px;
   padding: 16px 24px;
-  color: #FFFFFF;
+  color: #ffffff;
   position: absolute;
   bottom: 64px;
 `;
@@ -209,15 +207,15 @@ const TeamSection = styled.div`
   align-items: center;
   padding: 64px 0px;
   gap: 26px;
-`
+`;
 
 const TeamText = styled.p`
   ${typography.head.xxl}
   font-weight: 400;
-  color: #BF5F82;
+  color: #bf5f82;
   margin: 0;
   text-align: center;
-`
+`;
 
 const TeamMembersSection = styled.div`
   width: fit-content;
@@ -227,43 +225,49 @@ const TeamMembersSection = styled.div`
   align-items: center;
 `;
 
-
 function LandingPage() {
   return (
     <GeneralContainer>
       <Container>
-        <FirstSection style={{ backgroundImage: `url(${LandingImage})`,
-        backgroundPosition: 'center',
-        backgroundRepeat: "no-repeat", 
-        }}>    
+        <FirstSection
+          style={{
+            backgroundImage: `url(${LandingImage})`,
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
+        >
           <TextContainer>
             <TitleText>Meet your new Home</TitleText>
-            <SubtitleText>The easiest way to find where you belong</SubtitleText>
+            <SubtitleText>
+              The easiest way to find where you belong
+            </SubtitleText>
           </TextContainer>
           <SearchContainer>
-            <FilterBox style={{ width: "160px"}}>
+            <FilterBox style={{ width: "160px" }}>
               <SearchTitle>I AM LOOKING FOR</SearchTitle>
-              <Selector required name="property_type" >
-              <OptionP value="Apartment">An apartment</OptionP>
-              <OptionP value="House">A house</OptionP>
+              <Selector required name="property_type">
+                <OptionP value="Apartment">An apartment</OptionP>
+                <OptionP value="House">A house</OptionP>
               </Selector>
             </FilterBox>
-            <FilterBox style={{ width: "160px"}}>
+            <FilterBox style={{ width: "160px" }}>
               <SearchTitle>I WANT TO</SearchTitle>
               <Selector required name="operation_type">
-              <OptionP value="Apartment">Rent</OptionP>
-              <OptionP value="House">Buy</OptionP>
+                <OptionP value="Apartment">Rent</OptionP>
+                <OptionP value="House">Buy</OptionP>
               </Selector>
             </FilterBox>
-            <FilterBox style={{ width: "304px"}}>
+            <FilterBox style={{ width: "304px" }}>
               <SearchTitle>WHERE</SearchTitle>
-              <Selector required name="district" style={{ width: "288px"}}>
-              <OptionP disabled hidden>Favorite district</OptionP>
-              <OptionP value="Mexico City">Mexico City</OptionP>
-              <OptionP value="Lima">Lima</OptionP>
-              <OptionP value="Los Angeles">Los Angeles</OptionP>
-              <OptionP value="Timbuctu">Timbuctu</OptionP>
-              <OptionP value="Groenlandia">Groenlandia</OptionP>
+              <Selector required name="district" style={{ width: "288px" }}>
+                <OptionP disabled hidden>
+                  Favorite district
+                </OptionP>
+                <OptionP value="Mexico City">Mexico City</OptionP>
+                <OptionP value="Lima">Lima</OptionP>
+                <OptionP value="Los Angeles">Los Angeles</OptionP>
+                <OptionP value="Timbuctu">Timbuctu</OptionP>
+                <OptionP value="Groenlandia">Groenlandia</OptionP>
               </Selector>
             </FilterBox>
             <ButtonDiv>
@@ -277,43 +281,55 @@ function LandingPage() {
           <DemoText>Find an Apartment you Love</DemoText>
           <DemoTitleText>Homes for rent at the best prices</DemoTitleText>
           <RentalContainer>
-            <RentalCard img={rentalImage}/>
-            <RentalCard img={rentalImage}/>
-            <RentalCard img={rentalImage}/>
+            <RentalCard img={rentalImage} />
+            <RentalCard img={rentalImage} />
+            <RentalCard img={rentalImage} />
           </RentalContainer>
         </SecondSection>
         <SignupSection>
-          <SignupText>Getting someone to rent your apartment has never been this easy</SignupText>
+          <SignupText>
+            Getting someone to rent your apartment has never been this easy
+          </SignupText>
           <SignupButton>Create Account Now</SignupButton>
         </SignupSection>
         <TeamSection>
           <TeamText>Meet the team</TeamText>
-        <TeamMembersSection>
-          <TeamMemberCard name="Gabriel Nuñez" 
-          gitHubUrl="https://github.com/NunezGabriel" 
-          linkedInUrl=""
-          img={gabrielpic}/>
-          <TeamMemberCard name="Daniel Toledo" 
-          gitHubUrl="" 
-          linkedInUrl=""
-          img={danielpic}/>
-          <TeamMemberCard name="Pedro Arias" 
-          gitHubUrl="https://github.com/pdroariasvilela" 
-          linkedInUrl=""
-          img={pedropic}/>
-          <TeamMemberCard name="Diego Gómez" 
-          gitHubUrl="https://github.com/DiegoGomezCuadross" 
-          linkedInUrl=""
-          img={diegopic}/>
-          <TeamMemberCard name="Jorge Rosano" 
-          gitHubUrl="https://github.com/jorge-ross" 
-          linkedInUrl=""
-          img={jorgepic}/>
-        </TeamMembersSection>
+          <TeamMembersSection>
+            <TeamMemberCard
+              name="Gabriel Nuñez"
+              gitHubUrl="https://github.com/NunezGabriel"
+              linkedInUrl=""
+              img={gabrielpic}
+            />
+            <TeamMemberCard
+              name="Daniel Toledo"
+              gitHubUrl=""
+              linkedInUrl=""
+              img={danielpic}
+            />
+            <TeamMemberCard
+              name="Pedro Arias"
+              gitHubUrl="https://github.com/pdroariasvilela"
+              linkedInUrl=""
+              img={pedropic}
+            />
+            <TeamMemberCard
+              name="Diego Gómez"
+              gitHubUrl="https://github.com/DiegoGomezCuadross"
+              linkedInUrl=""
+              img={diegopic}
+            />
+            <TeamMemberCard
+              name="Jorge Rosano"
+              gitHubUrl="https://github.com/jorge-ross"
+              linkedInUrl=""
+              img={jorgepic}
+            />
+          </TeamMembersSection>
         </TeamSection>
       </Container>
     </GeneralContainer>
-  )
+  );
 }
 
 export default LandingPage;

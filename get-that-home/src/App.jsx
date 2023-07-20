@@ -1,28 +1,25 @@
-import LandLordApp from "./landlordApp"
-import NotLoggedApp from "./notLoggedApp"
-import SeekerApp from "./seekerApp"
-
-import { useState } from "react"
-
-
+import UnauthenticatedApp from "./UnauthenticatedApp";
+import LandlordPage from "./pages/landlord-landing";
+import SeekerPage from "./pages/seeker-landing";
+import { useAuth } from "./context/auth-context";
 
 function App() {
-  const [showApp, setShowApp] = useState("3")
+  const { user } = useAuth();
 
-  switch(showApp){
-    case "1":
-      return <NotLoggedApp />
-      break;
-    case "2":
-      return <LandLordApp />
-      break;
-    case "3":
-      return <SeekerApp />
-      break;
-    default:
-      return <NotLoggedApp />
-      break
-  }
+  console.log(user);
+  return (
+    <div>
+      {user ? (
+        user.role === "Landlord" ? (
+          <LandlordPage />
+        ) : (
+          <SeekerPage />
+        )
+      ) : (
+        <UnauthenticatedApp />
+      )}
+    </div>
+  );
 }
 
-export default App
+export default App;
