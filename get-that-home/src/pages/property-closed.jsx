@@ -5,7 +5,7 @@ import ButtomOff from "../components/buttonOf";
 import RentalCard from "../components/rental-card";
 // import FooterContent from "../components/footer";
 import LanlordNavBar from "../components/navBar/lanlordNavBar";
-
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
 
@@ -36,7 +36,9 @@ function PropertyClose(){
         <LanlordNavBar/>          
         <Container> 
             <BoxButtons>
+            <Link to={"/property-active"} style={{textDecoration: "none"}}>
                 <ButtomOff>ACTIVE</ButtomOff>
+            </Link>
                 <ButtomOn>CLOSED</ButtomOn>
             </BoxButtons>
 

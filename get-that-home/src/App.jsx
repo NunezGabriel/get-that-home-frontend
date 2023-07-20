@@ -7,7 +7,7 @@ import { useState } from "react"
 
 
 function App() {
-  const [showApp, setShowApp] = useState("4")
+  const [showApp, setShowApp] = useState("3")
 
   switch(showApp){
     case "1":
