@@ -2,6 +2,8 @@ import UnauthenticatedApp from "./UnauthenticatedApp";
 import SeekerPage from "./pages/seeker-landing";
 import { useAuth } from "./context/auth-context";
 import LandlordPage from "./landlordApp";
+import LandLordApp from "./landlordApp";
+import NotLoggedApp from "./notLoggedApp";
 
 function App() {
   const { user } = useAuth();
@@ -10,12 +12,12 @@ function App() {
     <div>
       {user ? (
         user.role === "Landlord" ? (
-          <LandlordPage /> // Renderiza LandLordApp si el usuario es "Landlord"
+          <LandLordApp/> // Renderiza LandLordApp si el usuario es "Landlord"
         ) : (
           <SeekerPage /> // Renderiza SeekerPage si el usuario es "Seeker"
         )
       ) : (
-        <UnauthenticatedApp /> // Renderiza UnauthenticatedApp si el usuario no está autenticado
+        <NotLoggedApp /> // Renderiza UnauthenticatedApp si el usuario no está autenticado
       )}
     </div>
   );
