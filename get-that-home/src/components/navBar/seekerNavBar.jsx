@@ -26,7 +26,7 @@ const SeekerNavBar = () => {
         </ImgContainer>
       </Link>
       <OptionsContianer>
-        <Link to={"/list-properties"}>
+        <Link to={"/list-properties"} style={{ textDecoration: "none" }}>
           <Finder>
             <BiSearch fontSize={24} color="#616161" />
             <MainInput placeholder="FIND A HOME" />

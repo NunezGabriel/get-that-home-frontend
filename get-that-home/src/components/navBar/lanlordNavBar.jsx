@@ -26,10 +26,12 @@ const LanlordNavBar = () => {
       </Link>
 
       <OptionsContianer>
-        <Finder>
-          <BiSearch fontSize={24} color="#616161" />
-          <MainInput placeholder="FIND A HOME" />
-        </Finder>
+        <Link to={"/landlord-properties"} style={{ textDecoration: "none" }}>
+          <Finder>
+            <BiSearch fontSize={24} color="#616161" />
+            <MainInput placeholder="FIND A HOME" />
+          </Finder>
+        </Link>
         <JoinButton onClick={logout} style={{ cursor: "pointer" }}>
           <LuArrowUpLeftFromCircle fontSize={20} color="#616161" />
           logout
@@ -40,7 +42,7 @@ const LanlordNavBar = () => {
             My Properties
           </LoginButton>
         </Link>
-        <Link to={"/profile"}>
+        <Link to={"/profile"} style={{ textDecoration: "none" }}>
           <LoginButton>
             <GoPerson fontSize={20} color="white" />
             profile
