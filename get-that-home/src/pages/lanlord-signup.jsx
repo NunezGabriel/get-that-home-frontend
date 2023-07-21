@@ -23,7 +23,6 @@ export const SignUpContainer = styled.form`
   left: 50%;
   transform: translate(-50%, -50%);
   width: 388px;
-  height: 308px;
 `;
 
 const LandlordSignUp = () => {

@@ -10,6 +10,7 @@ import diegopic from "../assets/prov-4.jpg";
 import jorgepic from "../assets/prov-5.jpg";
 import RentalCard from "../components/rental-card";
 import rentalImage from "../assets/home-img/home-1.svg";
+import FooterContent from "../components/footer";
 
 const GeneralContainer = styled.div`
   display: flex;
@@ -227,108 +228,111 @@ const TeamMembersSection = styled.div`
 
 function LandingPage() {
   return (
-    <GeneralContainer>
-      <Container>
-        <FirstSection
-          style={{
-            backgroundImage: `url(${LandingImage})`,
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-          }}
-        >
-          <TextContainer>
-            <TitleText>Meet your new Home</TitleText>
-            <SubtitleText>
-              The easiest way to find where you belong
-            </SubtitleText>
-          </TextContainer>
-          <SearchContainer>
-            <FilterBox style={{ width: "160px" }}>
-              <SearchTitle>I AM LOOKING FOR</SearchTitle>
-              <Selector required name="property_type">
-                <OptionP value="Apartment">An apartment</OptionP>
-                <OptionP value="House">A house</OptionP>
-              </Selector>
-            </FilterBox>
-            <FilterBox style={{ width: "160px" }}>
-              <SearchTitle>I WANT TO</SearchTitle>
-              <Selector required name="operation_type">
-                <OptionP value="Apartment">Rent</OptionP>
-                <OptionP value="House">Buy</OptionP>
-              </Selector>
-            </FilterBox>
-            <FilterBox style={{ width: "304px" }}>
-              <SearchTitle>WHERE</SearchTitle>
-              <Selector required name="district" style={{ width: "288px" }}>
-                <OptionP disabled hidden>
-                  Favorite district
-                </OptionP>
-                <OptionP value="Mexico City">Mexico City</OptionP>
-                <OptionP value="Lima">Lima</OptionP>
-                <OptionP value="Los Angeles">Los Angeles</OptionP>
-                <OptionP value="Timbuctu">Timbuctu</OptionP>
-                <OptionP value="Groenlandia">Groenlandia</OptionP>
-              </Selector>
-            </FilterBox>
-            <ButtonDiv>
-              <SearchButton>
-                <ButtonText>SEARCH</ButtonText>
-              </SearchButton>
-            </ButtonDiv>
-          </SearchContainer>
-        </FirstSection>
-        <SecondSection>
-          <DemoText>Find an Apartment you Love</DemoText>
-          <DemoTitleText>Homes for rent at the best prices</DemoTitleText>
-          <RentalContainer>
-            <RentalCard img={rentalImage} />
-            <RentalCard img={rentalImage} />
-            <RentalCard img={rentalImage} />
-          </RentalContainer>
-        </SecondSection>
-        <SignupSection>
-          <SignupText>
-            Getting someone to rent your apartment has never been this easy
-          </SignupText>
-          <SignupButton>Create Account Now</SignupButton>
-        </SignupSection>
-        <TeamSection>
-          <TeamText>Meet the team</TeamText>
-          <TeamMembersSection>
-            <TeamMemberCard
-              name="Gabriel Nuñez"
-              gitHubUrl="https://github.com/NunezGabriel"
-              linkedInUrl=""
-              img={gabrielpic}
-            />
-            <TeamMemberCard
-              name="Daniel Toledo"
-              gitHubUrl=""
-              linkedInUrl=""
-              img={danielpic}
-            />
-            <TeamMemberCard
-              name="Pedro Arias"
-              gitHubUrl="https://github.com/pdroariasvilela"
-              linkedInUrl=""
-              img={pedropic}
-            />
-            <TeamMemberCard
-              name="Diego Gómez"
-              gitHubUrl="https://github.com/DiegoGomezCuadross"
-              linkedInUrl=""
-              img={diegopic}
-            />
-            <TeamMemberCard
-              name="Jorge Rosano"
-              gitHubUrl="https://github.com/jorge-ross"
-              linkedInUrl=""
-              img={jorgepic}
-            />
-          </TeamMembersSection>
-        </TeamSection>
-      </Container>
-    </GeneralContainer>
+    <>
+      <GeneralContainer>
+        <Container>
+          <FirstSection
+            style={{
+              backgroundImage: `url(${LandingImage})`,
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
+          >
+            <TextContainer>
+              <TitleText>Meet your new Home</TitleText>
+              <SubtitleText>
+                The easiest way to find where you belong
+              </SubtitleText>
+            </TextContainer>
+            <SearchContainer>
+              <FilterBox style={{ width: "160px" }}>
+                <SearchTitle>I AM LOOKING FOR</SearchTitle>
+                <Selector required name="property_type">
+                  <OptionP value="Apartment">An apartment</OptionP>
+                  <OptionP value="House">A house</OptionP>
+                </Selector>
+              </FilterBox>
+              <FilterBox style={{ width: "160px" }}>
+                <SearchTitle>I WANT TO</SearchTitle>
+                <Selector required name="operation_type">
+                  <OptionP value="Apartment">Rent</OptionP>
+                  <OptionP value="House">Buy</OptionP>
+                </Selector>
+              </FilterBox>
+              <FilterBox style={{ width: "304px" }}>
+                <SearchTitle>WHERE</SearchTitle>
+                <Selector required name="district" style={{ width: "288px" }}>
+                  <OptionP disabled hidden>
+                    Favorite district
+                  </OptionP>
+                  <OptionP value="Mexico City">Mexico City</OptionP>
+                  <OptionP value="Lima">Lima</OptionP>
+                  <OptionP value="Los Angeles">Los Angeles</OptionP>
+                  <OptionP value="Timbuctu">Timbuctu</OptionP>
+                  <OptionP value="Groenlandia">Groenlandia</OptionP>
+                </Selector>
+              </FilterBox>
+              <ButtonDiv>
+                <SearchButton>
+                  <ButtonText>SEARCH</ButtonText>
+                </SearchButton>
+              </ButtonDiv>
+            </SearchContainer>
+          </FirstSection>
+          <SecondSection>
+            <DemoText>Find an Apartment you Love</DemoText>
+            <DemoTitleText>Homes for rent at the best prices</DemoTitleText>
+            <RentalContainer>
+              <RentalCard img={rentalImage} />
+              <RentalCard img={rentalImage} />
+              <RentalCard img={rentalImage} />
+            </RentalContainer>
+          </SecondSection>
+          <SignupSection>
+            <SignupText>
+              Getting someone to rent your apartment has never been this easy
+            </SignupText>
+            <SignupButton>Create Account Now</SignupButton>
+          </SignupSection>
+          <TeamSection>
+            <TeamText>Meet the team</TeamText>
+            <TeamMembersSection>
+              <TeamMemberCard
+                name="Gabriel Nuñez"
+                gitHubUrl="https://github.com/NunezGabriel"
+                linkedInUrl=""
+                img={gabrielpic}
+              />
+              <TeamMemberCard
+                name="Daniel Toledo"
+                gitHubUrl=""
+                linkedInUrl=""
+                img={danielpic}
+              />
+              <TeamMemberCard
+                name="Pedro Arias"
+                gitHubUrl="https://github.com/pdroariasvilela"
+                linkedInUrl=""
+                img={pedropic}
+              />
+              <TeamMemberCard
+                name="Diego Gómez"
+                gitHubUrl="https://github.com/DiegoGomezCuadross"
+                linkedInUrl=""
+                img={diegopic}
+              />
+              <TeamMemberCard
+                name="Jorge Rosano"
+                gitHubUrl="https://github.com/jorge-ross"
+                linkedInUrl=""
+                img={jorgepic}
+              />
+            </TeamMembersSection>
+          </TeamSection>
+        </Container>
+      </GeneralContainer>
+      <FooterContent />
+    </>
   );
 }
 

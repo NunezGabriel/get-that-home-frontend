@@ -5,6 +5,7 @@ import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { BiBed, BiBath, BiArea } from "react-icons/bi";
 import { MdOutlinePets } from "react-icons/md";
 import PhotoDeparment from "../assets/images/Photo1.svg";
+import { Link } from "react-router-dom";
 
 const PropertyCard = styled.div`
   border-radius: 8px;
@@ -125,7 +126,12 @@ const Area = styled.p`
 function RentalCard(property) {
   return (
     <PropertyCard>
-      <RentalImg src={PhotoDeparment} alt="Home Pic" />
+      <Link
+        to={"/detail-property"}
+        style={{ textDecoration: "none", alignSelf: "center" }}
+      >
+        <RentalImg src={PhotoDeparment} alt="Home Pic" />
+      </Link>
       <RentalChar>
         {" "}
         <RiMoneyDollarCircleLine

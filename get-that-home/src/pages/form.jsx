@@ -72,7 +72,7 @@ const Form = () => {
     justify-content: center;
     align-items: center;
     gap: 10px;
-    background-color: "red";
+    background-color: #f48fb1;
     border-right: 1px solid #8e8e8e;
   `;
   const SecondSwitchOption = styled.div`

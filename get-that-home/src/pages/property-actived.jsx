@@ -52,7 +52,7 @@ function PropertyActive() {
     <>
       <LanlordNavBar />
       <Container>
-        <Link to={"/form"}>
+        <Link to={"/form"} style={{ textDecoration: "none" }}>
           <LoginButton style={{ width: "188px", marginBottom: "16px" }}>
             New Property
           </LoginButton>

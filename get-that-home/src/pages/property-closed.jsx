@@ -9,6 +9,7 @@ import LanlordNavBar from "../components/navBar/lanlordNavBar";
 import { useEffect, useState } from "react";
 import { useAuth } from "../context/auth-context";
 import { getProperties } from "../service/properties-service";
+import { LoginButton } from "../components/button";
 
 const Container = styled.div`
   display: flex;
@@ -50,10 +51,10 @@ function PropertyClose() {
     <>
       <LanlordNavBar />
       <Container>
-        <Link to={"/form"}>
-          <div style={{ width: "188px", marginBottom: "16px" }}>
+        <Link to={"/form"} style={{ textDecoration: "none" }}>
+          <LoginButton style={{ width: "188px", marginBottom: "16px" }}>
             New Property
-          </div>
+          </LoginButton>
         </Link>
         <BoxButtons>
           <Link to={"/property-active"} style={{ textDecoration: "none" }}>
