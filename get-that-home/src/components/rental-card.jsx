@@ -2,9 +2,9 @@ import styled from "@emotion/styled";
 import { typography } from "../styles/typography";
 import { RiBuildingLine } from "react-icons/ri";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
-import PropTypes from "prop-types";
 import { BiBed, BiBath, BiArea } from "react-icons/bi";
 import { MdOutlinePets } from "react-icons/md";
+import PhotoDeparment from "../assets/images/Photo1.svg";
 
 const PropertyCard = styled.div`
   border-radius: 8px;
@@ -125,7 +125,7 @@ const Area = styled.p`
 function RentalCard(property) {
   return (
     <PropertyCard>
-      <RentalImg src={property.photo} alt="Home Pic" />
+      <RentalImg src={PhotoDeparment} alt="Home Pic" />
       <RentalChar>
         {" "}
         <RiMoneyDollarCircleLine

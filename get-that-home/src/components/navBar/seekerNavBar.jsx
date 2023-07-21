@@ -26,7 +26,7 @@ const SeekerNavBar = () => {
         </ImgContainer>
       </Link>
       <OptionsContianer>
-        <Link to={"/property-not-logged"}>
+        <Link to={"/list-properties"}>
           <Finder>
             <BiSearch fontSize={24} color="#616161" />
             <MainInput placeholder="FIND A HOME" />
