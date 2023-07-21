@@ -6,56 +6,60 @@ import ButtomOff from "../components/buttonOf";
 import RentalCard from "../components/rental-card";
 // import FooterContent from "../components/footer";
 import LanlordNavBar from "../components/navBar/lanlordNavBar";
-
+import { useEffect, useState } from "react";
+import { getProperties } from "../service/properties-service";
 
 const Container = styled.div`
-
-    display: flex;
-    width: 75rem;
-    height: auto;
-    margin: 2rem auto;
-    flex-direction: column;
-`
+  display: flex;
+  width: 75rem;
+  height: auto;
+  margin: 2rem auto;
+  flex-direction: column;
+`;
 const BoxButtons = styled.div`
-    width: 100%;
-    display: flex;
-`
+  width: 100%;
+  display: flex;
+`;
 
 const ContainerCards = styled.div`
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    gap: 2rem;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 2rem;
+`;
 
-`
+function PropertyActive() {
+  const [properties, setProperties] = useState(null);
 
-function PropertyActive(){
+  useEffect(() => {
+    getProperties().then(setProperties).catch(console.log);
+  }, []);
+  console.log(properties);
 
-    return(
-        <>
-        <LanlordNavBar/>      
-        <Container> 
-            <BoxButtons>
+  return (
+    <>
+      <LanlordNavBar />
+      <Container>
+        <BoxButtons>
+          <ButtomOn>ACTIVE</ButtomOn>
+          <Link to={"/property-close"} style={{ textDecoration: "none" }}>
+            <ButtomOff>CLOSED</ButtomOff>
+          </Link>
+        </BoxButtons>
 
-                <ButtomOn>ACTIVE</ButtomOn>
-                <Link to={"/property-close"} style={{textDecoration: "none"}}>
-                    <ButtomOff>CLOSED</ButtomOff>
-                </Link>
-            </BoxButtons>
-
-            <h4>4 Properties found</h4>
+        <h4>4 Properties found</h4>
         <ContainerCards>
-            <RentalCard/>
-
-                  
+          {properties?.map((property) => {
+            return <RentalCard key={property.id} {...property}></RentalCard>;
+          })}
         </ContainerCards>
-        </Container>
-            {/* <FooterContent/> */}
-        </>
-    )
+      </Container>
+      {/* <FooterContent/> */}
+    </>
+  );
 }
 
-export default PropertyActive
+export default PropertyActive;
 
 // <Route path="/property-contacted" element={<PropertyContacted/>} />

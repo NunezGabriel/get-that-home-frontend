@@ -40,13 +40,11 @@ function AuthProvider(props) {
   };
 
   useEffect(() => {
-    if (sessionStorage.getItem(tokenKey)) {
-      getUser()
-        .then((user) => {
-          setUser(user);
-        })
-        .catch((error) => console.log(error));
-    }
+    getUser()
+      .then((user) => {
+        setUser(user);
+      })
+      .catch((error) => console.log(error));
   }, []);
 
   return <AuthContext.Provider value={value} {...props} />;

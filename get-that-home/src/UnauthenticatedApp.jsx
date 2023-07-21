@@ -6,10 +6,10 @@ import HomePageNoLogin from "./pages/no-logged-landing";
 export default function UnauthenticatedApp() {
   return (
     <Routes>
-      <Route path="/" element={<Navigate to="/home" replace={true} />} />
+      <Route path="/" element={<Navigate to="/home" />} />
       <Route path="home" element={<HomePageNoLogin />} />
       <Route path="signup" element={<SignUpPage />} />
-      <Route path="*" element={<Navigate to="/home" replace={true} />} />
+      <Route path="*" element={<Navigate to="/home" />} />
     </Routes>
   );
 }
