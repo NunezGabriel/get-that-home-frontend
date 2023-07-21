@@ -40,11 +40,13 @@ function AuthProvider(props) {
   };
 
   useEffect(() => {
-    getUser()
-      .then((user) => {
-        setUser(user);
-      })
-      .catch((error) => console.log(error));
+    if (sessionStorage.getItem(tokenKey)) {
+      getUser()
+        .then((user) => {
+          setUser(user);
+        })
+        .catch((error) => console.log(error));
+    }
   }, []);
 
   return <AuthContext.Provider value={value} {...props} />;
@@ -54,4 +56,5 @@ function useAuth() {
   return useContext(AuthContext);
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export { AuthProvider, useAuth };
