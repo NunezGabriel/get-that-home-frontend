@@ -8,6 +8,8 @@ import RentalCard from "../components/rental-card";
 import LanlordNavBar from "../components/navBar/lanlordNavBar";
 import { useEffect, useState } from "react";
 import { getProperties } from "../service/properties-service";
+import { useAuth } from "../context/auth-context";
+import { LoginButton } from "../components/button";
 
 const Container = styled.div`
   display: flex;
@@ -30,17 +32,31 @@ const ContainerCards = styled.div`
 `;
 
 function PropertyActive() {
-  const [properties, setProperties] = useState(null);
+  const { user } = useAuth();
+  const [userProperties, setUserProperties] = useState([]);
 
   useEffect(() => {
-    getProperties().then(setProperties).catch(console.log);
-  }, []);
-  console.log(properties);
+    if (user) {
+      getProperties()
+        .then((allProperties) => {
+          const propertiesOfUser = allProperties.filter(
+            (property) => property.user_id === user.id && property.active
+          );
+          setUserProperties(propertiesOfUser);
+        })
+        .catch(console.log);
+    }
+  }, [user]);
 
   return (
     <>
       <LanlordNavBar />
       <Container>
+        <Link to={"/form"}>
+          <LoginButton style={{ width: "188px", marginBottom: "16px" }}>
+            New Property
+          </LoginButton>
+        </Link>
         <BoxButtons>
           <ButtomOn>ACTIVE</ButtomOn>
           <Link to={"/property-close"} style={{ textDecoration: "none" }}>
@@ -48,10 +64,14 @@ function PropertyActive() {
           </Link>
         </BoxButtons>
 
-        <h4>4 Properties found</h4>
+        <h4>
+          {userProperties
+            ? `${userProperties.length} Properties found`
+            : "Loading..."}
+        </h4>
         <ContainerCards>
-          {properties?.map((property) => {
-            return <RentalCard key={property.id} {...property}></RentalCard>;
+          {userProperties.map((property) => {
+            return <RentalCard key={property.id} {...property} />;
           })}
         </ContainerCards>
       </Container>

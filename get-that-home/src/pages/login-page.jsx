@@ -1,29 +1,32 @@
 import styled from "@emotion/styled";
+import { TbUserPlus } from "react-icons/tb";
 import { useState } from "react";
 import { useAuth } from "../context/auth-context";
+import { SimpleContainer } from "./form";
+import Label from "../components/label";
+import InputBody from "../components/input";
+import { MainInput } from "../components/input";
+import NoLoggedNavBar from "../components/navBar/noLoggedNavBar";
 
-const Container = styled.div`
-  background-color: #f6f6f9;
-`;
-
-const Input = styled.input``;
-
-const Form = styled.form`
-  padding-top: 50px;
-  display: flex;
+const LogginBody = styled.form`
+  display: inline-flex;
+  padding: 16px;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  background-color: #f6f6f9;
-  max-width: 414px;
-  height: 504px;
+  gap: 16px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 30%;
+  left: 35%;
 `;
-
-const InputWrapper = styled.div`
-    display: flex
-    flex-direction: column;
-
-    gap: 20px;
+const MainText = styled.h2`
+  color: #000;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 32px;
 `;
 
 const Button = styled.button``;
@@ -51,31 +54,46 @@ function LoginForm() {
   }
 
   return (
-    <Container>
-      <Form onSubmit={handleSubmit}>
-        <InputWrapper>
-          <Input
-            id="email"
-            name="email"
-            label={"Email adress"}
-            type="email"
-            value={email}
-            placeholder="my_mail@mail.com"
-            onChange={handleChange}
-          ></Input>
-          <Input
-            id="password"
-            name="password"
-            label={"Password"}
-            type="password"
-            value={password}
-            placeholder="******"
-            onChange={handleChange}
-          ></Input>
-        </InputWrapper>
-        <Button rounded>Login</Button>
-      </Form>
-    </Container>
+    <div>
+      <NoLoggedNavBar />
+      <LogginBody onSubmit={handleSubmit}>
+        <MainText>Login</MainText>
+        <SimpleContainer>
+          <SimpleContainer>
+            <Label>email</Label>
+            <InputBody>
+              <MainInput
+                id="email"
+                name="email"
+                label={"Email adress"}
+                type="email"
+                value={email}
+                onChange={handleChange}
+                placeholder="user@mail.com"
+              />
+            </InputBody>
+          </SimpleContainer>
+          <SimpleContainer>
+            <Label>password</Label>
+            <InputBody>
+              <MainInput
+                id="password"
+                name="password"
+                label={"Password"}
+                type="password"
+                value={password}
+                placeholder="******"
+                onChange={handleChange}
+              />
+            </InputBody>
+          </SimpleContainer>
+        </SimpleContainer>
+        <Button>
+          <TbUserPlus fontSize={20} color="white" />
+          login
+        </Button>
+      </LogginBody>
+    </div>
   );
 }
 export default LoginForm;

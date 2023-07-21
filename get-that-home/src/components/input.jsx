@@ -67,7 +67,7 @@ export const TextAreaInput = styled.textarea`
   outline: none;
 `;
 
-const InputBody = (children) => {
+const InputBody = ({ children }) => {
   return <Input>{children}</Input>;
 };
 
