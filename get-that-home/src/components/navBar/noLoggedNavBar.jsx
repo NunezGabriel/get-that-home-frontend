@@ -44,20 +44,24 @@ const NoLoggedNavBar = () => {
                 </ImgContainer>
             </Link>
             <OptionsContianer>
-                <Finder>
-                    <BiSearch fontSize={24} color="#616161"/>
-                    <MainInput placeholder="FIND A HOME"/>
-                </Finder>
+                <Link to={"/list-notlogged"}  style={{textDecoration: "none"}}>
+                    <Finder>
+                        <BiSearch fontSize={24} color="#616161"/>
+                        <MainInput placeholder="FIND A HOME"/>
+                    </Finder>
+                </Link>
                 <Link to={"/join-select"} style={{textDecoration: "none"}}>
                     <JoinButton>
                         <TbUserPlus fontSize={20} color="#616161"/>
                         join
                     </JoinButton>
                 </Link>
-                <LoginButton>
-                    <TbUserPlus fontSize={20} color="white"/>
-                    login
-                </LoginButton>
+                <Link to={"/login"} style={{textDecoration: "none"}}>
+                    <LoginButton>
+                        <TbUserPlus fontSize={20} color="white"/>
+                        login
+                    </LoginButton>
+                </Link>
             </OptionsContianer>
         </NavContainer>
      );

@@ -31,7 +31,7 @@ const ContainerCards = styled.div`
 `
 
 function PropertyActive(){
-
+    let img = "https://picfiles.alphacoders.com/422/422551.jpg"
     return(
         <>
         <LanlordNavBar/>      
@@ -46,7 +46,7 @@ function PropertyActive(){
 
             <h4>4 Properties found</h4>
         <ContainerCards>
-            <RentalCard/>
+            <RentalCard img={img}/>
 
                   
         </ContainerCards>

@@ -18,18 +18,22 @@ const SeekerNavBar = () => {
                 </ImgContainer>
             </Link>
             <OptionsContianer>
-                <Finder>
-                    <BiSearch fontSize={24} color="#616161"/>
-                    <MainInput placeholder="FIND A HOME"/>
-                </Finder>
+                <Link to={"/list-seeker"} style={{textDecoration: "none"}}>
+                    <Finder>
+                        <BiSearch fontSize={24} color="#616161"/>
+                        <MainInput placeholder="FIND A HOME"/>
+                    </Finder>
+                </Link>
                 <JoinButton>
                     <LuArrowUpLeftFromCircle fontSize={20} color="#616161"/>
                     logout
                 </JoinButton>
-                <LoginButton>
-                    <AiFillHeart fontSize={20} color="white"/>
-                    Saved Properties
-                </LoginButton>
+                <Link to={"/property-favorites"} style={{textDecoration: "none"}}>
+                    <LoginButton>
+                        <AiFillHeart fontSize={20} color="white"/>
+                        Saved Properties
+                    </LoginButton>
+                </Link>
                 <LoginButton>
                     <GoPerson fontSize={20} color="white"/>
                     profile

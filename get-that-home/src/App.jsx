@@ -1,13 +1,12 @@
 import LandLordApp from "./landlordApp"
 import NotLoggedApp from "./notLoggedApp"
 import SeekerApp from "./seekerApp"
-
 import { useState } from "react"
 
 
 
 function App() {
-  const [showApp, setShowApp] = useState("3")
+  const [showApp, setShowApp] = useState("1")
 
   switch(showApp){
     case "1":

@@ -2,26 +2,15 @@ import styled from "@emotion/styled";
 import { FiSearch, FiChevronDown } from "react-icons/fi";
 import { typography } from "../styles/typography";
 
-const Container = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: center;
-place-items: center;
-padding: 0px 120px 32px;
-width: 1440px;
-position: relative;
-margin-top: 72px;
-`
-
 const FilterContainer = styled.form`
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-content: center;
+  justify-content: center;
+  margin-top: 50px;
   height: 40px;
-  width: 1136px;
+  width: 100%;
   border-radius: 8px;
-  position: absolute;
-  top: 32px;
 `
 const SearchContainer = styled.div`
   display: flex;
@@ -64,19 +53,6 @@ const Button = styled.button`
   gap: 8px;
 `;
 
-const OptionContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  justify-content: center;
-  border: 2px solid #F48FB1;
-  width: 185px;
-  height: 40px;
-  border-radius: 8px;
-  position: absolute;
-  right: 0;
-`
-
 const OptionSelector = styled.select`
   ${typography.text.md}
   display: flex;
@@ -87,6 +63,9 @@ const OptionSelector = styled.select`
   border: none;
   outline: none;
   padding-left: 8px;
+  border: 2px solid #F48FB1;
+  border-radius: 8px;
+
 `
 
 
@@ -103,7 +82,7 @@ const OptionItem = styled.option`
 function ListProperties() {
 
   return (
-    <Container>
+    <div>
       <FilterContainer>
         <SearchContainer>
           <FiSearch style={{ color: "#8E8E8E",
@@ -121,16 +100,14 @@ function ListProperties() {
           <FiChevronDown style={{ width: "24px", height: "24px", color: "#FFFFFF", paddingLeft: 8 }} />
           </div>
         </Button>
-        <OptionContainer>
           <OptionSelector >
             <OptionItem>Renting & Buying</OptionItem>
             <OptionItem>Both</OptionItem>
             <OptionItem>Buying</OptionItem>
             <OptionItem>Renting</OptionItem>
           </OptionSelector>
-          </OptionContainer>
       </FilterContainer>
-    </Container>
+    </div>
   )
 }
 

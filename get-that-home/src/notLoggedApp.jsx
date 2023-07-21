@@ -4,6 +4,8 @@ import LandlordSignUp from "./pages/lanlord-signup";
 import PropertyNotLogged from "./pages/property-not-logged";
 import SeekerSignUp from "./pages/seeker-signup";
 import NoLogedLanding from "./pages/no-logged-landing";
+import ListNotLogged from "./pages/list-not-logged";
+import LogginPage from "./pages/loggin-page";
 
 const NotLoggedApp = () => {
     return ( 
@@ -13,10 +15,12 @@ const NotLoggedApp = () => {
                 <Route path="/landlord-signup" element={<LandlordSignUp/>}/>
                 <Route path="/property-not-logged" element={<PropertyNotLogged/>}/>
                 <Route path="/seeker-signup" element={<SeekerSignUp/>}/>
+                <Route path="/list-notlogged" element={<ListNotLogged/>}/>
+                <Route path="/login" element={<LogginPage/>}/>
                 <Route path="/" element={<NoLogedLanding/>}/>
             </Routes>
         </BrowserRouter>
      );
 }
  
-export default NotLoggedApp;
+export default NotLoggedApp; 

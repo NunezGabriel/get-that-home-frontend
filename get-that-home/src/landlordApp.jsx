@@ -5,6 +5,7 @@ import PropertyActive from "./pages/property-actived";
 import PropertyClose from "./pages/property-closed";
 import PropertEdit from "./pages/property-edit";
 import LandlordLanding from "./pages/landlord-landing";
+import ListLandLord from "./pages/list-landlord";
 
 const LandLordApp = () => {
     return ( 
@@ -15,6 +16,7 @@ const LandLordApp = () => {
                 <Route path="/property-active" element={<PropertyActive/>}/>
                 <Route path="/property-close" element={<PropertyClose/>}/>
                 <Route path="/property-edit" element={<PropertEdit/>}/>
+                <Route path="/list-landlord" element={<ListLandLord/>}/>
                 <Route path="/" element={<LandlordLanding/>}/>
             </Routes>
         </BrowserRouter>

@@ -20,10 +20,12 @@ const LanlordNavBar = () => {
             </Link>
 
             <OptionsContianer>
-                <Finder>
-                    <BiSearch fontSize={24} color="#616161"/>
-                    <MainInput placeholder="FIND A HOME"/>
-                </Finder>
+                <Link to={"/list-landlord"}  style={{textDecoration: "none"}}>
+                    <Finder>
+                        <BiSearch fontSize={24} color="#616161"/>
+                        <MainInput placeholder="FIND A HOME"/>
+                    </Finder>
+                </Link>
                 <JoinButton>
                     <LuArrowUpLeftFromCircle fontSize={20} color="#616161"/>
                     logout
