@@ -55,7 +55,7 @@ const NoLoggedNavBar = () => {
             join
           </JoinButton>
         </Link>
-        <Link to={"/login-page"}>
+        <Link to={"/login-page"} style={{ textDecoration: "none" }}>
           <LoginButton>
             <TbUserPlus fontSize={20} color="white" />
             login
