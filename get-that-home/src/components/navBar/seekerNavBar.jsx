@@ -3,7 +3,7 @@ import { GoPerson } from "react-icons/go";
 import { AiFillHeart } from "react-icons/ai";
 import { LuArrowUpLeftFromCircle } from "react-icons/lu";
 import logo from "../../assets/logo.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth-context";
 
 import {
@@ -17,7 +17,13 @@ import { JoinButton, LoginButton } from "../button";
 
 const SeekerNavBar = () => {
   const { logout } = useAuth();
+  const navigate = useNavigate();
 
+
+  const handleLogOut=()=> {
+    logout();
+    navigate("/")
+  }
   return (
     <NavContainer>
       <Link to={"/"}>
@@ -32,7 +38,7 @@ const SeekerNavBar = () => {
             <MainInput placeholder="FIND A HOME" />
           </Finder>
         </Link>
-        <JoinButton onClick={logout} style={{ cursor: "pointer" }}>
+        <JoinButton onClick={()=>{handleLogOut()}} style={{ cursor: "pointer" }}>
           <LuArrowUpLeftFromCircle fontSize={20} color="#616161" />
           logout
         </JoinButton>
