@@ -10,7 +10,7 @@ import { LoginButton, JoinButton } from "../button";
 
 const MoreModal = () => {
     return ( 
-        <ModalBody>
+        <ModalBody style={{left:"61%"}}>
             <SimpleContainer>
                 <SimpleFlexContainer>
                     <FlexContainerL>

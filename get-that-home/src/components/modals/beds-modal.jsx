@@ -25,7 +25,7 @@ const LastOption = styled.div`
 
 const BedModal = (TextColor) => {
     return ( 
-        <ModalBody>
+        <ModalBody style={{left:"51%"}}>
             <SimpleContainer>
                 <SimpleContainer>
                     <Label>beds</Label>
