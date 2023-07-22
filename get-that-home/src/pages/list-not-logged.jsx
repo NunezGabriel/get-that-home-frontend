@@ -32,8 +32,8 @@ const ListNotLogged = () => {
         <ContainerCards>
           {properties?.map((product) => {
             return(
-              <Link to={"/property-not-logged"} style={{textDecoration: "none"}}>
-                <RentalCard key={product.id} {...product}></RentalCard>;
+              <Link to={"/property-not-logged"} key={product.id} style={{textDecoration: "none"}}>
+                <RentalCard  {...product}></RentalCard>;
               </Link> 
             )
           })}

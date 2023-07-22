@@ -9,7 +9,7 @@ import { LoginButton } from "../button";
 
 const PropertyTypeModal = () => {
     return ( 
-        <ModalBody>
+        <ModalBody style={{left:"41%"}}>
             <SimpleContainer>
                 <Label> price range</Label>
                 <SimpleFlexContainer>

@@ -16,8 +16,7 @@ export const ModalBody = styled.div`
     background-color: #FFF;
     box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.20);
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 100%;
     width: 247px;
 `
 
@@ -35,7 +34,7 @@ export const DoneContainer = styled.div`
 
 const PriceModal = () => {
     return ( 
-        <ModalBody>
+        <ModalBody style={{left:"31%"}}>
             <SimpleContainer>
                 <Label> price range</Label>
                 <PriceSectionContainer>

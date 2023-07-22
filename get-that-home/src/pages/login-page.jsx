@@ -34,7 +34,7 @@ const Button = styled.button``;
 
 function LoginForm() {
   const { login } = useAuth();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     email: "team2@mail.com",
@@ -53,7 +53,6 @@ function LoginForm() {
     event.preventDefault();
     login(formData);
     // toast.success("Successfully loged in!")
-    // navigate("/")
   }
 
   return (

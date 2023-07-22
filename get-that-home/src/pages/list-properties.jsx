@@ -1,6 +1,12 @@
+import { useState } from "react";
+
 import styled from "@emotion/styled";
 import { FiSearch, FiChevronDown } from "react-icons/fi";
 import { typography } from "../styles/typography";
+import PriceModal from "../components/modals/price-modal";
+import PropertyTypeModal from "../components/modals/property-type-modal";
+import BedModal from "../components/modals/beds-modal";
+import MoreModal from "../components/modals/more-modal";
 
 const FilterContainer = styled.form`
   display: flex;
@@ -11,6 +17,7 @@ const FilterContainer = styled.form`
   height: 40px;
   width: 100%;
   border-radius: 8px;
+  position: relative;
 `;
 const SearchContainer = styled.div`
   display: flex;
@@ -37,15 +44,17 @@ const SearchInput = styled.input`
   outline: none;
 `;
 
-const Button = styled.button`
+const Button = styled.div`
   ${typography.text.sm}
   letter-spacing: 1.25px;
   font-weight: 500;
   width: auto;
-  height: 40px;
+  height: 23px;
   border: none;
   background: #f48fb1;
   border-radius: 16px;
+  display: flex;
+  align-items: center;
   padding: 8px 16px;
   color: #ffffff;
   align-items: center;
@@ -78,6 +87,12 @@ const OptionItem = styled.option`
 `;
 
 function ListProperties() {
+
+  const [modalPrice, setModalPrice] = useState(false);
+  const [propertyTypeModal, setPropertyTypeModal] = useState(false);
+  const [bedModal, setBedModal] = useState(false);
+  const [moreModal, setMoreModal] = useState(false);
+
   return (
     <div>
       <FilterContainer>
@@ -85,10 +100,13 @@ function ListProperties() {
           <FiSearch style={{ color: "#8E8E8E", width: 20, height: 20 }} />
           <SearchInput placeholder="Search by address" />
         </SearchContainer>
-        <Button>PRICE</Button>
-        <Button>PROPERTY TYPE</Button>
-        <Button>BEDS & BATHS</Button>
-        <Button>
+        <Button onClick={()=>{setModalPrice(!modalPrice)}}>PRICE</Button>
+        {modalPrice && <PriceModal/>}
+        <Button onClick={()=>{setPropertyTypeModal(!propertyTypeModal)}}>PROPERTY TYPE</Button>
+        {propertyTypeModal && <PropertyTypeModal/>}
+        <Button onClick={()=>{setBedModal(!bedModal)}}>BEDS & BATHS</Button>
+        {bedModal && <BedModal/>}
+        <Button onClick={()=>{setMoreModal(!moreModal)}}>
           <div style={{ display: "flex", alignItems: "center" }}>
             MORE
             <FiChevronDown
@@ -101,6 +119,7 @@ function ListProperties() {
             />
           </div>
         </Button>
+        {moreModal && <MoreModal/>}
         <OptionSelector>
           <OptionItem>Renting & Buying</OptionItem>
           <OptionItem>Both</OptionItem>
