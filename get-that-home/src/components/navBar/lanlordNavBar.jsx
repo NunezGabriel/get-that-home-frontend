@@ -3,7 +3,7 @@ import { GoPerson } from "react-icons/go";
 import { RiHome8Line } from "react-icons/ri";
 import { LuArrowUpLeftFromCircle } from "react-icons/lu";
 import logo from "../../assets/logo.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import {
   NavContainer,
@@ -17,6 +17,12 @@ import { useAuth } from "../../context/auth-context";
 
 const LanlordNavBar = () => {
   const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogOut=()=> {
+    logout();
+    navigate("/")
+  }
   return (
     <NavContainer>
       <Link to={"/"}>
@@ -32,7 +38,7 @@ const LanlordNavBar = () => {
             <MainInput placeholder="FIND A HOME" />
           </Finder>
         </Link>
-        <JoinButton onClick={logout} style={{ cursor: "pointer" }}>
+        <JoinButton onClick={()=>{handleLogOut()}} style={{ cursor: "pointer" }}>
           <LuArrowUpLeftFromCircle fontSize={20} color="#616161" />
           logout
         </JoinButton>
