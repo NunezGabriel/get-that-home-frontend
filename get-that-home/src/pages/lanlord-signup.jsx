@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
+import { useState } from "react";
 
+import { BASE_URI } from "../config";
 import NoLoggedNavBar from "../components/navBar/noLoggedNavBar";
 import { MainJoinContainer, PinkContainer, InfoTitle } from "./join-select";
 import Label from "../components/label";
@@ -26,6 +28,37 @@ export const SignUpContainer = styled.form`
 `;
 
 const LandlordSignUp = () => {
+
+  const [user, setUser] = useState({
+    "name": "",
+    "email": "",
+    "phone": "",
+    "password": "",
+    "role": "Landlord",
+  })
+
+  const{name, email, phone, password} = user;
+
+  const handleChange = (e) =>{
+      setUser({...user, [e.target.name]: e.target.value})
+  }
+
+  const handleSubmit = async() =>{
+    console.log("hiciste click")
+        try {
+          const response = await fetch(`${BASE_URI}/users`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(user)
+          });
+          const result = await response.json();
+          console.log("Éxito:", result);
+        } catch (error) {
+          console.error("Error:", error);
+      };
+}   
   return (
     <div>
       <NoLoggedNavBar />
@@ -33,39 +66,33 @@ const LandlordSignUp = () => {
         <PinkContainer />
       </MainJoinContainer>
       <SignUpContainer>
-        <InfoTitle>Create your Account</InfoTitle>
+        <InfoTitle>Create your Landlord Account</InfoTitle>
         <SimpleContainer>
           <Label>name</Label>
           <InputBody>
-            <MainInput placeholder="John Doe" />
+            <MainInput placeholder="John Doe" value={name} name="name" onChange={(e)=>{handleChange(e)}}/>
           </InputBody>
         </SimpleContainer>
         <SimpleContainer>
           <Label>email</Label>
           <InputBody>
-            <MainInput placeholder="user@mail.com" />
+            <MainInput placeholder="user@mail.com" value={email} name="email" onChange={(e)=>{handleChange(e)}}/>
           </InputBody>
         </SimpleContainer>
         <SimpleContainer>
           <Label>phone</Label>
           <InputBody>
-            <MainInput placeholder="999-999-999" />
+            <MainInput placeholder="999-999-999" value={phone} name="phone" onChange={(e)=>{handleChange(e)}}/>
           </InputBody>
         </SimpleContainer>
         <SimpleContainer>
           <Label>password</Label>
           <InputBody>
-            <MainInput placeholder="******" />
+            <MainInput placeholder="******"value={password} name="password" onChange={(e)=>{handleChange(e)}}/>
           </InputBody>
           <SimpleText TextColor={"#8E8E8E"}>At least 6 characteres</SimpleText>
         </SimpleContainer>
-        <SimpleContainer>
-          <Label>password Confirmation</Label>
-          <InputBody>
-            <MainInput placeholder="******" />
-          </InputBody>
-        </SimpleContainer>
-        <LoginButton>Create account</LoginButton>
+        <LoginButton onClick={()=>{handleSubmit()}}>Create account</LoginButton>
       </SignUpContainer>
     </div>
   );

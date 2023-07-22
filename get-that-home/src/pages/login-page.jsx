@@ -7,6 +7,7 @@ import Label from "../components/label";
 import InputBody from "../components/input";
 import { MainInput } from "../components/input";
 import NoLoggedNavBar from "../components/navBar/noLoggedNavBar";
+import { useNavigate } from "react-router-dom";
 
 const LogginBody = styled.form`
   display: inline-flex;
@@ -33,6 +34,7 @@ const Button = styled.button``;
 
 function LoginForm() {
   const { login } = useAuth();
+  // const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     email: "team2@mail.com",
@@ -51,6 +53,7 @@ function LoginForm() {
     event.preventDefault();
     login(formData);
     // toast.success("Successfully loged in!")
+    // navigate("/")
   }
 
   return (
@@ -67,7 +70,7 @@ function LoginForm() {
                 name="email"
                 label={"Email adress"}
                 type="email"
-                value={email}
+                // value={email}
                 onChange={handleChange}
                 placeholder="user@mail.com"
               />
@@ -81,7 +84,7 @@ function LoginForm() {
                 name="password"
                 label={"Password"}
                 type="password"
-                value={password}
+                // value={password}
                 placeholder="******"
                 onChange={handleChange}
               />

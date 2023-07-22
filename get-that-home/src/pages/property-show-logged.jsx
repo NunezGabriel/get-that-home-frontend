@@ -7,7 +7,7 @@ import {RiMoneyDollarCircleLine} from 'react-icons/ri';
 import { Global} from '@emotion/react'
 import {AiOutlineHeart} from 'react-icons/ai';
 import FooterContent from '../components/footer';
-// import {AiFillHeart} from 'react-icons/ai';
+import { Link } from 'react-router-dom';
 
 
 import SeekerNavBar from '../components/navBar/seekerNavBar';
@@ -317,12 +317,6 @@ function PropertShowLogged(){
                     <p>Francisco de Paula Ugarriza 27</p>
                     <ContainerMap>
                     <img src={mapLocation} alt="" />
-                    {/* <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15602.629151686477!2d-77.01942798458053!3d-12.135585057709873!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105b7e1b4b5a533%3A0xa549043226dcfb18!2sLarcomar!5e0!3m2!1ses-419!2spe!4v1689638002369!5m2!1ses-419!2spe" 
-                    width="860" 
-                    style={{border:0}} 
-                    allowfullscreen="" 
-                    loading="lazy" 
-                    referrerpolicy="no-referrer-when-downgrade"></iframe> */}
                     </ContainerMap>
                 </Location>
 
@@ -330,15 +324,13 @@ function PropertShowLogged(){
 
             <PropertyRigth>
                 <BoxLogin>
-                        <a href="">CONTACT ADVERTISER</a>
+                        <Link to={"/property-show-contact"} style={{textDecoration: "none"}}>
+                            CONTACT ADVERTISER
+                        </Link>
                         <BoxFavorites>
                             <a href=""><AiOutlineHeart/></a>
                             <p>Add to Favorites</p>
                         </BoxFavorites>
-                        {/* <BoxFavorites>
-                            <a href=""><AiFillHeart/></a>
-                            <p>Delete to Favorites</p>
-                        </BoxFavorites> */}
                 </BoxLogin>
             </PropertyRigth>
         </Container>

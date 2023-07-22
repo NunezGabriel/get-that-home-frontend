@@ -5,7 +5,7 @@ import { BiArea } from 'react-icons/bi';
 import { FaPaw } from 'react-icons/fa';
 import {RiMoneyDollarCircleLine} from 'react-icons/ri';
 import { Global} from '@emotion/react'
-
+import SeekerNavBar from '../components/navBar/seekerNavBar';
 
 
 

@@ -230,7 +230,7 @@ function PropertyNotLogged() {
             line-height: 1.75rem; /* 140% */
             letter-spacing: 0.00938rem;
           }
-
+ 
         `}
       />
       <NoLoggedNavBar />

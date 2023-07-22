@@ -126,12 +126,7 @@ const Area = styled.p`
 function RentalCard(property) {
   return (
     <PropertyCard>
-      <Link
-        to={"/detail-property"}
-        style={{ textDecoration: "none", alignSelf: "center" }}
-      >
-        <RentalImg src={PhotoDeparment} alt="Home Pic" />
-      </Link>
+      <RentalImg src={PhotoDeparment} alt="Home Pic" />
       <RentalChar>
         {" "}
         <RiMoneyDollarCircleLine

@@ -5,9 +5,11 @@ import { useState, useEffect } from "react";
 import { getProperties } from "../service/properties-service";
 import RentalCard from "../components/rental-card";
 import FooterContent from "../components/footer";
+import { Link } from "react-router-dom";
 
-const ContainerCards = styled.div`
-  width: 100%;
+export const ContainerCards = styled.div`
+  width: 75rem;
+  margin: 2rem auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
@@ -24,12 +26,16 @@ const ListNotLogged = () => {
 
   return (
     <div>
-      <NoLoggedNavBar />
+      <NoLoggedNavBar /> 
       <ListProperties />
       <div style={{ display: "flex", flexWrap: "wrap", marginTop: "50px" }}>
         <ContainerCards>
           {properties?.map((product) => {
-            return <RentalCard key={product.id} {...product}></RentalCard>;
+            return(
+              <Link to={"/property-not-logged"} style={{textDecoration: "none"}}>
+                <RentalCard key={product.id} {...product}></RentalCard>;
+              </Link> 
+            )
           })}
         </ContainerCards>
       </div>

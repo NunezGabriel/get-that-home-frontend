@@ -5,9 +5,11 @@ import { useState, useEffect } from "react";
 import { getProperties } from "../service/properties-service";
 import RentalCard from "../components/rental-card";
 import FooterContent from "../components/footer";
+import { Link } from "react-router-dom";
 
 const ContainerCards = styled.div`
-  width: 100%;
+  margin: 2rem auto;
+  width: 75rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
@@ -21,7 +23,7 @@ const ListLandLord = () => {
     getProperties().then(setProperties).catch(console.log);
   }, []);
   console.log(properties);
-
+ 
   return (
     <div>
       <LanlordNavBar />
@@ -29,7 +31,11 @@ const ListLandLord = () => {
       <div style={{ display: "flex", flexWrap: "wrap", marginTop: "50px" }}>
         <ContainerCards>
           {properties?.map((product) => {
-            return <RentalCard key={product.id} {...product}></RentalCard>;
+              return (
+                <Link to={"/property-detail"} style={{textDecoration: "none"}}>
+                  <RentalCard key={product.id} {...product}></RentalCard>;
+                </Link> 
+              );            
           })}
         </ContainerCards>
       </div>
