@@ -132,7 +132,7 @@ function RentalCard(property) {
         <RiMoneyDollarCircleLine
           style={{ width: "32px", height: "26.67px", color: "#373737" }}
         />
-        <RentPrice>{property.montly_rent}</RentPrice>
+        <RentPrice>{property.price}</RentPrice>
         <RiBuildingLine
           style={{ width: "24px", height: "32px", color: "#616161" }}
         />
