@@ -1,13 +1,14 @@
 import styled from "@emotion/styled";
 import { TbUserPlus } from "react-icons/tb";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { useAuth } from "../context/auth-context";
 import { SimpleContainer } from "./form";
 import Label from "../components/label";
 import InputBody from "../components/input";
 import { MainInput } from "../components/input";
 import NoLoggedNavBar from "../components/navBar/noLoggedNavBar";
-import { useNavigate } from "react-router-dom";
 
 const LogginBody = styled.form`
   display: inline-flex;
@@ -34,14 +35,12 @@ const Button = styled.button``;
 
 function LoginForm() {
   const { login } = useAuth();
-  const navigate = useNavigate();
-
   const [formData, setFormData] = useState({
-    email: "team2@mail.com",
-    password: "qwerty",
+    email: '',
+    password: '',
   });
 
-  const { email, password } = formData;
+  const navigate = useNavigate()
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -49,10 +48,14 @@ function LoginForm() {
     setFormData({ ...formData, [name]: value });
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    login(formData);
-    // toast.success("Successfully loged in!")
+    try {
+      await login(formData);
+      navigate('/');
+    } catch (error) {
+      // handle login error
+    }
   }
 
   return (
@@ -69,8 +72,8 @@ function LoginForm() {
                 name="email"
                 label={"Email adress"}
                 type="email"
-                // value={email}
                 onChange={handleChange}
+                // value={email}
                 placeholder="user@mail.com"
               />
             </InputBody>
@@ -83,9 +86,9 @@ function LoginForm() {
                 name="password"
                 label={"Password"}
                 type="password"
+                onChange={handleChange}
                 // value={password}
                 placeholder="******"
-                onChange={handleChange}
               />
             </InputBody>
           </SimpleContainer>
