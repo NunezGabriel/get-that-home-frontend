@@ -42,7 +42,7 @@ const SeekerSignUp = () => {
               console.log("Éxito:", result);
             } catch (error) {
               console.error("Error:", error);
-          };
+          }
         navigate("/login-page")
     }   
     return ( 
