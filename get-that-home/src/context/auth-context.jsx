@@ -11,8 +11,21 @@ function AuthProvider(props) {
   const [user, setUser] = useState(null);
   // const [loading, setLoading] = useState(true);
 
+  // function login(credentials) {
+  //   session.login(credentials).then(setUser).catch(console.log);
+  // }
+
   function login(credentials) {
-    session.login(credentials).then(setUser).catch(console.log);
+    console.log('login called with credentials:', credentials);
+    session
+      .login(credentials)
+      .then((user) => {
+        console.log('login successful, user data:', user);
+        setUser(user);
+      })
+      .catch((error) => {
+        console.log('login error:', error);
+      });
   }
 
   function signup(userData) {

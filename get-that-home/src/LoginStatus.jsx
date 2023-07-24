@@ -1,4 +1,3 @@
-import SeekerPage from "./pages/seeker-landing";
 import { useAuth } from "./context/auth-context";
 import LandLordApp from "./landlordApp";
 import SeekerApp from "./seekerApp";

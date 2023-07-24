@@ -50,6 +50,7 @@ function LoginForm() {
 
   async function handleSubmit(event) {
     event.preventDefault();
+    console.log(`Hola ${formData.email}`)
     try {
       await login(formData);
       navigate('/');
