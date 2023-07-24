@@ -11,8 +11,10 @@ import { filterContext } from "../context/filter-contex";
 
 const ListSeeker = () => {
   const [properties, setProperties] = useState(null);
-  const {min, max, isChecked, isCheckedApartment} = useContext(filterContext);
-  const [staticProperties, setStaticProperties] = useState(null)
+  const {min, max, isChecked, isCheckedApartment, word, beds,setBeds, setBaths, baths, type} = useContext(filterContext);
+  const [staticProperties, setStaticProperties] = useState([])
+  const [addressProperties, setAddressProperties] = useState([])
+
 
   useEffect(() => {
     getProperties().then(setProperties).catch(console.log);
@@ -20,22 +22,50 @@ const ListSeeker = () => {
   }, []);
 
   let filterProperties = properties ? properties.filter(product => product.price >= parseInt(min) && product.price <= parseInt(max)) : [];
-  console.log(isChecked);
 
   useEffect(()=>{
     if(isChecked){
       setProperties(filterProperties.filter((product)=>product.property_type == "Casa"))
-      console.log(properties)
       filterProperties = properties;
     }else if(isCheckedApartment){
       setProperties(filterProperties.filter((product)=>product.property_type == "Apartamento"))
-      console.log(properties)
       filterProperties = properties;
     }
     else{
       setProperties(staticProperties)
     }
   }, [isChecked, isCheckedApartment])
+
+  useEffect(() => {
+    // let filteredAddress = filterProperties ? filterProperties.filter(product => product.address.toLowerCase().includes(word.toLowerCase())) : [];
+    setAddressProperties(filterProperties.filter(product => product.address.toLowerCase().includes(word.toLowerCase())));
+
+    // filterProperties = addressProperties;
+    if(word != '') {
+      setProperties(addressProperties)
+    } else {
+      setProperties(staticProperties)
+    }
+  }, [word])
+
+  useEffect(() => {
+    let filteredRooms = staticProperties.filter((product) => product.bedrooms >= beds && product.bathrooms >= baths);
+    setProperties(filteredRooms);
+  }, [beds, baths])
+
+  useEffect(() => {
+    let x;
+    if(type == 'Sale') {
+      setProperties(staticProperties.filter(product => product.operation_type == 'Sale'))
+      
+    } else if ( type == "Rent") {
+      setProperties(staticProperties.filter(product => product.operation_type == 'Rent'))
+
+    } else {
+      setProperties(staticProperties)
+    }
+    console.log(x);
+  }, [type])
 
   
     return (
@@ -46,8 +76,8 @@ const ListSeeker = () => {
           <ContainerCards>
           {filterProperties?.map((product) => {
             return(
-              <Link to={"/property-show-logged"} key={product.id} style={{textDecoration: "none"}}>
-                <RentalCard  {...product}></RentalCard>;
+              <Link to={"/property-not-logged"} key={product.id} style={{textDecoration: "none"}}>
+                <RentalCard  {...product}></RentalCard>
               </Link> 
             )
           })}

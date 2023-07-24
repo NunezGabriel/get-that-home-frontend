@@ -8,6 +8,8 @@ import PropertyTypeModal from "../components/modals/property-type-modal";
 import BedModal from "../components/modals/beds-modal";
 import MoreModal from "../components/modals/more-modal";
 
+import { useContext } from "react";
+
 const FilterContainer = styled.form`
   display: flex;
   flex-direction: row;
@@ -86,6 +88,7 @@ const OptionItem = styled.option`
   list-style: none;
 `;
 
+import { filterContext } from "../context/filter-contex";
 function ListProperties() {
 
   const [modalPrice, setModalPrice] = useState(false);
@@ -93,19 +96,26 @@ function ListProperties() {
   const [bedModal, setBedModal] = useState(false);
   const [moreModal, setMoreModal] = useState(false);
 
+  const { handleWord, setType } = useContext(filterContext)
+
   return (
     <div>
       <FilterContainer>
+        
         <SearchContainer>
           <FiSearch style={{ color: "#8E8E8E", width: 20, height: 20 }} />
-          <SearchInput placeholder="Search by address" />
+          <SearchInput placeholder="Search by address" onChange={(e) => handleWord(e)}/>
         </SearchContainer>
+
         <Button onClick={()=>{setModalPrice(!modalPrice)}}>PRICE</Button>
         {modalPrice && <PriceModal/>}
+       
         <Button onClick={()=>{setPropertyTypeModal(!propertyTypeModal)}}>PROPERTY TYPE</Button>
         {propertyTypeModal && <PropertyTypeModal/>}
+       
         <Button onClick={()=>{setBedModal(!bedModal)}}>BEDS & BATHS</Button>
         {bedModal && <BedModal/>}
+       
         <Button onClick={()=>{setMoreModal(!moreModal)}}>
           <div style={{ display: "flex", alignItems: "center" }}>
             MORE
@@ -120,12 +130,13 @@ function ListProperties() {
           </div>
         </Button>
         {moreModal && <MoreModal/>}
-        <OptionSelector>
-          <OptionItem>Renting & Buying</OptionItem>
-          <OptionItem>Both</OptionItem>
-          <OptionItem>Buying</OptionItem>
-          <OptionItem>Renting</OptionItem>
+
+        <OptionSelector onChange={(e) => setType(e.target.value)}>
+          <OptionItem defaultValue value={''}>Both</OptionItem>
+          <OptionItem value={'Sale'}>Sale</OptionItem>
+          <OptionItem value={'Rent'}>Rent</OptionItem>
         </OptionSelector>
+
       </FilterContainer>
     </div>
   );
