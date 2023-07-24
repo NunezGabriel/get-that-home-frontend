@@ -19,7 +19,7 @@ import {
 } from "../components/input";
 import { ChooseButton, MainButton } from "../components/button";
 
-export const MainContainer = styled.div`
+export const MainContainer = styled.form`
   width: 1200px;
   margin: 0 auto;
   padding: 32px;

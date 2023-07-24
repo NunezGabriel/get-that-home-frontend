@@ -12,7 +12,7 @@ const LandLordApp = () => {
     <Routes>
       <Route path="/form" element={<Form />} />
       <Route path="/form-sale" element={<FormSale />} />
-      <Route path="property-active" element={<PropertyActive />} />
+      <Route path="/property-active" element={<PropertyActive />} />
       <Route path="/property-close" element={<PropertyClose />} />
       <Route path="/property-detail" element={<PropertEdit />} />
       <Route path="/profile" element={<ProfilePage />} />
