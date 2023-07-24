@@ -55,7 +55,7 @@ const ListLandLord = () => {
         <ContainerCards>
         {filterProperties?.map((product) => {
             return(
-              <Link to={"/property-not-logged"} key={product.id} style={{textDecoration: "none"}}>
+              <Link to={"/property-detail"} key={product.id} style={{textDecoration: "none"}}>
                 <RentalCard  {...product}></RentalCard>;
               </Link> 
             )

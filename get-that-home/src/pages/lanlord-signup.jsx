@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { BASE_URI } from "../config";
 import NoLoggedNavBar from "../components/navBar/noLoggedNavBar";
@@ -42,6 +43,7 @@ const LandlordSignUp = () => {
   const handleChange = (e) =>{
       setUser({...user, [e.target.name]: e.target.value})
   }
+  const navigate = useNavigate();
 
   const handleSubmit = async() =>{
     console.log("hiciste click")
@@ -56,9 +58,10 @@ const LandlordSignUp = () => {
           const result = await response.json();
           console.log("Éxito:", result);
         } catch (error) {
-          console.error("Error:", error);
-      };
-}   
+          console.error("Error:", error); 
+        };
+        navigate("/login-page")
+  }   
   return (
     <div>
       <NoLoggedNavBar />
