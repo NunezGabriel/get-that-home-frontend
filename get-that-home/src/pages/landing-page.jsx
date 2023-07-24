@@ -11,6 +11,7 @@ import jorgepic from "../assets/prov-5.jpg";
 import RentalCard from "../components/rental-card";
 import rentalImage from "../assets/home-img/home-1.svg";
 import FooterContent from "../components/footer";
+import CardLanding from "../components/card-landing";
 
 const GeneralContainer = styled.div`
   display: flex;
@@ -283,9 +284,7 @@ function LandingPage() {
             <DemoText>Find an Apartment you Love</DemoText>
             <DemoTitleText>Homes for rent at the best prices</DemoTitleText>
             <RentalContainer>
-              <RentalCard img={rentalImage} />
-              <RentalCard img={rentalImage} />
-              <RentalCard img={rentalImage} />
+              <CardLanding/>
             </RentalContainer>
           </SecondSection>
           <SignupSection>

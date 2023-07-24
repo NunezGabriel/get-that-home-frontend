@@ -8,7 +8,7 @@ export async function login(credentials) {
 
   sessionStorage.setItem(tokenKey, token);
 
-  // console.log(user);
+  console.log(user);
 
   return user;
 }
