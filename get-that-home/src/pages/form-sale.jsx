@@ -69,6 +69,7 @@ const Button = styled.button`
 const FormSale = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
+  const [selectedImage, setSelectedImage] = useState(null);
   const [formData, setFormData] = useState({
     operation_type: "Sale",
     address: "",
@@ -83,28 +84,47 @@ const FormSale = () => {
     about: "",
     user_id: user.id,
     active: true,
+    photo: selectedImage,
   });
 
   const { address, price, property_type, bedrooms, bathrooms, area, about } =
     formData;
+
+  function handleImageChange(event) {
+    const file = event.target.files[0]; // Obtener el primer archivo seleccionado
+    setSelectedImage(file);
+  }
 
   function handleChange(event) {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   }
 
+  // async function handleSubmit(event) {
+  //   event.preventDefault();
+  //   try {
+  //     await createProperty(formData);
+  //     console.log(formData);
+  //     navigate("/property-active");
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  //   console.log(formData.property_type);
+  // }
   async function handleSubmit(event) {
     event.preventDefault();
     try {
-      await createProperty(formData);
-      console.log(formData);
+      const formDataToSend = { ...formData };
+      formDataToSend.photo = selectedImage; // Agregar la imagen seleccionada al objeto formDataToSend
+
+      await createProperty(formDataToSend);
+      console.log(formDataToSend);
       navigate("/property-active");
     } catch (error) {
       console.log(error);
     }
-    console.log(formData.property_type);
+    console.log(selectedImage);
   }
-
   return (
     <div>
       <LanlordNavBar />
@@ -241,9 +261,20 @@ const FormSale = () => {
             <SimpleFlexContainer>
               <ChooseButton>
                 <BsArrowBarUp fontSize={25} color="white" />
-                <SimpleText TextColor={"white"}>Choose a file</SimpleText>
+                <label htmlFor="image-upload" style={{ cursor: "pointer" }}>
+                  <SimpleText TextColor={"white"}>Choose a file</SimpleText>
+                </label>
+                <input
+                  id="image-upload"
+                  type="file"
+                  accept="image/*"
+                  style={{ display: "none" }}
+                  onChange={handleImageChange}
+                />
               </ChooseButton>
-              <SimpleText TextColor={"#616161"}>No file chosen</SimpleText>
+              <SimpleText TextColor={"#616161"}>
+                {selectedImage ? selectedImage.name : "No file chosen"}
+              </SimpleText>
             </SimpleFlexContainer>
             <Text>Only images, max 5MB</Text>
           </SimpleContainer>

@@ -2,7 +2,10 @@ import styled from "@emotion/styled";
 import { BiSearch } from "react-icons/bi";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { BsArrowBarUp } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/auth-context";
+import { useState } from "react";
+import { createProperty } from "../service/properties-service";
 
 import LanlordNavBar from "../components/navBar/lanlordNavBar";
 import MainTitle from "../components/mainTitle";
@@ -17,7 +20,7 @@ import {
   OptionInput,
   TextAreaInput,
 } from "../components/input";
-import { ChooseButton, MainButton } from "../components/button";
+import { ChooseButton } from "../components/button";
 
 export const MainContainer = styled.form`
   width: 1200px;
@@ -41,6 +44,20 @@ export const FlexContainerL = styled.div`
   align-items: center;
 `;
 
+const Button = styled.button`
+  display: flex;
+  padding: 16px 24px;
+  place-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 16px;
+  background: #f48fb1;
+  width: 275px;
+  height: 40px;
+  font-size: 18px;
+  color: white;
+`;
+
 export const SwitchContainer = styled.div`
   display: flex;
   align-items: center;
@@ -59,35 +76,93 @@ export const ImgContainer = styled.div`
   height: 136px;
   background: #f5f5f6;
 `;
+
+const SwitchOption = styled.div`
+  display: flex;
+  width: 50px;
+  padding: 8px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background-color: #f48fb1;
+  border-right: 1px solid #8e8e8e;
+`;
+const SecondSwitchOption = styled.div`
+  display: flex;
+  width: 50px;
+  padding: 8px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background-color: white;
+`;
 const Form = () => {
-  //   return (
-  //     <div>
-  //       <p>hola mundo</p>
-  //     </div>
-  //   );
-  const SwitchOption = styled.div`
-    display: flex;
-    width: 50px;
-    padding: 8px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    background-color: #f48fb1;
-    border-right: 1px solid #8e8e8e;
-  `;
-  const SecondSwitchOption = styled.div`
-    display: flex;
-    width: 50px;
-    padding: 8px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    background-color: white;
-  `;
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const [petsAllowed, setPetsAllowed] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [formData, setFormData] = useState({
+    operation_type: "Sale",
+    address: "",
+    price: null,
+    montly_rent: "",
+    maintanance: "",
+    property_type: "",
+    bedrooms: "",
+    bathrooms: "",
+    area: "",
+    pets: "",
+    about: "",
+    user_id: user.id,
+    active: true,
+    photo: selectedImage,
+  });
+
+  const {
+    address,
+    montly_rent,
+    maintanance,
+    property_type,
+    bedrooms,
+    bathrooms,
+    area,
+    about,
+  } = formData;
+
+  function handleImageChange(event) {
+    const file = event.target.files[0]; // Obtener el primer archivo seleccionado
+    setSelectedImage(file);
+  }
+
+  function handleChange(event) {
+    const { name, value, type, checked } = event.target;
+    if (type === "checkbox") {
+      setFormData({ ...formData, [name]: checked });
+      setPetsAllowed(checked);
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
+  }
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    try {
+      const formDataToSend = { ...formData };
+      formDataToSend.photo = selectedImage; // Agregar la imagen seleccionada al objeto formDataToSend
+
+      await createProperty(formDataToSend);
+      console.log(formDataToSend);
+      navigate("/property-active");
+    } catch (error) {
+      console.log(error);
+    }
+    console.log(selectedImage);
+  }
+
   return (
     <div>
       <LanlordNavBar />
-      <MainContainer>
+      <MainContainer onSubmit={handleSubmit}>
         <MainTitle>Create a property listing</MainTitle>
         <SimpleContainer>
           <Label>Operation Type</Label>
@@ -107,7 +182,13 @@ const Form = () => {
           <Label>Address</Label>
           <InputBody>
             <BiSearch color="#8E8E8E" />
-            <MainInput placeholder="start typing to autocomplete" />
+            <MainInput
+              placeholder="start typing to autocomplete"
+              type="text"
+              name="address"
+              value={address}
+              onChange={handleChange}
+            />
           </InputBody>
         </SimpleContainer>
 
@@ -115,7 +196,13 @@ const Form = () => {
           <Label>montly rent</Label>
           <InputBody>
             <RiMoneyDollarCircleLine color="#8E8E8E" />
-            <MainInput placeholder="2000" />
+            <MainInput
+              placeholder="2000"
+              type="text"
+              name="montly_rent"
+              value={montly_rent}
+              onChange={handleChange}
+            />
           </InputBody>
         </SimpleContainer>
 
@@ -123,7 +210,13 @@ const Form = () => {
           <Label>Maintanance</Label>
           <InputBody>
             <RiMoneyDollarCircleLine color="#8E8E8E" />
-            <MainInput placeholder="100" />
+            <MainInput
+              placeholder="100"
+              type="text"
+              name="maintanance"
+              value={maintanance}
+              onChange={handleChange}
+            />
           </InputBody>
         </SimpleContainer>
 
@@ -131,11 +224,23 @@ const Form = () => {
           <Label>Property Type</Label>
           <SimpleFlexContainer>
             <FlexContainerL>
-              <CheckboxInput type="checkbox" />
+              <CheckboxInput
+                type="radio"
+                name="property_type"
+                checked={property_type === "Apartment"}
+                onChange={handleChange}
+                value="Apartment"
+              />
               <SimpleText>Apartment</SimpleText>
             </FlexContainerL>
             <FlexContainerL>
-              <CheckboxInput type="checkbox" />
+              <CheckboxInput
+                type="radio"
+                name="property_type"
+                checked={property_type === "House"}
+                onChange={handleChange}
+                value="House"
+              />
               <SimpleText>House</SimpleText>
             </FlexContainerL>
           </SimpleFlexContainer>
@@ -144,7 +249,11 @@ const Form = () => {
         <SimpleFlexContainer>
           <SimpleContainer>
             <Label>Bedrooms</Label>
-            <MainSelect>
+            <MainSelect
+              name="bedrooms"
+              value={bedrooms}
+              onChange={handleChange}
+            >
               <option>1</option>
               <option>2</option>
               <option>3</option>
@@ -154,7 +263,11 @@ const Form = () => {
 
           <SimpleContainer>
             <Label>Bathrooms</Label>
-            <MainSelect>
+            <MainSelect
+              name="bathrooms"
+              value={bathrooms}
+              onChange={handleChange}
+            >
               <option>1</option>
               <option>2</option>
               <option>3</option>
@@ -164,13 +277,24 @@ const Form = () => {
 
           <SimpleContainer>
             <Label>Area in m2</Label>
-            <OptionInput type="number" placeholder="##" />
+            <OptionInput
+              type="number"
+              placeholder="##"
+              name="area"
+              value={area}
+              onChange={handleChange}
+            />
           </SimpleContainer>
         </SimpleFlexContainer>
 
         <SimpleContainer>
           <FlexContainerL>
-            <CheckboxInput type="checkbox" />
+            <CheckboxInput
+              type="checkbox"
+              name="pets"
+              checked={petsAllowed}
+              onChange={handleChange}
+            />
             <SimpleText>Pets Allowed</SimpleText>
           </FlexContainerL>
           <Text style={{ width: "467px" }}>
@@ -181,7 +305,13 @@ const Form = () => {
 
         <SimpleContainer>
           <Label>About this property</Label>
-          <TextAreaInput placeholder="My apartment is great because..." />
+          <TextAreaInput
+            placeholder="My apartment is great because..."
+            type="text"
+            name="about"
+            value={about}
+            onChange={handleChange}
+          />
           <Text>
             Renters will read this first, so highlight any features or important
             information the apartment has.
@@ -194,15 +324,27 @@ const Form = () => {
             <SimpleFlexContainer>
               <ChooseButton>
                 <BsArrowBarUp fontSize={25} color="white" />
-                <SimpleText TextColor={"white"}>Choose a file</SimpleText>
+                <label htmlFor="image-upload" style={{ cursor: "pointer" }}>
+                  <SimpleText TextColor={"white"}>Choose a file</SimpleText>
+                </label>
+                <input
+                  id="image-upload"
+                  type="file"
+                  accept="image/*"
+                  style={{ display: "none" }}
+                  onChange={handleImageChange}
+                />
               </ChooseButton>
-              <SimpleText TextColor={"#616161"}>No file chosen</SimpleText>
+              <SimpleText TextColor={"#616161"}>
+                {" "}
+                {selectedImage ? selectedImage.name : "No file chosen"}
+              </SimpleText>
             </SimpleFlexContainer>
             <Text>Only images, max 5MB</Text>
           </SimpleContainer>
         </SimpleContainer>
         <ImgContainer></ImgContainer>
-        <MainButton>Publish property listing</MainButton>
+        <Button>Publish property listing</Button>
       </MainContainer>
     </div>
   );
