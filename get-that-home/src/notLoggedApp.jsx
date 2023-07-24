@@ -14,7 +14,7 @@ const NotLoggedApp = () => {
     <Routes>
       <Route path="/join-select" element={<JoinSelect />} />
       <Route path="/landlord-signup" element={<LandlordSignUp />} />
-      <Route path="/property-not-logged" element={<PropertyNotLogged />} />
+      <Route path="/property-not-logged/:id" element={<PropertyNotLogged />} />
       <Route path="/seeker-signup" element={<SeekerSignUp />} />
       <Route path="/find-home" element={<FindHome />} />
       <Route path="/login-page" element={<LoginPage />} />

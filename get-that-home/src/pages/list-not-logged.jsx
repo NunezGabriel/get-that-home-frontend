@@ -19,15 +19,15 @@ export const ContainerCards = styled.div`
 `;
 
 const ListNotLogged = () => {
-  const [properties, setProperties] = useState(null);
+  
+  const [properties, setProperties] = useState([]);
   const {min, max, isChecked, isCheckedApartment, word, beds,setBeds, setBaths, baths, type} = useContext(filterContext);
   const [staticProperties, setStaticProperties] = useState([])
   const [addressProperties, setAddressProperties] = useState([])
 
-
   useEffect(() => {
     getProperties().then(setProperties).catch(console.log);
-    getProperties().then(setStaticProperties).catch(console.log);
+    // getProperties().then(setStaticProperties).catch(console.log);
   }, []);
 
   let filterProperties = properties ? properties.filter(product => product.price >= parseInt(min) && product.price <= parseInt(max)) : [];
@@ -82,13 +82,14 @@ const ListNotLogged = () => {
       <ListProperties/>
       <div style={{ display: "flex", flexWrap: "wrap", marginTop: "50px" }}>
         <ContainerCards>
-          {filterProperties?.map((product) => {
-            return(
-              <Link to={"/property-not-logged"} key={product.id} style={{textDecoration: "none"}}>
-                <RentalCard  {...product}></RentalCard>
-              </Link> 
-            )
-          })}
+          {filterProperties?.map((property) => (
+            <RentalCard 
+            key={property.id}
+            props={property}
+            {...property} 
+            style={{ textDecoration: "none" }}/>
+          ))}
+
         </ContainerCards>
       </div>
       <FooterContent />
