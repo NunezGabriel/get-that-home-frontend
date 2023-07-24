@@ -30,7 +30,6 @@ export default async function apiFetch(
   const response = await fetch(BASE_URI + endpoint, config);
 
   let data;
-  // console.log(response);
   if (!response.ok) {
     try {
       data = await response.json();

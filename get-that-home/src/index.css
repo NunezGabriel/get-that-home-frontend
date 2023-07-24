@@ -10,3 +10,8 @@ body {
 * {
   font-family: "Roboto", sans-serif;
 }
+
+.active {
+  background-color: #f48fb1;
+  color: white;
+}
