@@ -6,11 +6,14 @@ import { FaPaw } from "react-icons/fa";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { RiUserReceivedFill } from "react-icons/ri";
 import { Global } from "@emotion/react";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 import NoLoggedNavBar from "../components/navBar/noLoggedNavBar";
 import imgProperty from "../assets/property.svg";
 import mapLocation from "../assets/mappro.svg";
 import FooterContent from "../components/footer";
+import { showProperty } from "../service/properties-service";
 
 const Container = styled.div`
   max-width: 71rem;
@@ -216,7 +219,16 @@ const ContainerLogin = styled.div`
 
 const BoxLogin = styled.div``;
 
-function PropertyNotLogged() {
+function PropertyNotLogged(props) {
+  const {id} = useParams();
+  console.log(id)
+
+  const [property, setProperty] = useState(null)
+
+  useEffect(() => {
+    showProperty(id).then(setProperty).catch(console.log)
+  },[id])
+
   return (
     <>
       <Global
@@ -236,24 +248,21 @@ function PropertyNotLogged() {
       <NoLoggedNavBar />
       <Container>
         <PropertyLeft>
-          {/* Container de la imagen */}
           <PropertyImage>
             <img src={imgProperty} alt="" />
           </PropertyImage>
-
-          {/* Container de las caracteristicas */}
           <Characteristics>
             <LocationProperty>
-              <h4>Francisco de Paula Ugarriza 27</h4>
-              <p>Miraflores , Lima</p>
+              <h4>{property?.address}</h4>
+              <p>{property?.address}</p>
             </LocationProperty>
 
             <PriceProperty>
               <h3>
                 <RiMoneyDollarCircleLine />
-                3,000
+                {property?.price}
               </h3>
-              <p>+100</p>
+              <p>{property?.montly_rent}</p>
             </PriceProperty>
           </Characteristics>
 
@@ -261,17 +270,17 @@ function PropertyNotLogged() {
           <DetailsProperty>
             <Info>
               <BiBed />
-              <h4>4 bedrooms</h4>
+              <h4>{property?.bedrooms} bedrooms</h4>
             </Info>
 
             <Info>
               <BiBath />
-              <h4>2 bathrooms</h4>
+              <h4>{property?.bathrooms} bathrooms</h4>
             </Info>
 
             <Info>
               <BiArea />
-              <h4>180 m2</h4>
+              <h4>{property?.area}</h4>
             </Info>
 
             <Info>
@@ -282,14 +291,7 @@ function PropertyNotLogged() {
 
           <AboutProperty>
             <h2>About this property</h2>
-            <p>3 Bedroom/2 Bathroom apartment available for ASAP move-in!</p>
-            <p>
-              Apartment features hardwood floors throughout, virtual doorman,
-              Central AC/heat, dishwasher and a microwave.{" "}
-            </p>
-            <p>
-              The kitchen has custom cabinetry and the living room is big enough
-              to fit a dinner table, a couch and a tv set up.
+            <p>{property?.about}
             </p>
           </AboutProperty>
 

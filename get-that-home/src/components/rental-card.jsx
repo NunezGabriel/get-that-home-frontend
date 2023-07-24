@@ -5,15 +5,14 @@ import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { BiBed, BiBath, BiArea } from "react-icons/bi";
 import { MdOutlinePets } from "react-icons/md";
 import PhotoDeparment from "../assets/images/Photo1.svg";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const PropertyCard = styled.div`
   border-radius: 8px;
   display: flex;
   flex-direction: column;
-  justify-content: left;
-  align-items: left;
   width: 300px;
+  height: 353px;
   font-family: "Inter";
   font-weight: 400;
   font-size: 16px;
@@ -22,10 +21,11 @@ const PropertyCard = styled.div`
   color: #616161;
   border-bottom: 7px solid #bf5f82;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
 `;
 
 const RentalImg = styled.img`
-  width: 300;
+  width: 300px;
   height: 200px;
   flex-shrink: 0;
   border-top-left-radius: 8px;
@@ -36,16 +36,16 @@ const RentalChar = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  padding: 8px;
-  gap: 8px;
+  align-content: center;
+  margin: 8px;
+  position: relative;
 `;
 
 const RentPrice = styled.p`
   ${typography.head.sm}
   font-weight: 400;
   color: #373737;
-  margin: 0;
-  padding-right: 64px;
+  margin: 0px;
 `;
 
 const PropertyType = styled.p`
@@ -53,7 +53,6 @@ const PropertyType = styled.p`
   font-weight: 400;
   color: #616161;
   margin: 0;
-  align-self: center;
 `;
 
 const AddressChar = styled.div`
@@ -123,20 +122,37 @@ const Area = styled.p`
   padding-left: 4px;
 `;
 
+const ZCont = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  position: absolute;
+  right: 8px;
+`
+
 function RentalCard(property) {
+  // console.log(property.id)
+
   return (
     <PropertyCard>
+      <Link to={`/property-not-logged/${property.id}`} >
       <RentalImg src={PhotoDeparment} alt="Home Pic" />
+      </Link>
       <RentalChar>
-        {" "}
         <RiMoneyDollarCircleLine
           style={{ width: "32px", height: "26.67px", color: "#373737" }}
         />
         <RentPrice>{property.price}</RentPrice>
-        <RiBuildingLine
-          style={{ width: "24px", height: "32px", color: "#616161" }}
-        />
-        <PropertyType>{property.property_type}</PropertyType>
+        <ZCont>
+          <RiBuildingLine
+          style={{ width: "24px", 
+          height: "32px", 
+          color: "#616161",
+        }}
+          />
+          <PropertyType>{property.property_type}</PropertyType>
+          </ZCont>
       </RentalChar>
       <AddressChar>
         <Address>{property.address}</Address>

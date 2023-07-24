@@ -19,32 +19,30 @@ export const ContainerCards = styled.div`
 `;
 
 const ListNotLogged = () => {
-  const [properties, setProperties] = useState(null);
-  const {min, max, isChecked, isCheckedApartment} = useContext(filterContext);
-  const [staticProperties, setStaticProperties] = useState(null)
+  const [properties, setProperties] = useState([]);
+  // const {min, max, isChecked, isCheckedApartment} = useContext(filterContext);
+  // const [staticProperties, setStaticProperties] = useState(null)
 
   useEffect(() => {
     getProperties().then(setProperties).catch(console.log);
-    getProperties().then(setStaticProperties).catch(console.log);
+    // getProperties().then(setStaticProperties).catch(console.log);
   }, []);
 
-  let filterProperties = properties ? properties.filter(product => product.price >= parseInt(min) && product.price <= parseInt(max)) : [];
-  console.log(isChecked);
+  // const filterProperties = properties ? properties.filter(product => product.price >= parseInt(min) && product.price <= parseInt(max)) : [];
+  // console.log(isChecked);
 
-  useEffect(()=>{
-    if(isChecked){
-      setProperties(filterProperties.filter((product)=>product.property_type == "Casa"))
-      console.log(properties)
-      filterProperties = properties;
-    }else if(isCheckedApartment){
-      setProperties(filterProperties.filter((product)=>product.property_type == "Apartamento"))
-      console.log(properties)
-      filterProperties = properties;
-    }
-    else{
-      setProperties(staticProperties)
-    }
-  }, [isChecked, isCheckedApartment])
+  // useEffect(()=>{
+  //   if(isChecked){
+  //     setProperties(filterProperties.filter((product)=>product.property_type == "Casa"))
+  //     console.log(properties)
+  //   }else if(isCheckedApartment){
+  //     setProperties(filterProperties.filter((product)=>product.property_type == "Apartamento"))
+  //     console.log(properties)
+  //   }
+  //   else{
+  //     setProperties(staticProperties)
+  //   }
+  // }, [properties])
 
 
   return (
@@ -53,13 +51,13 @@ const ListNotLogged = () => {
       <ListProperties/>
       <div style={{ display: "flex", flexWrap: "wrap", marginTop: "50px" }}>
         <ContainerCards>
-          {filterProperties?.map((product) => {
-            return(
-              <Link to={"/property-not-logged"} key={product.id} style={{textDecoration: "none"}}>
-                <RentalCard  {...product}></RentalCard>;
-              </Link> 
-            )
-          })}
+          {properties?.map((property) => (
+            <RentalCard 
+            key={property.id}
+            props={property}
+            {...property} 
+            style={{ textDecoration: "none" }}/>
+          ))}
         </ContainerCards>
       </div>
       <FooterContent />

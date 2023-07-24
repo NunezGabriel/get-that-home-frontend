@@ -47,7 +47,6 @@ const RentalChar = styled.div`
   justify-content: flex-start;
   align-items: center;
   margin: 8px;
-  gap: 8px;
   position: relative;
 `;
 
@@ -56,7 +55,6 @@ const RentPrice = styled.p`
   font-weight: 400;
   color: #373737;
   margin: 0;
-  padding-right: 72px;
 `;
 
 const PropertyType = styled.p`
@@ -64,9 +62,6 @@ const PropertyType = styled.p`
   font-weight: 400;
   color: #616161;
   margin: 0;
-  align-self: center;
-  position: absolute;
-  right: 0;
 `;
 
 const AddressChar = styled.div`
@@ -138,6 +133,15 @@ const Area = styled.p`
   padding-left: 4px;
 `;
 
+const ZCont = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  position: absolute;
+  right: 0;
+`
+
 function CardLanding() {
   return (
     <Container>
@@ -147,11 +151,13 @@ function CardLanding() {
           <RiMoneyDollarCircleLine
             style={{ width: "32px", height: "26.67px", color: "#373737" }}
           />
-          <RentPrice>2500</RentPrice>
+          <RentPrice>25000</RentPrice>
+          <ZCont>
           <RiBuildingLine
             style={{ width: "24px", height: "32px", color: "#616161" }}
           />
           <PropertyType>Apartment</PropertyType>
+          </ZCont>
         </RentalChar>
         <AddressChar>
           <Address>One Central, building 2, 94 Dubai, United Arab Emirates</Address>
@@ -182,11 +188,13 @@ function CardLanding() {
           <RiMoneyDollarCircleLine
             style={{ width: "32px", height: "26.67px", color: "#373737" }}
           />
-          <RentPrice>3000</RentPrice>
+          <RentPrice>30000</RentPrice>
+          <ZCont>
           <RiBuildingLine
             style={{ width: "24px", height: "32px", color: "#616161" }}
           />
           <PropertyType>Apartment</PropertyType>
+          </ZCont>
         </RentalChar>
         <AddressChar>
           <Address>Tonalá 149, Roma Nte., Cuauhtémoc, Ciudad de México</Address>
@@ -217,11 +225,13 @@ function CardLanding() {
           <RiMoneyDollarCircleLine
             style={{ width: "32px", height: "26.67px", color: "#373737" }}
           />
-          <RentPrice>4800</RentPrice>
+          <RentPrice>48000</RentPrice>
+          <ZCont>
           <RiBuildingLine
             style={{ width: "24px", height: "32px", color: "#616161" }}
           />
           <PropertyType>Apartment</PropertyType>
+          </ZCont>
         </RentalChar>
         <AddressChar>
           <Address>Behrenstraße 21, 10117 Berlin, Germany</Address>

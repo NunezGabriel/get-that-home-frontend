@@ -1,17 +1,21 @@
-import { Children, createContext, useContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
+import PropTypes from 'prop-types'
 
 export const filterContext = createContext();
 
-const Fillters =({children})=>{
+const Fillters = ({children}) => {
+  Fillters.propTypes = {
+    children: PropTypes.node
+  };
     const [min, setMin] = useState(0)
     const [max, setMax] = useState(1000000000)
     const [isChecked, setIsChecked] = useState(false);
     const [isCheckedApartment, setIsCheckedApartment] = useState(false)
 
-    const handleCheckboxChange = (event) => {
+    const handleCheckboxChange = () => {
       setIsChecked(!isChecked);
     };
-    const handleCheckboxApartmentChange = (event) => {
+    const handleCheckboxApartmentChange = () => {
         setIsCheckedApartment(!isCheckedApartment);
       };
     return(
