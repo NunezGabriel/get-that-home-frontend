@@ -20,15 +20,33 @@ export const ContainerCards = styled.div`
 
 const ListNotLogged = () => {
   const [properties, setProperties] = useState(null);
-  const {min, max} = useContext(filterContext);
+  const {min, max, isChecked, isCheckedApartment} = useContext(filterContext);
+  const [staticProperties, setStaticProperties] = useState(null)
+
   useEffect(() => {
     getProperties().then(setProperties).catch(console.log);
+    getProperties().then(setStaticProperties).catch(console.log);
   }, []);
-  console.log(properties);
-  console.log(min,max)
-  const filterProperties = properties ? properties.filter(product => product.price >= parseInt(min) && product.price <= parseInt(max)) : [];
-  // const filterProperties = properties ? properties.filter(product => product.operation_type == "Rent") : [];
-  console.log("->",filterProperties)
+
+  let filterProperties = properties ? properties.filter(product => product.price >= parseInt(min) && product.price <= parseInt(max)) : [];
+  console.log(isChecked);
+
+  useEffect(()=>{
+    if(isChecked){
+      setProperties(filterProperties.filter((product)=>product.property_type == "Casa"))
+      console.log(properties)
+      filterProperties = properties;
+    }else if(isCheckedApartment){
+      setProperties(filterProperties.filter((product)=>product.property_type == "Apartamento"))
+      console.log(properties)
+      filterProperties = properties;
+    }
+    else{
+      setProperties(staticProperties)
+    }
+  }, [isChecked, isCheckedApartment])
+
+
   return (
     <div>
       <NoLoggedNavBar /> 
