@@ -5,6 +5,9 @@ import { ModalBody, DoneContainer } from "./price-modal";
 import { SimpleContainer } from "../../pages/form";
 import Label from "../label";
 import { LoginButton } from "../button";
+import { filterContext } from "../../context/filter-contex";
+import { useContext } from "react";
+
 
 const OptionNumberContainer = styled.div`
     display: flex;
@@ -24,33 +27,35 @@ const LastOption = styled.div`
 `
 
 const BedModal = (TextColor) => {
+    const {setBaths, setBeds, baths, beds} = useContext(filterContext) 
+
     return ( 
         <ModalBody style={{left:"51%"}}>
             <SimpleContainer>
                 <SimpleContainer>
                     <Label>beds</Label>
                     <OptionNumberContainer>
-                        <CurrentOption>
+                        <CurrentOption onClick={() => setBeds(0)}>
                             <SimpleText TextColor={TextColor}>
                                 Any
                             </SimpleText>
                         </CurrentOption>
-                        <CurrentOption>
+                        <CurrentOption onClick={() => setBeds(1)}>
                             <SimpleText TextColor={TextColor}>
                                 1+
                             </SimpleText>
                         </CurrentOption>
-                        <CurrentOption>
+                        <CurrentOption onClick={() => setBeds(2)}>
                             <SimpleText TextColor={TextColor}>
                                 2+
                             </SimpleText>
                         </CurrentOption>
-                        <CurrentOption>
+                        <CurrentOption onClick={() => setBeds(3)}>
                             <SimpleText TextColor={TextColor}>
                                 3+
                             </SimpleText>
-                        </CurrentOption>
-                        <LastOption>
+                        </CurrentOption >
+                        <LastOption onClick={() => setBeds(4)}>
                             <SimpleText TextColor={TextColor}>
                                 4+
                             </SimpleText>
@@ -61,27 +66,27 @@ const BedModal = (TextColor) => {
                 <SimpleContainer>
                     <Label>baths</Label>
                     <OptionNumberContainer>
-                        <CurrentOption>
+                        <CurrentOption onClick={() => setBaths(0)}>
                             <SimpleText TextColor={TextColor}>
                                 Any
                             </SimpleText>
                         </CurrentOption>
-                        <CurrentOption>
+                        <CurrentOption className={baths == 1 && 'active'} onClick={() => setBaths(1)}>
                             <SimpleText TextColor={TextColor}>
                                 1+
                             </SimpleText>
                         </CurrentOption>
-                        <CurrentOption>
+                        <CurrentOption onClick={() => setBaths(2)}>
                             <SimpleText TextColor={TextColor}>
                                 2+
                             </SimpleText>
                         </CurrentOption>
-                        <CurrentOption>
+                        <CurrentOption onClick={() => setBaths(3)}>
                             <SimpleText TextColor={TextColor}>
                                 3+
                             </SimpleText>
                         </CurrentOption>
-                        <LastOption>
+                        <LastOption onClick={() => setBaths(4)}>
                             <SimpleText TextColor={TextColor}>
                                 4+
                             </SimpleText>
