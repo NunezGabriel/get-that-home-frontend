@@ -1,11 +1,13 @@
 import styled from "@emotion/styled";
 import LanlordNavBar from "../components/navBar/lanlordNavBar";
 import ListProperties from "./list-properties";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { getProperties } from "../service/properties-service";
 import RentalCard from "../components/rental-card";
 import FooterContent from "../components/footer";
 import { Link } from "react-router-dom";
+import { filterContext } from "../context/filter-contex";
+
 
 const ContainerCards = styled.div`
   margin: 2rem auto;
@@ -17,12 +19,33 @@ const ContainerCards = styled.div`
 `;
 
 const ListLandLord = () => {
-  const [properties, setProperties] = useState(null);
-
-  useEffect(() => {
-    getProperties().then(setProperties).catch(console.log);
-  }, []);
-  console.log(properties);
+    const [properties, setProperties] = useState(null);
+    const {min, max, isChecked, isCheckedApartment} = useContext(filterContext);
+    const [staticProperties, setStaticProperties] = useState(null)
+  
+    useEffect(() => {
+      getProperties().then(setProperties).catch(console.log);
+      getProperties().then(setStaticProperties).catch(console.log);
+    }, []);
+  
+    let filterProperties = properties ? properties.filter(product => product.price >= parseInt(min) && product.price <= parseInt(max)) : [];
+    console.log(isChecked);
+  
+    useEffect(()=>{
+      if(isChecked){
+        setProperties(filterProperties.filter((product)=>product.property_type == "Casa"))
+        console.log(properties)
+        filterProperties = properties;
+      }else if(isCheckedApartment){
+        setProperties(filterProperties.filter((product)=>product.property_type == "Apartamento"))
+        console.log(properties)
+        filterProperties = properties;
+      }
+      else{
+        setProperties(staticProperties)
+      }
+    }, [isChecked, isCheckedApartment])
+  
  
   return (
     <div>
@@ -30,12 +53,12 @@ const ListLandLord = () => {
       <ListProperties />
       <div style={{ display: "flex", flexWrap: "wrap", marginTop: "50px" }}>
         <ContainerCards>
-          {properties?.map((product) => {
-              return (
-                <Link to={"/property-detail"} style={{textDecoration: "none"}}>
-                  <RentalCard key={product.id} {...product}></RentalCard>;
-                </Link> 
-              );            
+        {filterProperties?.map((product) => {
+            return(
+              <Link to={"/property-not-logged"} key={product.id} style={{textDecoration: "none"}}>
+                <RentalCard  {...product}></RentalCard>;
+              </Link> 
+            )
           })}
         </ContainerCards>
       </div>
