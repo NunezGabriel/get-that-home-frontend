@@ -179,7 +179,7 @@ function LandlordActiveCard(property) {
     } catch (error) {
       console.error(error);
     }
-    navigate("/property-close");
+    // navigate("/property-close");
   };
 
   return (

@@ -46,7 +46,7 @@ function PropertyActive() {
         })
         .catch(console.log);
     }
-  }, [user]);
+  }, [user, userProperties]);
 
   return (
     <>
