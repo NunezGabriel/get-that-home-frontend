@@ -7,7 +7,7 @@ import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { Global } from "@emotion/react";
 import { FaEdit } from "react-icons/fa";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { showProperty } from "../service/properties-service";
 import LanlordNavBar from "../components/navBar/lanlordNavBar";
 
@@ -211,16 +211,14 @@ const BoxLogin = styled.div`
 `;
 
 function PropertEdit() {
+  const { id } = useParams();
+  console.log(id);
 
-  const {id} = useParams();
-  console.log(id)
-
-  const [property, setProperty] = useState(null)
+  const [property, setProperty] = useState(null);
 
   useEffect(() => {
-    showProperty(id).then(setProperty).catch(console.log)
-  },[id])
-
+    showProperty(id).then(setProperty).catch(console.log);
+  }, [id]);
 
   return (
     <>
@@ -248,7 +246,7 @@ function PropertEdit() {
 
           {/* Container de las caracteristicas */}
           <Characteristics>
-          <LocationProperty>
+            <LocationProperty>
               <h4>{property?.address}</h4>
               <p>{property?.address}</p>
             </LocationProperty>
@@ -287,13 +285,12 @@ function PropertEdit() {
 
           <AboutProperty>
             <h2>About this property</h2>
-            <p>{property?.about}
-            </p>
+            <p>{property?.about}</p>
           </AboutProperty>
 
           <Location>
             <h2>Location</h2>
-            <p>Francisco de Paula Ugarriza 27</p>
+            <p>{property?.address}</p>
             <ContainerMap>
               <img src={mapLocation} alt="" />
               {/* <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15602.629151686477!2d-77.01942798458053!3d-12.135585057709873!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105b7e1b4b5a533%3A0xa549043226dcfb18!2sLarcomar!5e0!3m2!1ses-419!2spe!4v1689638002369!5m2!1ses-419!2spe" 
@@ -308,9 +305,16 @@ function PropertEdit() {
 
         <PropertyRigth>
           <BoxLogin>
-            <a href="">
-              <FaEdit /> EDIT PROPERTY
-            </a>
+            {property && property.operation_type === "Sale" && (
+              <Link to={`/edit-sale/${id}`}>
+                <FaEdit /> EDIT PROPERTY
+              </Link>
+            )}
+            {property && property.operation_type === "Rent" && (
+              <Link to={`/edit-rent/${id}`}>
+                <FaEdit /> EDIT PROPERTY
+              </Link>
+            )}
           </BoxLogin>
         </PropertyRigth>
       </Container>

@@ -2,10 +2,10 @@ import styled from "@emotion/styled";
 import { BiSearch } from "react-icons/bi";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { BsArrowBarUp } from "react-icons/bs";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../context/auth-context";
-import { useState } from "react";
-import { createProperty } from "../service/properties-service";
+import { useState, useEffect } from "react";
+import { showProperty, updateProperty } from "../service/properties-service";
 
 import LanlordNavBar from "../components/navBar/lanlordNavBar";
 import MainTitle from "../components/mainTitle";
@@ -56,6 +56,9 @@ const Button = styled.button`
   height: 40px;
   font-size: 18px;
   color: white;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
 `;
 
 export const SwitchContainer = styled.div`
@@ -96,7 +99,8 @@ const SecondSwitchOption = styled.div`
   gap: 10px;
   background-color: white;
 `;
-const Form = () => {
+const EditFormRent = () => {
+  const { id } = useParams();
   const { user } = useAuth();
   const navigate = useNavigate();
   const [petsAllowed, setPetsAllowed] = useState(false);
@@ -129,6 +133,10 @@ const Form = () => {
     about,
   } = formData;
 
+  useEffect(() => {
+    showProperty(id).then(setFormData).catch(console.log);
+  }, []);
+
   function handleImageChange(event) {
     const file = event.target.files[0]; // Obtener el primer archivo seleccionado
     setSelectedImage(file);
@@ -150,7 +158,7 @@ const Form = () => {
       const formDataToSend = { ...formData };
       formDataToSend.photo = selectedImage; // Agregar la imagen seleccionada al objeto formDataToSend
 
-      await createProperty(formDataToSend);
+      await updateProperty(formDataToSend);
       console.log(formDataToSend);
       navigate("/property-active");
     } catch (error) {
@@ -350,4 +358,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default EditFormRent;
