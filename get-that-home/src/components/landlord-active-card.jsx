@@ -4,12 +4,11 @@ import { RiBuildingLine } from "react-icons/ri";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { BiBed, BiBath, BiArea } from "react-icons/bi";
 import { MdOutlinePets } from "react-icons/md";
-import PhotoDeparment from "../assets/images/Photo1.svg";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import PhotoDeparment from "../assets/home-img/home-3.jpg";
+import { Link, useNavigate } from "react-router-dom";
 import { FaEdit } from "react-icons/fa";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import { BASE_URI } from "../config";
-
 
 const PropertyCard = styled.div`
   border-radius: 8px;
@@ -27,29 +26,29 @@ const PropertyCard = styled.div`
   overflow: hidden;
 `;
 const FootOptionsContainer = styled.div`
-    width: 100%;
-    height: 50px;
-    display: flex;
-    justify-content: space-around;
-    background-color: #bf5f82;
-`
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: space-around;
+  background-color: #bf5f82;
+`;
 const FootOption = styled.div`
-    width: 94px;
-    height: 32px;
-    padding: 8px;
-    gap: 8px;
-    display: flex;
-    color: var(--white, #FFF);
-    text-align: center;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 24px;
-    letter-spacing: 1.25px;
-    text-transform: uppercase;
-    align-items: center;
-    cursor: pointer;
-`
+  width: 94px;
+  height: 32px;
+  padding: 8px;
+  gap: 8px;
+  display: flex;
+  color: var(--white, #fff);
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+  align-items: center;
+  cursor: pointer;
+`;
 const RentalImg = styled.img`
   width: 300px;
   height: 200px;
@@ -155,38 +154,38 @@ const ZCont = styled.div`
   gap: 4px;
   position: absolute;
   right: 8px;
-`
+`;
 
 function LandlordActiveCard(property) {
-    
-    const navigate = useNavigate();
-    const handleCloseClick = async () => {
-        try {
-          const response = await fetch(`${BASE_URI}/properties/${property.id}`, {
-            method: 'PATCH',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ active: false }), // Cambia 'status' y el valor por los campos necesarios para tu API
-          });
-    
-          if (!response.ok) {
-            throw new Error('Error al cerrar la propiedad');
-          }else{
-            console.log("exitooo")
-          }
-    
-          // Hacer algo con la respuesta si es necesario
-        } catch (error) {
-          console.error(error);
-        }
-        navigate("/property-close")
-    };
+  const navigate = useNavigate();
+
+  const handleCloseClick = async () => {
+    try {
+      const response = await fetch(`${BASE_URI}/properties/${property.id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ active: false }), // Cambia 'status' y el valor por los campos necesarios para tu API
+      });
+
+      if (!response.ok) {
+        throw new Error("Error al cerrar la propiedad");
+      } else {
+        console.log("exitooo");
+      }
+
+      // Hacer algo con la respuesta si es necesario
+    } catch (error) {
+      console.error(error);
+    }
+    navigate("/property-close");
+  };
 
   return (
     <PropertyCard>
-      <Link to={`/property-detail/${property.id}`} >
-      <RentalImg src={PhotoDeparment} alt="Home Pic" />
+      <Link to={`/property-detail/${property.id}`}>
+        <RentalImg src={PhotoDeparment} alt="Home Pic" />
       </Link>
       <RentalChar>
         <RiMoneyDollarCircleLine
@@ -195,13 +194,10 @@ function LandlordActiveCard(property) {
         <RentPrice>{property.price}</RentPrice>
         <ZCont>
           <RiBuildingLine
-          style={{ width: "24px", 
-          height: "32px", 
-          color: "#616161",
-        }}
+            style={{ width: "24px", height: "32px", color: "#616161" }}
           />
           <PropertyType>{property.property_type}</PropertyType>
-          </ZCont>
+        </ZCont>
       </RentalChar>
       <AddressChar>
         <Address>{property.address}</Address>
@@ -225,12 +221,30 @@ function LandlordActiveCard(property) {
       </RentalFeatures>
       <FootOptionsContainer>
         <FootOption>
-            <FaEdit fontSize={20}/>
-            <p>edit</p>
+          {property && property.operation_type === "Sale" && (
+            <Link
+              to={`/edit-sale/${property.id}`}
+              style={{ textDecoration: "none", color: "white" }}
+            >
+              <FaEdit fontSize={20} /> EDIT
+            </Link>
+          )}
+          {property && property.operation_type === "Rent" && (
+            <Link
+              to={`/edit-rent/${property.id}`}
+              style={{ textDecoration: "none", color: "white" }}
+            >
+              <FaEdit fontSize={20} /> EDIT
+            </Link>
+          )}
         </FootOption>
-        <FootOption onClick={()=>{handleCloseClick()}}>
-            <IoMdCloseCircleOutline fontSize={20}/>
-            <p>close</p>
+        <FootOption
+          onClick={() => {
+            handleCloseClick();
+          }}
+        >
+          <IoMdCloseCircleOutline fontSize={20} />
+          <p>close</p>
         </FootOption>
       </FootOptionsContainer>
     </PropertyCard>

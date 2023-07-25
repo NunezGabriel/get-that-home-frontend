@@ -3,15 +3,13 @@ import { Link } from "react-router-dom";
 
 import ButtomOn from "../components/buttomOn";
 import ButtomOff from "../components/buttonOf";
-import LandlordRentalCard from "../components/landlord-rental-card";
 // import FooterContent from "../components/footer";
 import LanlordNavBar from "../components/navBar/lanlordNavBar";
 import { useEffect, useState } from "react";
 import { getProperties } from "../service/properties-service";
 import { useAuth } from "../context/auth-context";
 import { LoginButton } from "../components/button";
-import LandlordActiveCard from "../components/landlord-ative-card";
-
+import LandlordActiveCard from "../components/landlord-active-card";
 
 const Container = styled.div`
   display: flex;
@@ -72,12 +70,13 @@ function PropertyActive() {
             : "Loading..."}
         </h4>
         <ContainerCards>
-        {userProperties?.map((property) => (
-            <LandlordActiveCard 
-            key={property.id}
-            props={property}
-            {...property} 
-            style={{ textDecoration: "none" }}/>
+          {userProperties?.map((property) => (
+            <LandlordActiveCard
+              key={property.id}
+              props={property}
+              {...property}
+              style={{ textDecoration: "none" }}
+            />
           ))}
         </ContainerCards>
       </Container>

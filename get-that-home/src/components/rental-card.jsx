@@ -4,8 +4,8 @@ import { RiBuildingLine } from "react-icons/ri";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { BiBed, BiBath, BiArea } from "react-icons/bi";
 import { MdOutlinePets } from "react-icons/md";
-import PhotoDeparment from "../assets/images/Photo1.svg";
-import { Link, useParams } from "react-router-dom";
+import PhotoDeparment from "../assets/home-img/home-1.jpg";
+import { Link } from "react-router-dom";
 
 const PropertyCard = styled.div`
   border-radius: 8px;
@@ -129,15 +129,15 @@ const ZCont = styled.div`
   gap: 4px;
   position: absolute;
   right: 8px;
-`
+`;
 
 function RentalCard(property) {
   // console.log(property.id)
 
   return (
     <PropertyCard>
-      <Link to={`/property-not-logged/${property.id}`} >
-      <RentalImg src={PhotoDeparment} alt="Home Pic" />
+      <Link to={`/property-not-logged/${property.id}`}>
+        <RentalImg src={PhotoDeparment} alt="Home Pic" />
       </Link>
       <RentalChar>
         <RiMoneyDollarCircleLine
@@ -146,13 +146,10 @@ function RentalCard(property) {
         <RentPrice>{property.price}</RentPrice>
         <ZCont>
           <RiBuildingLine
-          style={{ width: "24px", 
-          height: "32px", 
-          color: "#616161",
-        }}
+            style={{ width: "24px", height: "32px", color: "#616161" }}
           />
           <PropertyType>{property.property_type}</PropertyType>
-          </ZCont>
+        </ZCont>
       </RentalChar>
       <AddressChar>
         <Address>{property.address}</Address>
