@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import ButtomOn from "../components/buttomOn";
 import ButtomOff from "../components/buttonOf";
 import LandlordRentalCard from "../components/landlord-rental-card";
+import LandlordCloseCard from "../components/landlord-close-card";
 // import FooterContent from "../components/footer";
 import LanlordNavBar from "../components/navBar/lanlordNavBar";
 import { useEffect, useState } from "react";
@@ -70,7 +71,7 @@ function PropertyClose() {
         </h4>
         <ContainerCards>
         {userProperties?.map((property) => (
-            <LandlordRentalCard 
+            <LandlordCloseCard 
             key={property.id}
             props={property}
             {...property} 
