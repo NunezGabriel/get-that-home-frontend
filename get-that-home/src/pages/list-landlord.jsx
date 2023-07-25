@@ -7,7 +7,6 @@ import LandlordRentalCard from "../components/landlord-rental-card";
 import FooterContent from "../components/footer";
 import { filterContext } from "../context/filter-contex";
 
-
 const ContainerCards = styled.div`
   margin: 2rem auto;
   width: 75rem;

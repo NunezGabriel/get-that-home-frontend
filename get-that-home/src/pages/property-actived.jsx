@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { getProperties } from "../service/properties-service";
 import { useAuth } from "../context/auth-context";
 import { LoginButton } from "../components/button";
+import LandlordActiveCard from "../components/landlord-ative-card";
 
 
 const Container = styled.div`
@@ -72,7 +73,7 @@ function PropertyActive() {
         </h4>
         <ContainerCards>
         {userProperties?.map((property) => (
-            <LandlordRentalCard 
+            <LandlordActiveCard 
             key={property.id}
             props={property}
             {...property} 
