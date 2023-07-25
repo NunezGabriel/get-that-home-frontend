@@ -48,21 +48,41 @@ function LoginForm() {
     setFormData({ ...formData, [name]: value });
   }
 
-  async function handleSubmit(event) {
+  // async function handleSubmit(event) {
+  //   event.preventDefault();
+  //   console.log(`Hola ${formData.email}`)
+  //   try {
+  //     await login(formData);
+  //     navigate('/');
+  //   } catch (error) {
+  //     // handle login error
+  //   }
+  // }
+
+async function handleSubmit(event) {
     event.preventDefault();
-    console.log(`Hola ${formData.email}`)
-    try {
-      await login(formData);
-      navigate('/');
-    } catch (error) {
-      // handle login error
-    }
+    console.log(`Hola ${formData.email}`);
+    
+    setTimeout(async () => {
+      try {
+        await login(formData);
+        navigate('/');
+        setTimeout(async () => {
+          window.location.reload();
+        }, 700)
+        
+      } catch (error) {
+        // handle login error
+      }
+    }, 500);
+
+    
   }
 
   return (
     <div>
       <NoLoggedNavBar />
-      <LogginBody onSubmit={handleSubmit}>
+      <LogginBody>
         <MainText>Login</MainText>
         <SimpleContainer>
           <SimpleContainer>
@@ -94,7 +114,7 @@ function LoginForm() {
             </InputBody>
           </SimpleContainer>
         </SimpleContainer>
-        <Button>
+        <Button onClick={handleSubmit}>
           <TbUserPlus fontSize={20} color="white" />
           login
         </Button>

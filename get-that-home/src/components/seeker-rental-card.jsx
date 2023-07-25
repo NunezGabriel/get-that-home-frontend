@@ -2,6 +2,8 @@ import styled from "@emotion/styled";
 import { typography } from "../styles/typography";
 import { RiBuildingLine } from "react-icons/ri";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
+
+import { AiFillHeart } from "react-icons/ai"
 import { BiBed, BiBath, BiArea } from "react-icons/bi";
 import { MdOutlinePets } from "react-icons/md";
 import PhotoDeparment from "../assets/images/Photo1.svg";
@@ -173,6 +175,7 @@ function SeekerRentalCard(property) {
         <MdOutlinePets
           style={{ width: "24px", height: "24px", color: "#616161" }}
         />
+        <AiFillHeart style={{ width: "24px", height: "24px", color: "gray" }} />
       </RentalFeatures>
     </PropertyCard>
   );

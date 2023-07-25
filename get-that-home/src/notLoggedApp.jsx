@@ -8,6 +8,7 @@ import LoginPage from "./pages/login-page";
 import HomePageNoLogin from "./pages/no-logged-landing";
 import FindHome from "./pages/list-not-logged";
 import DetailProperty from "./pages/property-edit";
+// import LandlordLanding from "./pages/landlord-landing";
 
 const NotLoggedApp = () => {
   return (
@@ -21,6 +22,7 @@ const NotLoggedApp = () => {
       <Route path="home" element={<HomePageNoLogin />} />
       <Route path="/" element={<NoLogedLanding />} />
       <Route path="/detail-property" element={<DetailProperty />} />
+      {/* <Route path="/landlord-landing" element={<LandlordLanding />} /> */}
     </Routes>
   );
 };
