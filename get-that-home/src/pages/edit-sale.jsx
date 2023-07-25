@@ -2,10 +2,9 @@ import styled from "@emotion/styled";
 import { BiSearch } from "react-icons/bi";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { BsArrowBarUp } from "react-icons/bs";
-import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/auth-context";
-import { useState } from "react";
-import { createProperty } from "../service/properties-service";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { showProperty, updateProperty } from "../service/properties-service";
 
 import LanlordNavBar from "../components/navBar/lanlordNavBar";
 import MainTitle from "../components/mainTitle";
@@ -13,6 +12,8 @@ import Label from "../components/label";
 import { Text, SubTitle } from "../components/simpleText";
 import SimpleText from "../components/simpleText";
 import InputBody from "../components/input";
+import { useAuth } from "../context/auth-context";
+
 import {
   MainInput,
   CheckboxInput,
@@ -21,27 +22,33 @@ import {
   TextAreaInput,
 } from "../components/input";
 import { ChooseButton } from "../components/button";
+import {
+  MainContainer,
+  SimpleContainer,
+  SimpleFlexContainer,
+  FlexContainerL,
+  SwitchContainer,
+  ImgContainer,
+} from "./form";
 
-export const MainContainer = styled.form`
-  width: 1200px;
-  margin: 0 auto;
-  padding: 32px;
-  display: grid;
-  gap: 16px;
-`;
-
-export const SimpleContainer = styled.div`
-  display: grid;
-  gap: 4px;
-`;
-export const SimpleFlexContainer = styled.div`
+const SwitchOption = styled.div`
   display: flex;
-  gap: 16px;
-`;
-export const FlexContainerL = styled.div`
-  display: flex;
-  gap: 4px;
+  width: 50px;
+  padding: 8px;
+  justify-content: center;
   align-items: center;
+  gap: 10px;
+  background-color: white;
+  border-right: 1px solid #8e8e8e;
+`;
+const SecondSwitchOption = styled.div`
+  display: flex;
+  width: 50px;
+  padding: 8px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background-color: #f48fb1;
 `;
 
 const Button = styled.button`
@@ -56,78 +63,39 @@ const Button = styled.button`
   height: 40px;
   font-size: 18px;
   color: white;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
 `;
 
-export const SwitchContainer = styled.div`
-  display: flex;
-  align-items: center;
-  border-radius: 8px;
-  border: 1px solid #8e8e8e;
-  width: 100px;
-  height: 37px;
-  overflow: hidden;
-`;
-export const ImgContainer = styled.div`
-  display: inline-flex;
-  padding: 8px;
-  align-items: flex-start;
-  gap: 16px;
-  width: 600px;
-  height: 136px;
-  background: #f5f5f6;
-`;
-
-const SwitchOption = styled.div`
-  display: flex;
-  width: 50px;
-  padding: 8px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  background-color: #f48fb1;
-  border-right: 1px solid #8e8e8e;
-`;
-const SecondSwitchOption = styled.div`
-  display: flex;
-  width: 50px;
-  padding: 8px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  background-color: white;
-`;
-const Form = () => {
+const EditFormSale = () => {
+  const { id } = useParams();
   const { user } = useAuth();
   const navigate = useNavigate();
-  const [petsAllowed, setPetsAllowed] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [formData, setFormData] = useState({
-    operation_type: "Rent",
+    operation_type: "Sale",
     address: "",
-    price: null,
-    montly_rent: "",
-    maintanance: "",
+    price: "",
+    montly_rent: null,
+    maintanance: null,
     property_type: "",
     bedrooms: "",
     bathrooms: "",
     area: "",
-    pets: "",
+    pets: false,
     about: "",
     user_id: user.id,
     active: true,
     photo: selectedImage,
   });
 
-  const {
-    address,
-    montly_rent,
-    maintanance,
-    property_type,
-    bedrooms,
-    bathrooms,
-    area,
-    about,
-  } = formData;
+  const { address, price, property_type, bedrooms, bathrooms, area, about } =
+    formData;
+
+  useEffect(() => {
+    showProperty(id).then(setFormData).catch(console.log);
+  }, []);
 
   function handleImageChange(event) {
     const file = event.target.files[0]; // Obtener el primer archivo seleccionado
@@ -135,22 +103,30 @@ const Form = () => {
   }
 
   function handleChange(event) {
-    const { name, value, type, checked } = event.target;
-    if (type === "checkbox") {
-      setFormData({ ...formData, [name]: checked });
-      setPetsAllowed(checked);
-    } else {
-      setFormData({ ...formData, [name]: value });
-    }
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
   }
 
+  console.log(formData.property_type);
+
+  // async function handleSubmit(event) {
+  //   event.preventDefault();
+  //   try {
+  //     await createProperty(formData);
+  //     console.log(formData);
+  //     navigate("/property-active");
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  //   console.log(formData.property_type);
+  // }
   async function handleSubmit(event) {
     event.preventDefault();
     try {
       const formDataToSend = { ...formData };
       formDataToSend.photo = selectedImage; // Agregar la imagen seleccionada al objeto formDataToSend
 
-      await createProperty(formDataToSend);
+      await updateProperty(formDataToSend);
       console.log(formDataToSend);
       navigate("/property-active");
     } catch (error) {
@@ -158,22 +134,22 @@ const Form = () => {
     }
     console.log(selectedImage);
   }
-
   return (
     <div>
       <LanlordNavBar />
       <MainContainer onSubmit={handleSubmit}>
         <MainTitle>Create a property listing</MainTitle>
+
         <SimpleContainer>
           <Label>Operation Type</Label>
           <SwitchContainer>
             <SwitchOption>
-              <SimpleText TextColor={"white"}>Rent</SimpleText>
+              <Link to={"/form"} style={{ textDecoration: "none" }}>
+                <SimpleText TextColor={"#616161"}>Rent</SimpleText>
+              </Link>
             </SwitchOption>
             <SecondSwitchOption>
-              <Link to={"/form-sale"} style={{ textDecoration: "none" }}>
-                <SimpleText TextColor={"#616161"}>Sale</SimpleText>
-              </Link>
+              <SimpleText TextColor={"white"}>Sale</SimpleText>
             </SecondSwitchOption>
           </SwitchContainer>
         </SimpleContainer>
@@ -193,28 +169,14 @@ const Form = () => {
         </SimpleContainer>
 
         <SimpleContainer>
-          <Label>montly rent</Label>
+          <Label>Price</Label>
           <InputBody>
             <RiMoneyDollarCircleLine color="#8E8E8E" />
             <MainInput
               placeholder="2000"
               type="text"
-              name="montly_rent"
-              value={montly_rent}
-              onChange={handleChange}
-            />
-          </InputBody>
-        </SimpleContainer>
-
-        <SimpleContainer>
-          <Label>Maintanance</Label>
-          <InputBody>
-            <RiMoneyDollarCircleLine color="#8E8E8E" />
-            <MainInput
-              placeholder="100"
-              type="text"
-              name="maintanance"
-              value={maintanance}
+              name="price"
+              value={price}
               onChange={handleChange}
             />
           </InputBody>
@@ -288,22 +250,6 @@ const Form = () => {
         </SimpleFlexContainer>
 
         <SimpleContainer>
-          <FlexContainerL>
-            <CheckboxInput
-              type="checkbox"
-              name="pets"
-              checked={petsAllowed}
-              onChange={handleChange}
-            />
-            <SimpleText>Pets Allowed</SimpleText>
-          </FlexContainerL>
-          <Text style={{ width: "467px" }}>
-            Allowing pets increases the likehood of renters liking the property
-            by 9001%. It also makes you a better person.
-          </Text>
-        </SimpleContainer>
-
-        <SimpleContainer>
           <Label>About this property</Label>
           <TextAreaInput
             placeholder="My apartment is great because..."
@@ -336,7 +282,6 @@ const Form = () => {
                 />
               </ChooseButton>
               <SimpleText TextColor={"#616161"}>
-                {" "}
                 {selectedImage ? selectedImage.name : "No file chosen"}
               </SimpleText>
             </SimpleFlexContainer>
@@ -350,4 +295,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default EditFormSale;
