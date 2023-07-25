@@ -20,6 +20,7 @@ export async function createProperty(body) {
 
 export async function updateProperty(id, body) {
   const data = await apiFetch(`/properties/${id}`, { method: "PATCH", body });
+  return data;
 }
 
 export async function deleteProperty(id) {

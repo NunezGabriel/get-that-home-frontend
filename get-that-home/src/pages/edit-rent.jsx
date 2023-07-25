@@ -135,7 +135,7 @@ const EditFormRent = () => {
 
   useEffect(() => {
     showProperty(id).then(setFormData).catch(console.log);
-  }, []);
+  }, [id]);
 
   function handleImageChange(event) {
     const file = event.target.files[0]; // Obtener el primer archivo seleccionado
@@ -158,8 +158,7 @@ const EditFormRent = () => {
       const formDataToSend = { ...formData };
       formDataToSend.photo = selectedImage; // Agregar la imagen seleccionada al objeto formDataToSend
 
-      await updateProperty(formDataToSend);
-      console.log(formDataToSend);
+      await updateProperty(id, formData);
       navigate("/property-active");
     } catch (error) {
       console.log(error);
