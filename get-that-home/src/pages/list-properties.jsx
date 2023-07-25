@@ -108,13 +108,13 @@ function ListProperties() {
         </SearchContainer>
 
         <Button onClick={()=>{setModalPrice(!modalPrice)}}>PRICE</Button>
-        {modalPrice && <PriceModal/>}
+        {modalPrice && <PriceModal modalPrice={modalPrice} setModalPrice={setModalPrice}/>}
        
         <Button onClick={()=>{setPropertyTypeModal(!propertyTypeModal)}}>PROPERTY TYPE</Button>
-        {propertyTypeModal && <PropertyTypeModal/>}
+        {propertyTypeModal && <PropertyTypeModal propertyTypeModal={propertyTypeModal} setPropertyTypeModal={setPropertyTypeModal}/>}
        
         <Button onClick={()=>{setBedModal(!bedModal)}}>BEDS & BATHS</Button>
-        {bedModal && <BedModal/>}
+        {bedModal && <BedModal bedModal={bedModal} setBedModal={setBedModal}/>}
        
         <Button onClick={()=>{setMoreModal(!moreModal)}}>
           <div style={{ display: "flex", alignItems: "center" }}>
@@ -129,7 +129,7 @@ function ListProperties() {
             />
           </div>
         </Button>
-        {moreModal && <MoreModal/>}
+        {moreModal && <MoreModal moreModal={moreModal} setMoreModal={setMoreModal}/>}
 
         <OptionSelector onChange={(e) => setType(e.target.value)}>
           <OptionItem defaultValue value={''}>Both</OptionItem>

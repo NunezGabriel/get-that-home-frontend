@@ -26,7 +26,7 @@ const LastOption = styled.div`
     padding: 8px;
 `
 
-const BedModal = (TextColor) => {
+const BedModal = ({TextColor, bedModal, setBedModal}) => {
     const {setBaths, setBeds, baths, beds} = useContext(filterContext) 
 
     return ( 
@@ -94,7 +94,7 @@ const BedModal = (TextColor) => {
                     </OptionNumberContainer>
                 </SimpleContainer>
                 <DoneContainer>
-                    <LoginButton>
+                    <LoginButton onClick={()=>{setBedModal(!bedModal)}}>
                         DONE
                     </LoginButton>
                 </DoneContainer>

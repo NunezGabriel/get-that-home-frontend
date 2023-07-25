@@ -20,6 +20,7 @@ export const ModalBody = styled.div`
     position: absolute;
     top: 100%;
     width: 247px;
+    z-index: 100;
 `
 
 export const PriceSectionContainer = styled.div`
@@ -34,7 +35,7 @@ export const DoneContainer = styled.div`
     justify-content: flex-end;
 `
 
-const PriceModal = () => {
+const PriceModal = ({modalPrice, setModalPrice}) => {
     const {min, max, setMin, setMax} = useContext(filterContext)
     return ( 
         <ModalBody style={{left:"31%"}}>
@@ -58,7 +59,7 @@ const PriceModal = () => {
                     </JoinButton>
                 </PriceSectionContainer>
                 <DoneContainer>
-                    <LoginButton >
+                    <LoginButton onClick={()=>{setModalPrice(!modalPrice)}}>
                         DONE
                     </LoginButton>
                 </DoneContainer>
