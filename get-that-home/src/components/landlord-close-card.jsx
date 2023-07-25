@@ -5,7 +5,7 @@ import { RiMoneyDollarCircleLine, RiDeleteBin5Fill } from "react-icons/ri";
 import { BiBed, BiBath, BiArea } from "react-icons/bi";
 import { MdOutlinePets } from "react-icons/md";
 import PhotoDeparment from "../assets/images/Photo1.svg";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { BsBoxArrowUp } from "react-icons/bs";
 import { BASE_URI } from "../config";
 
@@ -157,6 +157,8 @@ const ZCont = styled.div`
 `
 
 function LandlordCloseCard(property) {
+
+    const navigate = useNavigate();
     const handleRestoreClick = async () => {
         try {
           const response = await fetch(`${BASE_URI}/properties/${property.id}`, {
@@ -177,6 +179,7 @@ function LandlordCloseCard(property) {
         } catch (error) {
           console.error(error);
         }
+        navigate("/property-active")
     };
     const handleDeleteClick = async () => {
         try {
@@ -196,7 +199,7 @@ function LandlordCloseCard(property) {
         } catch (error) {
           console.error(error);
         }
-      };
+    };
 
   return (
     <PropertyCard>
