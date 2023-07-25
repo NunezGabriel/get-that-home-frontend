@@ -5,7 +5,7 @@ import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { BiBed, BiBath, BiArea } from "react-icons/bi";
 import { MdOutlinePets } from "react-icons/md";
 import PhotoDeparment from "../assets/images/Photo1.svg";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { FaEdit } from "react-icons/fa";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import { BASE_URI } from "../config";
@@ -158,6 +158,8 @@ const ZCont = styled.div`
 `
 
 function LandlordActiveCard(property) {
+    
+    const navigate = useNavigate();
     const handleCloseClick = async () => {
         try {
           const response = await fetch(`${BASE_URI}/properties/${property.id}`, {
@@ -178,6 +180,7 @@ function LandlordActiveCard(property) {
         } catch (error) {
           console.error(error);
         }
+        navigate("/property-close")
     };
 
   return (
