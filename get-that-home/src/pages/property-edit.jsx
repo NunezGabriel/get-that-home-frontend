@@ -6,6 +6,9 @@ import { FaPaw } from "react-icons/fa";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { Global } from "@emotion/react";
 import { FaEdit } from "react-icons/fa";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { showProperty } from "../service/properties-service";
 import LanlordNavBar from "../components/navBar/lanlordNavBar";
 
 import imgProperty from "../assets/property.svg";
@@ -208,6 +211,17 @@ const BoxLogin = styled.div`
 `;
 
 function PropertEdit() {
+
+  const {id} = useParams();
+  console.log(id)
+
+  const [property, setProperty] = useState(null)
+
+  useEffect(() => {
+    showProperty(id).then(setProperty).catch(console.log)
+  },[id])
+
+
   return (
     <>
       <Global
@@ -234,17 +248,17 @@ function PropertEdit() {
 
           {/* Container de las caracteristicas */}
           <Characteristics>
-            <LocationProperty>
-              <h4>Francisco de Paula Ugarriza 27</h4>
-              <p>Miraflores , Lima</p>
+          <LocationProperty>
+              <h4>{property?.address}</h4>
+              <p>{property?.address}</p>
             </LocationProperty>
 
             <PriceProperty>
               <h3>
                 <RiMoneyDollarCircleLine />
-                3,000
+                {property?.price}
               </h3>
-              <p>+100</p>
+              <p>{property?.montly_rent}</p>
             </PriceProperty>
           </Characteristics>
 
@@ -252,17 +266,17 @@ function PropertEdit() {
           <DetailsProperty>
             <Info>
               <BiBed />
-              <h4>4 bedrooms</h4>
+              <h4>{property?.bedrooms} bedrooms</h4>
             </Info>
 
             <Info>
               <BiBath />
-              <h4>2 bathrooms</h4>
+              <h4>{property?.bathrooms} bathrooms</h4>
             </Info>
 
             <Info>
               <BiArea />
-              <h4>180 m2</h4>
+              <h4>{property?.area}</h4>
             </Info>
 
             <Info>
@@ -273,14 +287,7 @@ function PropertEdit() {
 
           <AboutProperty>
             <h2>About this property</h2>
-            <p>3 Bedroom/2 Bathroom apartment available for ASAP move-in!</p>
-            <p>
-              Apartment features hardwood floors throughout, virtual doorman,
-              Central AC/heat, dishwasher and a microwave.{" "}
-            </p>
-            <p>
-              The kitchen has custom cabinetry and the living room is big enough
-              to fit a dinner table, a couch and a tv set up.
+            <p>{property?.about}
             </p>
           </AboutProperty>
 

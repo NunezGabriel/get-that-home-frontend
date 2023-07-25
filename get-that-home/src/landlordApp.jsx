@@ -14,7 +14,7 @@ const LandLordApp = () => {
       <Route path="/form-sale" element={<FormSale />} />
       <Route path="property-active" element={<PropertyActive />} />
       <Route path="/property-close" element={<PropertyClose />} />
-      <Route path="/property-detail" element={<PropertEdit />} />
+      <Route path="/property-detail/:id" element={<PropertEdit />} />
       <Route path="/profile" element={<ProfilePage />} />
       <Route path="/landlord-properties" element={<LandlordProperties />} />
       <Route path="/" element={<LandlordLanding />} />

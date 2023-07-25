@@ -20,14 +20,15 @@ export const ContainerCards = styled.div`
 
 const ListNotLogged = () => {
   
-  const [properties, setProperties] = useState([]);
+  const [properties, setProperties] = useState(null);
   const {min, max, isChecked, isCheckedApartment, word, beds,setBeds, setBaths, baths, type} = useContext(filterContext);
   const [staticProperties, setStaticProperties] = useState([])
   const [addressProperties, setAddressProperties] = useState([])
 
+
   useEffect(() => {
     getProperties().then(setProperties).catch(console.log);
-    // getProperties().then(setStaticProperties).catch(console.log);
+    getProperties().then(setStaticProperties).catch(console.log);
   }, []);
 
   let filterProperties = properties ? properties.filter(product => product.price >= parseInt(min) && product.price <= parseInt(max)) : [];
@@ -66,7 +67,7 @@ const ListNotLogged = () => {
     let x;
     if(type == 'Sale') {
       setProperties(staticProperties.filter(product => product.operation_type == 'Sale'))
-      
+
     } else if ( type == "Rent") {
       setProperties(staticProperties.filter(product => product.operation_type == 'Rent'))
 

@@ -2,12 +2,10 @@ import SeekerNavBar from "../components/navBar/seekerNavBar";
 import ListProperties from "./list-properties";
 import { useState, useEffect, useContext } from "react";
 import { getProperties } from "../service/properties-service";
-import RentalCard from "../components/rental-card";
+import SeekerRentalCard from "../components/seeker-rental-card";
 import FooterContent from "../components/footer";
 import { ContainerCards } from "./list-not-logged";
-import { Link } from "react-router-dom";
 import { filterContext } from "../context/filter-contex";
-
 
 const ListSeeker = () => {
   const [properties, setProperties] = useState(null);
@@ -73,15 +71,16 @@ const ListSeeker = () => {
         <SeekerNavBar /> 
         <ListProperties />
         <div style={{ display: "flex", flexWrap: "wrap", marginTop: "50px" }}>
-          <ContainerCards>
-          {filterProperties?.map((product) => {
-            return(
-              <Link to={"/property-not-logged"} key={product.id} style={{textDecoration: "none"}}>
-                <RentalCard  {...product}></RentalCard>
-              </Link> 
-            )
-          })}
-          </ContainerCards>
+        <ContainerCards>
+          {filterProperties?.map((property) => (
+            <SeekerRentalCard
+            key={property.id}
+            props={property}
+            {...property} 
+            style={{ textDecoration: "none" }}/>
+          ))}
+
+        </ContainerCards>
         </div>
         <FooterContent />
       </div>

@@ -12,8 +12,8 @@ const SeekerApp = () => {
       <Routes>
         <Route path="/property-favorites" element={<PropertyFavorites />} />
         <Route path="/property-contacted" element={<PropertyContacted />} />
-        <Route path="/property-show-logged" element={<PropertShowLogged />} />
-        <Route path="/property-show-contact" element={<PropertShowContact />} />
+        <Route path="/property-show-logged/:id" element={<PropertShowLogged />} />
+        <Route path="/property-show-contact/:id" element={<PropertShowContact />} />
         <Route path="/list-seeker" element={<ListSeeker />} />
         <Route path="/" element={<SeekerLanding />} />
       </Routes>
