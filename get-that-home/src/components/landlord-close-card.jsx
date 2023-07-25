@@ -179,7 +179,7 @@ function LandlordCloseCard(property) {
         } catch (error) {
           console.error(error);
         }
-        navigate("/property-active")
+        // navigate("/property-active")
     };
     const handleDeleteClick = async () => {
         try {
