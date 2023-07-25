@@ -9,7 +9,7 @@ import { filterContext } from "../../context/filter-contex";
 import { useContext } from "react";
 
 
-const PropertyTypeModal = () => {
+const PropertyTypeModal = ({propertyTypeModal,setPropertyTypeModal}) => {
     const {handleCheckboxChange, handleCheckboxApartmentChange} = useContext(filterContext) 
     return ( 
         <ModalBody style={{left:"41%"}}>
@@ -33,7 +33,7 @@ const PropertyTypeModal = () => {
                     </FlexContainerL>
                 </SimpleFlexContainer>
                 <DoneContainer>
-                    <LoginButton>
+                    <LoginButton onClick={()=>{setPropertyTypeModal(!propertyTypeModal)}}>
                         DONE
                     </LoginButton>
                 </DoneContainer>

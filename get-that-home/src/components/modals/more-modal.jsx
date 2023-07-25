@@ -11,7 +11,7 @@ import { filterContext } from "../../context/filter-contex";
 import { LoginButton, JoinButton } from "../button";
 import { useContext } from 'react';
 
-const MoreModal = () => {
+const MoreModal = (moreModal, setMoreModal) => {
     const {handleCheckboxChange, setMin, setMax} = useContext(filterContext)
     return ( 
         <ModalBody style={{left:"61%"}}>
@@ -49,7 +49,7 @@ const MoreModal = () => {
                     </PriceSectionContainer>
                 </div>
                 <DoneContainer>
-                    <LoginButton>
+                    <LoginButton onClick={()=>{setMoreModal(!moreModal)}}>
                         DONE
                     </LoginButton>
                 </DoneContainer>
