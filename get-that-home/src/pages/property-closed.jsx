@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import ButtomOn from "../components/buttomOn";
 import ButtomOff from "../components/buttonOf";
-import RentalCard from "../components/rental-card";
+import LandlordRentalCard from "../components/landlord-rental-card";
 // import FooterContent from "../components/footer";
 import LanlordNavBar from "../components/navBar/lanlordNavBar";
 import { useEffect, useState } from "react";
@@ -69,9 +69,13 @@ function PropertyClose() {
             : "Loading..."}
         </h4>
         <ContainerCards>
-          {userProperties.map((property) => {
-            return <RentalCard key={property.id} {...property} />;
-          })}
+        {userProperties?.map((property) => (
+            <LandlordRentalCard 
+            key={property.id}
+            props={property}
+            {...property} 
+            style={{ textDecoration: "none" }}/>
+          ))}
         </ContainerCards>
       </Container>
       {/* <FooterContent/> */}
