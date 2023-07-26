@@ -8,6 +8,9 @@ import { BiBed, BiBath, BiArea } from "react-icons/bi";
 import { MdOutlinePets } from "react-icons/md";
 import PhotoDeparment from "../assets/home-img/home-1.svg";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { BASE_URI } from "../config";
+
 
 const PropertyCard = styled.div`
   border-radius: 8px;
@@ -133,8 +136,38 @@ const ZCont = styled.div`
   right: 8px;
 `;
 
+const FavoriteContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-items: end;
+`
+
 function SeekerRentalCard(property) {
-  // console.log(property.id)
+  const [color, setColor] = useState("#616161");
+  const [isFavorite, setIsFavorite] = useState(property.favorite);
+
+  const handleFavoriteClick = async () => {
+    try {
+      const newFavoriteStatus = !isFavorite;
+      const response = await fetch(`${BASE_URI}/properties/${property.id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ favorite: newFavoriteStatus }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Error");
+      } else {
+        setIsFavorite(newFavoriteStatus);
+        setColor(newFavoriteStatus ? "red" : "#616161");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <PropertyCard>
@@ -173,7 +206,9 @@ function SeekerRentalCard(property) {
         <MdOutlinePets
           style={{ width: "24px", height: "24px", color: "#616161" }} />
         ) : null}
-        <AiFillHeart style={{ width: "24px", height: "24px", color: "gray" }} />
+        <FavoriteContainer onClick={handleFavoriteClick}>
+          <AiFillHeart style={{ width: "24px", height: "24px" , color }} />
+        </FavoriteContainer>
       </RentalFeatures>
     </PropertyCard>
   );

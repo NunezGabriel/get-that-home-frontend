@@ -2,21 +2,26 @@ import styled from "@emotion/styled";
 
 import ButtomOn from "../components/buttomOn";
 import ButtomOff from "../components/buttonOf";
-import RentalCard from "../components/rental-card";
+import SeekerRentalCard from "../components/seeker-rental-card";
 // import FooterContent from "../components/footer";
 import SeekerNavBar from "../components/navBar/seekerNavBar";
+import { useAuth } from "../context/auth-context";
+import { useEffect, useState } from "react";
+import { getProperties } from "../service/properties-service";
+import { Link } from "react-router-dom";
+
 
 const Container = styled.div`
-
     display: flex;
     width: 75rem;
     margin: 2rem auto;
     flex-direction: column;
 `
+
 const BoxButtons = styled.div`
     width: 100%;
     display: flex;
-`
+` 
 
 const ContainerCards = styled.div`
     width: 100%;
@@ -29,20 +34,56 @@ const ContainerCards = styled.div`
 
 function PropertyFavorites(){
 
+    const { user } = useAuth();
+    const [userProperties, setUserProperties] = useState([]);
+
+    useEffect(() => {
+      if (user) {
+        getProperties()
+          .then((allProperties) => {
+            const propertiesOfUser = allProperties.filter(
+              (property) => property.user_id === user.id && property.favorite
+            );
+            setUserProperties(propertiesOfUser);
+          })
+          .catch(console.log);
+      }
+    }, [user, userProperties]);
+
     return(
         <>
-        <SeekerNavBar/>      
+        <SeekerNavBar/>
         <Container> 
             <BoxButtons>
+
+            <div>
+            <Link to={"/property-favorites"} style={{ textDecoration: "none" }}>
                 <ButtomOn>FAVORITES</ButtomOn>
-                <ButtomOff>CONTACTED</ButtomOff>
+            </Link>
+            </div>
+
+            <div>
+            <Link to={"/property-contacted"} style={{ textDecoration: "none" }}>
+              <ButtomOff>CONTACTED</ButtomOff>
+            </Link>
+            </div>
             </BoxButtons>
 
-            <h4>4 Properties found</h4>
+            <h4>
+                {userProperties
+                  ? `${userProperties.length} Properties found`
+                  : "Loading..."}
+            </h4>
+
         <ContainerCards>
-            <RentalCard/>
-            <RentalCard/> 
-         
+        {userProperties?.map((property) => (
+            <SeekerRentalCard
+              key={property.id}
+              props={property}
+              {...property}
+              style={{ textDecoration: "none" }}
+            />
+          ))}
         </ContainerCards>
         </Container>
         {/* <FooterContent/> */}
@@ -50,6 +91,6 @@ function PropertyFavorites(){
     )
 }
 
-export default PropertyFavorites
+export default PropertyFavorites;
 
 //<Route path="/property-favorites" element={<PropertyFavorites/>} />
