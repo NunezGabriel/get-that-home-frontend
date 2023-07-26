@@ -5,10 +5,10 @@ import { RiMoneyDollarCircleLine, RiDeleteBin5Fill } from "react-icons/ri";
 import { BiBed, BiBath, BiArea } from "react-icons/bi";
 import { MdOutlinePets } from "react-icons/md";
 import PhotoDeparment from "../assets/images/Photo1.svg";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BsBoxArrowUp } from "react-icons/bs";
 import { BASE_URI } from "../config";
-
+import { RiCoinsLine } from "react-icons/ri";
 
 const PropertyCard = styled.div`
   border-radius: 8px;
@@ -26,29 +26,29 @@ const PropertyCard = styled.div`
   overflow: hidden;
 `;
 const FootOptionsContainer = styled.div`
-    width: 100%;
-    height: 50px;
-    display: flex;
-    justify-content: space-around;
-    background-color: #bf5f82;
-`
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: space-around;
+  background-color: #bf5f82;
+`;
 const FootOption = styled.div`
-    width: 94px;
-    height: 32px;
-    padding: 8px;
-    gap: 8px;
-    display: flex;
-    color: var(--white, #FFF);
-    text-align: center;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 24px;
-    letter-spacing: 1.25px;
-    text-transform: uppercase;
-    align-items: center;
-    cursor: pointer;
-`
+  width: 94px;
+  height: 32px;
+  padding: 8px;
+  gap: 8px;
+  display: flex;
+  color: var(--white, #fff);
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+  align-items: center;
+  cursor: pointer;
+`;
 const RentalImg = styled.img`
   width: 300px;
   height: 200px;
@@ -154,57 +154,85 @@ const ZCont = styled.div`
   gap: 4px;
   position: absolute;
   right: 8px;
-`
+`;
+
+const ConteinerIcon = styled.div`
+  display: flex;
+  position: relative;
+  gap: 4px;
+  padding: 4px 8px;
+  justify-content: center;
+  align-items: center;
+  height: 28px;
+  top: -207px;
+  left: 174px;
+  width: 110px;
+  background: #f48fb1;
+  border-top-right-radius: 8px;
+`;
 
 function LandlordCloseCard(property) {
+  const navigate = useNavigate();
+  const handleRestoreClick = async () => {
+    try {
+      const response = await fetch(`${BASE_URI}/properties/${property.id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ active: true }), // Cambia 'status' y el valor por los campos necesarios para tu API
+      });
 
-    const navigate = useNavigate();
-    const handleRestoreClick = async () => {
-        try {
-          const response = await fetch(`${BASE_URI}/properties/${property.id}`, {
-            method: 'PATCH',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ active: true }), // Cambia 'status' y el valor por los campos necesarios para tu API
-          });
-    
-          if (!response.ok) {
-            throw new Error('Error al cerrar la propiedad');
-          }else{
-            console.log("exitooo")
-          }
-    
-          // Hacer algo con la respuesta si es necesario
-        } catch (error) {
-          console.error(error);
-        }
-        navigate("/property-active")
-    };
-    const handleDeleteClick = async () => {
-        try {
-          const response = await fetch(`${BASE_URI}/properties/${property.id}`, {
-            method: 'DELETE',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          });
-    
-          if (!response.ok) {
-            throw new Error('Error al eliminar la propiedad');
-          } else {
-            console.log('Propiedad eliminada exitosamente');
-            // Aquí podrías realizar alguna acción adicional si lo necesitas
-          }
-        } catch (error) {
-          console.error(error);
-        }
-    };
+      if (!response.ok) {
+        throw new Error("Error al cerrar la propiedad");
+      } else {
+        console.log("exitooo");
+      }
+
+      // Hacer algo con la respuesta si es necesario
+    } catch (error) {
+      console.error(error);
+    }
+    navigate("/property-active");
+  };
+  const handleDeleteClick = async () => {
+    try {
+      const response = await fetch(`${BASE_URI}/properties/${property.id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Error al eliminar la propiedad");
+      } else {
+        console.log("Propiedad eliminada exitosamente");
+        // Aquí podrías realizar alguna acción adicional si lo necesitas
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <PropertyCard>
-      <Link to={`/property-detail/${property.id}`} >
-      <RentalImg src={PhotoDeparment} alt="Home Pic" />
+      <Link
+        to={`/property-detail/${property.id}`}
+        style={{ textDecoration: "none", color: "white" }}
+      >
+        <RentalImg src={PhotoDeparment} alt="Home Pic" />
+        {property.operation_type === "Rent" ? (
+          <ConteinerIcon>
+            <RiCoinsLine size={"20px"} color="white" />
+            <p>For Rental</p>
+          </ConteinerIcon>
+        ) : (
+          <ConteinerIcon style={{ background: " #BF5F82" }}>
+            <RiMoneyDollarCircleLine size={"20px"} color="white" />
+            <p>For Sale </p>
+          </ConteinerIcon>
+        )}
       </Link>
       <RentalChar>
         <RiMoneyDollarCircleLine
@@ -213,13 +241,10 @@ function LandlordCloseCard(property) {
         <RentPrice>{property.price}</RentPrice>
         <ZCont>
           <RiBuildingLine
-          style={{ width: "24px", 
-          height: "32px", 
-          color: "#616161",
-        }}
+            style={{ width: "24px", height: "32px", color: "#616161" }}
           />
           <PropertyType>{property.property_type}</PropertyType>
-          </ZCont>
+        </ZCont>
       </RentalChar>
       <AddressChar>
         <Address>{property.address}</Address>
@@ -242,13 +267,21 @@ function LandlordCloseCard(property) {
         />
       </RentalFeatures>
       <FootOptionsContainer>
-        <FootOption onClick={()=>{handleRestoreClick()}}>
-            <BsBoxArrowUp fontSize={20}/>
-            <p>restore</p>
+        <FootOption
+          onClick={() => {
+            handleRestoreClick();
+          }}
+        >
+          <BsBoxArrowUp fontSize={20} />
+          <p>restore</p>
         </FootOption>
-        <FootOption onClick={()=>{handleDeleteClick()}}>
-            <RiDeleteBin5Fill fontSize={20}/>
-            <p>delete</p>
+        <FootOption
+          onClick={() => {
+            handleDeleteClick();
+          }}
+        >
+          <RiDeleteBin5Fill fontSize={20} />
+          <p>delete</p>
         </FootOption>
       </FootOptionsContainer>
     </PropertyCard>
