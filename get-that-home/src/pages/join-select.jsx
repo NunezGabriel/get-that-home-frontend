@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import NoLoggedNavBar from "../components/navBar/noLoggedNavBar";
 import rafiki from "../assets/rafiki.svg"
 import pana from "../assets/pana.svg"
+import FooterContent from "../components/footer";
 
 export const MainJoinContainer = styled.div`
     height: 705px;
@@ -121,6 +122,7 @@ const JoinSelect = () => {
                     </Link>
                 </OptionJoinContainer>
             </MainJoinContainer>
+            <FooterContent/>
         </div>
      );
 }

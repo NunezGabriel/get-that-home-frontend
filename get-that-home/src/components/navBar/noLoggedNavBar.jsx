@@ -32,6 +32,7 @@ export const Finder = styled.div`
   display: flex;
   gap: 8px;
   align-items: center;
+  cursor: pointer;
 `;
 
 const NoLoggedNavBar = () => {
@@ -46,7 +47,7 @@ const NoLoggedNavBar = () => {
         <Link to={"/find-home"} style={{ textDecoration: "none" }}>
           <Finder>
             <BiSearch fontSize={24} color="#616161" />
-            <MainInput placeholder="FIND A HOME" />
+            <MainInput placeholder="FIND A HOME" style={{cursor: "pointer"}}/>
           </Finder>
         </Link>
         <Link to={"/join-select"} style={{ textDecoration: "none" }}>

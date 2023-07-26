@@ -13,6 +13,8 @@ import Label from "../components/label";
 import { Text, SubTitle } from "../components/simpleText";
 import SimpleText from "../components/simpleText";
 import InputBody from "../components/input";
+import FooterContent from "../components/footer";
+
 import {
   MainInput,
   CheckboxInput,
@@ -346,6 +348,7 @@ const Form = () => {
         <ImgContainer></ImgContainer>
         <Button>Publish property listing</Button>
       </MainContainer>
+      <FooterContent/>
     </div>
   );
 };

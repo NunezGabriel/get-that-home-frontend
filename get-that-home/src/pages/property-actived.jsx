@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 
 import ButtomOn from "../components/buttomOn";
 import ButtomOff from "../components/buttonOf";
-// import FooterContent from "../components/footer";
 import LanlordNavBar from "../components/navBar/lanlordNavBar";
 import { useEffect, useState } from "react";
 import { getProperties } from "../service/properties-service";
 import { useAuth } from "../context/auth-context";
 import { LoginButton } from "../components/button";
 import LandlordActiveCard from "../components/landlord-active-card";
+import FooterContent from "../components/footer";
 
 const Container = styled.div`
   display: flex;
@@ -80,7 +80,7 @@ function PropertyActive() {
           ))}
         </ContainerCards>
       </Container>
-      {/* <FooterContent/> */}
+      <FooterContent/>
     </>
   );
 }

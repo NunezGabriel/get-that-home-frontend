@@ -35,7 +35,7 @@ const SeekerNavBar = () => {
         <Link to={"/list-seeker"} style={{ textDecoration: "none" }}>
           <Finder>
             <BiSearch fontSize={24} color="#616161" />
-            <MainInput placeholder="FIND A HOME" />
+            <MainInput placeholder="FIND A HOME" style={{cursor: "pointer"}}/>
           </Finder>
         </Link>
         <JoinButton onClick={()=>{handleLogOut()}} style={{ cursor: "pointer" }}>
