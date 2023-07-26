@@ -5,7 +5,7 @@ import { RiMoneyDollarCircleLine, RiDeleteBin5Fill } from "react-icons/ri";
 import { BiBed, BiBath, BiArea } from "react-icons/bi";
 import { MdOutlinePets } from "react-icons/md";
 import PhotoDeparment from "../assets/images/Photo1.svg";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { BsBoxArrowUp } from "react-icons/bs";
 import { BASE_URI } from "../config";
 import { RiCoinsLine } from "react-icons/ri";
@@ -172,7 +172,6 @@ const ConteinerIcon = styled.div`
 `;
 
 function LandlordCloseCard(property) {
-  const navigate = useNavigate();
 
   const handleRestoreClick = async () => {
     try {
@@ -263,9 +262,10 @@ function LandlordCloseCard(property) {
           <BiArea style={{ width: "24px", height: "24px", color: "#616161" }} />
           <Area>{property.area}</Area>
         </CCont>
+        {property.pets ? ( 
         <MdOutlinePets
-          style={{ width: "24px", height: "24px", color: "#616161" }}
-        />
+          style={{ width: "24px", height: "24px", color: "#616161" }} />
+        ) : null}
       </RentalFeatures>
       <FootOptionsContainer>
         <FootOption

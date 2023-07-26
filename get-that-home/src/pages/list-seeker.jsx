@@ -9,7 +9,7 @@ import { filterContext } from "../context/filter-contex";
 
 const ListSeeker = () => {
   const [properties, setProperties] = useState(null);
-  const {min, max, isChecked, isCheckedApartment, word, beds,setBeds, setBaths, baths, type} = useContext(filterContext);
+  const {min, max, isChecked, isCheckedApartment, word, beds, baths, type} = useContext(filterContext);
   const [staticProperties, setStaticProperties] = useState([])
   const [addressProperties, setAddressProperties] = useState([])
 
@@ -52,7 +52,6 @@ const ListSeeker = () => {
   }, [beds, baths])
 
   useEffect(() => {
-    let x;
     if(type == 'Sale') {
       setProperties(staticProperties.filter(product => product.operation_type == 'Sale'))
       
@@ -62,7 +61,6 @@ const ListSeeker = () => {
     } else {
       setProperties(staticProperties)
     }
-    console.log(x);
   }, [type])
 
   

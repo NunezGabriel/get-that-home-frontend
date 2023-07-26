@@ -4,22 +4,7 @@ import LanlordNavBar from "../components/navBar/lanlordNavBar";
 // import { useEffect, useState } from "react";
 
 const LandlordLanding = () => {
-    // const auth = useAuth();
-    // const [loading, setLoading] = useState(true);
-
-    // useEffect(() => {
-    //     console.log(auth.user);
-    //     if (auth.user) {
-    //       setLoading(false);
-    //     }
-    //   }, [auth.user]);
-    
-    //   if (loading) {
-    //     return <div>Loading...</div>;
-    //   }
-    
-
-    console.log("I'm here")
+    // console.log("I'm here")
     return ( 
         <div>
             <LanlordNavBar/>

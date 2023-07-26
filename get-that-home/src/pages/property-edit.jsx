@@ -212,8 +212,7 @@ const BoxLogin = styled.div`
 
 function PropertEdit() {
   const { id } = useParams();
-  console.log(id);
-
+  // console.log(id);
   const [property, setProperty] = useState(null);
 
   useEffect(() => {
@@ -278,8 +277,13 @@ function PropertEdit() {
             </Info>
 
             <Info>
-              <FaPaw />
+            {property?.pets ? ( 
+              <>
+            <FaPaw
+              style={{ width: "32px", height: "32px", color: "#616161" }} />
               <h4>Pets allowed</h4>
+              </>
+            ) : null}
             </Info>
           </DetailsProperty>
 

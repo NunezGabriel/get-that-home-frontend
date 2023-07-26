@@ -61,10 +61,9 @@ const ListNotLogged = () => {
   useEffect(() => {
     let filteredRooms = staticProperties.filter((product) => product.bedrooms >= beds && product.bathrooms >= baths);
     setProperties(filteredRooms);
-  }, [beds, baths])
+  }, [beds, baths, staticProperties])
 
   useEffect(() => {
-    let x;
     if(type == 'Sale') {
       setProperties(staticProperties.filter(product => product.operation_type == 'Sale'))
 
@@ -74,8 +73,7 @@ const ListNotLogged = () => {
     } else {
       setProperties(staticProperties)
     }
-    console.log(x);
-  }, [type])
+  }, [staticProperties, type])
 
   return (
     <div>
