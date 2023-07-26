@@ -9,6 +9,7 @@ import Label from "../components/label";
 import InputBody from "../components/input";
 import { MainInput } from "../components/input";
 import NoLoggedNavBar from "../components/navBar/noLoggedNavBar";
+import FooterContent from "../components/footer";
 
 const LogginBody = styled.form`
   display: inline-flex;

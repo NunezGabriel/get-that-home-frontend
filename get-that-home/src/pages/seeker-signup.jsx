@@ -11,6 +11,7 @@ import { LoginButton } from "../components/button";
 import SimpleText from "../components/simpleText";
 import { SignUpContainer } from "./lanlord-signup";
 import { BASE_URI } from "../config";
+import FooterContent from "../components/footer";
 
 const SeekerSignUp = () => {
     const [user, setUser] = useState({
@@ -80,6 +81,7 @@ const SeekerSignUp = () => {
             </SimpleContainer>
             <LoginButton onClick={()=>{handleSubmit()}}>Create account</LoginButton>
         </SignUpContainer>
+        <FooterContent/>
         </div>
     );
 }

@@ -13,7 +13,7 @@ import { Text, SubTitle } from "../components/simpleText";
 import SimpleText from "../components/simpleText";
 import InputBody from "../components/input";
 import { useAuth } from "../context/auth-context";
-
+import FooterContent from "../components/footer";
 import {
   MainInput,
   CheckboxInput,
@@ -282,6 +282,7 @@ const FormSale = () => {
         <ImgContainer></ImgContainer>
         <Button>Publish property listing</Button>
       </MainContainer>
+      <FooterContent/>
     </div>
   );
 };

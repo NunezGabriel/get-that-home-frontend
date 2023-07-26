@@ -21,6 +21,7 @@ const PropertyCard = styled.div`
   display: flex;
   flex-direction: column;
   width: 300px;
+  height: 354px;
   font-family: "Inter";
   font-weight: 400;
   font-size: 16px;

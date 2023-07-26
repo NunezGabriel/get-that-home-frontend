@@ -11,6 +11,7 @@ import { MainInput } from "../components/input";
 import InputBody from "../components/input";
 import { LoginButton } from "../components/button";
 import SimpleText from "../components/simpleText";
+import FooterContent from "../components/footer";
 
 export const SignUpContainer = styled.form`
   display: inline-flex;
@@ -97,6 +98,7 @@ const LandlordSignUp = () => {
         </SimpleContainer>
         <LoginButton onClick={()=>{handleSubmit()}}>Create account</LoginButton>
       </SignUpContainer>
+      <FooterContent/>
     </div>
   );
 };
