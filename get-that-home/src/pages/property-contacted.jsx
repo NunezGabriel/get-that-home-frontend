@@ -1,32 +1,38 @@
 import styled from "@emotion/styled";
 
-import RentalCard from "../components/rental-card";
-// import FooterContent from "../components/footer";
 import SeekerNavBar from "../components/navBar/seekerNavBar";
-import { Link } from "react-router-dom";
+import { useAuth } from "../context/auth-context";
+import { useEffect, useState } from "react";
+import { getProperties } from "../service/properties-service";
+import SeekerRentalCard from "../components/seeker-rental-card";
 import { typography } from "../styles/typography";
+import { Link } from "react-router-dom";
+
+
 
 const Container = styled.div`
-  display: flex;
-  width: 75rem;
-  height: auto;
-  margin: 2rem auto;
-  flex-direction: column;
-`;
+
+    display: flex;
+    width: 75rem;
+    height: auto;
+    margin: 2rem auto;
+    flex-direction: column;
+`
 const BoxButtons = styled.div`
-  width: 100%;
-  display: flex;
-  gap: 18px;
-  margin-left: 10px;
-`;
+    width: 100%;
+    display: flex;
+    gap: 18px;
+    margin-left: 10px;
+`
 
 const ContainerCards = styled.div`
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  gap: 2rem;
-`;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 2rem;
+
+`
 
 const ButtomOn = styled.div`
   background-color: transparent;
@@ -59,11 +65,32 @@ const ButtomOff = styled.div`
   text-transform: uppercase;
   ${typography.text.sm}
 `;
-function PropertyContacted() {
-  return (
-    <>
-      <SeekerNavBar />
-      <Container>
+
+function PropertyContacted(){
+
+    let contacteds = JSON.parse(localStorage.getItem("contacted"));
+    const { user } = useAuth();
+    const [userProperties, setUserProperties] = useState([]);
+
+    useEffect(() => {
+      if (user) {
+        getProperties()
+          .then((allProperties) => {
+            const propertiesOfUser = allProperties.filter(
+              (property) => property.user_id === user.id && property.favorite
+            );
+            setUserProperties(propertiesOfUser);
+          })
+          .catch(console.log);
+      }
+    }, [user, userProperties]);
+
+
+
+    return(
+        <>
+        <SeekerNavBar/>      
+        <Container> 
         <BoxButtons>
           <Link to={"/property-favorites"} style={{ textDecoration: "none" }}>
             <ButtomOff>FAVORITES</ButtomOff>
@@ -73,16 +100,27 @@ function PropertyContacted() {
           </Link>
         </BoxButtons>
 
-        <h4>4 Properties found</h4>
-        <ContainerCards>
-          <RentalCard />
+            <h4>
+                {contacteds
+                  ? `${contacteds.length} Properties found`
+                  : " :) "}
+            </h4>
+            <ContainerCards>
+        {contacteds?.map((contac) => (
+            <SeekerRentalCard
+              key={contac.id}
+              props={contac}
+              {...contac}
+              style={{ textDecoration: "none" }}
+            />
+          ))}
         </ContainerCards>
-      </Container>
-      {/* <FooterContent/> */}
-    </>
-  );
+        </Container>
+        {/* <FooterContent/> */}
+        </>
+    )
 }
 
-export default PropertyContacted;
+export default PropertyContacted
 
 // <Route path="/property-contacted" element={<PropertyContacted/>} />

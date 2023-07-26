@@ -242,8 +242,31 @@ const BoxFavorites = styled.div`
 
 function PropertShowLogged(){
 
+      // Función para manejar el clic en el botón de "like"
+  const handleContactedClick = () => {
+    const contacted = JSON.parse(localStorage.getItem("contacted")) || [];
+
+    const propertyId = property.id;
+    const isContact = contacted.some(
+      (ContactProperty) => ContactProperty.id === propertyId
+    );
+
+    if (isContact) {
+      // Eliminar la propiedad del arreglo de favoritos
+      const updatedcontacted = contacted.filter(
+        (ContactProperty) => ContactProperty.id !== propertyId
+      );
+      localStorage.setItem("contacted", JSON.stringify(updatedcontacted));
+    } else {
+      // Agregar la propiedad al arreglo de favoritos
+      contacted.push(property);
+      localStorage.setItem("contacted", JSON.stringify(contacted));
+    }
+
+  };
+
     const {id} = useParams();
-    // console.log(id)
+    console.log(id)
   
     const [property, setProperty] = useState(null)
   
@@ -340,9 +363,11 @@ function PropertShowLogged(){
 
             <PropertyRigth>
                 <BoxLogin>
-                        <Link to={"/property-show-contact"} style={{textDecoration: "none"}}>
+                    <div onClick={handleContactedClick}>
+                        <Link to={`/property-show-contact/${id}`} style={{textDecoration: "none"}}>
                             CONTACT ADVERTISER
                         </Link>
+                    </div>
                         <BoxFavorites>
                             <a href=""><AiOutlineHeart/></a>
                             <p>Add to Favorites</p>

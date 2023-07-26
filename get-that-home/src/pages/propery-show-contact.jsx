@@ -12,6 +12,9 @@ import SeekerNavBar from '../components/navBar/seekerNavBar';
 import imgProperty from '../assets/property.svg';
 import  mapLocation  from '../assets/mappro.svg';
 import FooterContent from '../components/footer';
+import { useParams } from 'react-router-dom';
+import { showProperty } from '../service/properties-service';
+import { useEffect, useState } from 'react';
 
 const Container  = styled.div
 `   
@@ -222,6 +225,16 @@ const BoxLogin = styled.div`
 `
 
 function PropertShowContact(){
+
+    const {id} = useParams();
+    console.log(id)
+  
+    const [property, setProperty] = useState(null)
+  
+    useEffect(() => {
+      showProperty(id).then(setProperty).catch(console.log)
+    },[id])
+
     return(
 
         <>
@@ -249,13 +262,13 @@ function PropertShowContact(){
                 {/* Container de las caracteristicas */}
                 <Characteristics>
                     <LocationProperty>
-                        <h4>Francisco de Paula Ugarriza 27</h4>
-                        <p>Miraflores , Lima</p>
+                        <h4>{property?.address}</h4>
+                        <p>{property?.address}</p>
                     </LocationProperty>
 
                     <PriceProperty>
-                        <h3><RiMoneyDollarCircleLine/>3,000</h3>
-                        <p>+100</p>
+                        <h3><RiMoneyDollarCircleLine/>{property?.price}</h3>
+                        <p>+{property?.montly_rent}</p>
                     </PriceProperty>
                 </Characteristics>
 
@@ -265,32 +278,34 @@ function PropertShowContact(){
 
                     <Info>
                         <BiBed />
-                        <h4>4 bedrooms</h4>
+                        <h4>{property?.bedrooms}  bedrooms</h4>
                     </Info>
 
                     <Info>
                         <BiBath/>
-                        <h4>2 bathrooms</h4>
+                        <h4>{property?.bathrooms} bathrooms</h4>
                     </Info>
 
                     <Info>
                         <BiArea />
-                        <h4>180 m2</h4>
+                        <h4>{property?.area}</h4>
                     </Info>
 
                     <Info>
-                        <FaPaw />
-                        <h4>Pets allowed</h4>
+                    {property?.pets ? ( 
+                    <>
+                    <FaPaw
+                    style={{ width: "32px", height: "32px", color: "#616161" }} />
+                    <h4>Pets allowed</h4>
+                    </>
+                    ) : null}
                     </Info>
 
                 </DetailsProperty>
-
                 <AboutProperty>
                     <h2>About this property</h2>
-                    <p>3 Bedroom/2 Bathroom apartment available for ASAP move-in!</p>
-                    <p>Apartment features hardwood floors throughout, virtual doorman,
-                    Central AC/heat, dishwasher and a microwave. </p>
-                    <p>The kitchen has custom cabinetry and the living room is big enough to fit a dinner table, a couch and a tv set up.</p>
+                    <p>{property?.about}
+                    </p>
                 </AboutProperty>
 
                 <Location>
@@ -298,12 +313,6 @@ function PropertShowContact(){
                     <p>Francisco de Paula Ugarriza 27</p>
                     <ContainerMap>
                     <img src={mapLocation} alt="" />
-                    {/* <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15602.629151686477!2d-77.01942798458053!3d-12.135585057709873!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105b7e1b4b5a533%3A0xa549043226dcfb18!2sLarcomar!5e0!3m2!1ses-419!2spe!4v1689638002369!5m2!1ses-419!2spe" 
-                    width="860" 
-                    style={{border:0}} 
-                    allowfullscreen="" 
-                    loading="lazy" 
-                    referrerpolicy="no-referrer-when-downgrade"></iframe> */}
                     </ContainerMap>
                 </Location>
 
