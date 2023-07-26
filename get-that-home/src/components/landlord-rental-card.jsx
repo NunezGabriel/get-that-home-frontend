@@ -1,18 +1,19 @@
 import styled from "@emotion/styled";
 import { typography } from "../styles/typography";
 import { RiBuildingLine } from "react-icons/ri";
-import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { BiBed, BiBath, BiArea } from "react-icons/bi";
 import { MdOutlinePets } from "react-icons/md";
-import PhotoDeparment from "../assets/images/Photo1.svg";
-import { Link, useParams } from "react-router-dom";
+import PhotoDeparment from "../assets/home-img/home-2.jpg";
+import { Link } from "react-router-dom";
+import { RiCoinsLine } from "react-icons/ri";
+import { RiMoneyDollarCircleLine } from "react-icons/ri";
 
 const PropertyCard = styled.div`
   border-radius: 8px;
   display: flex;
   flex-direction: column;
   width: 300px;
-  height: 353px;
+  height: 370px;
   font-family: "Inter";
   font-weight: 400;
   font-size: 16px;
@@ -129,15 +130,44 @@ const ZCont = styled.div`
   gap: 4px;
   position: absolute;
   right: 8px;
-`
+`;
+
+const ConteinerIcon = styled.div`
+  display: flex;
+  position: relative;
+  gap: 4px;
+  padding: 4px 8px;
+  justify-content: center;
+  align-items: center;
+  height: 28px;
+  top: -207px;
+  left: 174px;
+  width: 110px;
+  background: #f48fb1;
+  border-top-right-radius: 8px;
+`;
 
 function LandlordRentalCard(property) {
   // console.log(property.id)
 
   return (
     <PropertyCard>
-      <Link to={`/property-detail/${property.id}`} >
-      <RentalImg src={PhotoDeparment} alt="Home Pic" />
+      <Link
+        to={`/property-detail/${property.id}`}
+        style={{ textDecoration: "none", color: "white" }}
+      >
+        <RentalImg src={PhotoDeparment} alt="Home Pic" />
+        {property.operation_type === "Rent" ? (
+          <ConteinerIcon>
+            <RiCoinsLine size={"20px"} color="white" />
+            <p>For Rental</p>
+          </ConteinerIcon>
+        ) : (
+          <ConteinerIcon style={{ background: " #BF5F82" }}>
+            <RiMoneyDollarCircleLine size={"20px"} color="white" />
+            <p>For Sale </p>
+          </ConteinerIcon>
+        )}
       </Link>
       <RentalChar>
         <RiMoneyDollarCircleLine
@@ -146,13 +176,10 @@ function LandlordRentalCard(property) {
         <RentPrice>{property.price}</RentPrice>
         <ZCont>
           <RiBuildingLine
-          style={{ width: "24px", 
-          height: "32px", 
-          color: "#616161",
-        }}
+            style={{ width: "24px", height: "32px", color: "#616161" }}
           />
           <PropertyType>{property.property_type}</PropertyType>
-          </ZCont>
+        </ZCont>
       </RentalChar>
       <AddressChar>
         <Address>{property.address}</Address>

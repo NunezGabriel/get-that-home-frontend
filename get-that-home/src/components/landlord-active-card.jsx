@@ -9,6 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaEdit } from "react-icons/fa";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import { BASE_URI } from "../config";
+import { RiCoinsLine } from "react-icons/ri";
 
 const PropertyCard = styled.div`
   border-radius: 8px;
@@ -156,6 +157,20 @@ const ZCont = styled.div`
   right: 8px;
 `;
 
+const ConteinerIcon = styled.div`
+  display: flex;
+  position: relative;
+  gap: 4px;
+  padding: 4px 8px;
+  justify-content: center;
+  align-items: center;
+  height: 28px;
+  top: -207px;
+  left: 174px;
+  width: 110px;
+  background: #f48fb1;
+  border-top-right-radius: 8px;
+`;
 function LandlordActiveCard(property) {
   const navigate = useNavigate();
 
@@ -184,8 +199,22 @@ function LandlordActiveCard(property) {
 
   return (
     <PropertyCard>
-      <Link to={`/property-detail/${property.id}`}>
+      <Link
+        to={`/property-detail/${property.id}`}
+        style={{ textDecoration: "none", color: "white" }}
+      >
         <RentalImg src={PhotoDeparment} alt="Home Pic" />
+        {property.operation_type === "Rent" ? (
+          <ConteinerIcon>
+            <RiCoinsLine size={"20px"} color="white" />
+            <p>For Rental</p>
+          </ConteinerIcon>
+        ) : (
+          <ConteinerIcon style={{ background: " #BF5F82" }}>
+            <RiMoneyDollarCircleLine size={"20px"} color="white" />
+            <p>For Sale </p>
+          </ConteinerIcon>
+        )}
       </Link>
       <RentalChar>
         <RiMoneyDollarCircleLine
