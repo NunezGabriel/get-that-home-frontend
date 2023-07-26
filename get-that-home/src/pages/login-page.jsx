@@ -9,7 +9,7 @@ import Label from "../components/label";
 import InputBody from "../components/input";
 import { MainInput } from "../components/input";
 import NoLoggedNavBar from "../components/navBar/noLoggedNavBar";
-import FooterContent from "../components/footer";
+import { LoginButton } from "../components/button";
 
 const LogginBody = styled.form`
   display: inline-flex;
@@ -48,17 +48,6 @@ function LoginForm() {
     // toast("adsasd")
     setFormData({ ...formData, [name]: value });
   }
-
-  // async function handleSubmit(event) {
-  //   event.preventDefault();
-  //   console.log(`Hola ${formData.email}`)
-  //   try {
-  //     await login(formData);
-  //     navigate('/');
-  //   } catch (error) {
-  //     // handle login error
-  //   }
-  // }
 
 async function handleSubmit(event) {
     event.preventDefault();
@@ -115,10 +104,9 @@ async function handleSubmit(event) {
             </InputBody>
           </SimpleContainer>
         </SimpleContainer>
-        <Button onClick={handleSubmit}>
-          <TbUserPlus fontSize={20} color="white" />
+        <LoginButton onClick={handleSubmit}>
           login
-        </Button>
+        </LoginButton>
       </LogginBody>
     </div>
   );
