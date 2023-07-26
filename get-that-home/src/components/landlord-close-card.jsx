@@ -204,6 +204,7 @@ function LandlordCloseCard(property) {
         },
       });
 
+
       if (!response.ok) {
         throw new Error("Error al eliminar la propiedad");
       } else {
@@ -214,6 +215,49 @@ function LandlordCloseCard(property) {
       console.error(error);
     }
   };
+
+    const navigate = useNavigate();
+    const handleRestoreClick = async () => {
+        try {
+          const response = await fetch(`${BASE_URI}/properties/${property.id}`, {
+            method: 'PATCH',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ active: true }), // Cambia 'status' y el valor por los campos necesarios para tu API
+          });
+    
+          if (!response.ok) {
+            throw new Error('Error al cerrar la propiedad');
+          }else{
+            console.log("exitooo")
+          }
+    
+          // Hacer algo con la respuesta si es necesario
+        } catch (error) {
+          console.error(error);
+        }
+        // navigate("/property-active")
+    };
+    const handleDeleteClick = async () => {
+        try {
+          const response = await fetch(`${BASE_URI}/properties/${property.id}`, {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          });
+    
+          if (!response.ok) {
+            throw new Error('Error al eliminar la propiedad');
+          } else {
+            console.log('Propiedad eliminada exitosamente');
+            // Aquí podrías realizar alguna acción adicional si lo necesitas
+          }
+        } catch (error) {
+          console.error(error);
+        }
+    };
 
   return (
     <PropertyCard>
