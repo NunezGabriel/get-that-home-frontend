@@ -144,31 +144,42 @@ const FavoriteContainer = styled.div`
 `
 
 function SeekerRentalCard(property) {
-  const [color, setColor] = useState("#616161");
-  const [favorites, setFavorites] = useState([]);
+  
+    // Estado para almacenar el color del ícono de like
+    const [color, setColor] = useState("#616161");
 
-  useEffect(() => {
-    // Obtener el arreglo de favoritos de LocalStorage al cargar el componente
-    const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    setFavorites(storedFavorites); // Actualizar el estado con los favoritos almacenados
-  }, []);
-
-  const handleFavoriteClick = () => {
-    // Verificar si la propiedad ya está en la lista de favoritos
-    const propertyId = property.id;
-    const isFavorite = favorites.some(favorite => favorite.id === propertyId);
-
-    // Agregar o quitar la propiedad del arreglo de favoritos
-    if (isFavorite) {
-      const updatedFavorites = favorites.filter(favorite => favorite.id !== propertyId);
-      setFavorites(updatedFavorites);
-      localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
-    } else {
-      const updatedFavorites = [...favorites, property];
-      setFavorites(updatedFavorites);
-      localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
-    }
-  };
+    // Función para manejar el clic en el botón de "like"
+    const handleFavoriteClick = () => {
+      // Obtener los favoritos actuales del LocalStorage
+      const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+  
+      // Verificar si el ID de la propiedad ya está en los favoritos
+      const propertyId = property.id;
+      const isFavorite = favorites.includes(propertyId);
+  
+      // Actualizar el arreglo de favoritos en el LocalStorage según el estado actual
+      if (isFavorite) {
+        // Si ya es favorito, lo eliminamos del arreglo
+        const updatedFavorites = favorites.filter((id) => id !== propertyId);
+        localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+      } else {
+        // Si no es favorito, lo agregamos al arreglo
+        favorites.push(propertyId);
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+      }
+  
+      // Cambiar el color del ícono de "like" según el estado actual
+      setColor(isFavorite ? "#616161" : "#bf5f82");
+    };
+  
+    // Efecto para verificar si la propiedad es favorita al cargar el componente
+    useEffect(() => {
+      const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+      const propertyId = property.id;
+      const isFavorite = favorites.includes(propertyId);
+      setColor(isFavorite ? "#bf5f82" : "#616161");
+    }, [property.id]);
+  
 
   return (
     <PropertyCard>
@@ -208,7 +219,7 @@ function SeekerRentalCard(property) {
           style={{ width: "24px", height: "24px", color: "#616161" }} />
         ) : null}
         <FavoriteContainer onClick={handleFavoriteClick}>
-          <AiFillHeart style={{ width: "24px", height: "24px" , color: favorites.some(favorite => favorite.id === property.id) ? "red" : color  }} />
+          <AiFillHeart style={{ width: "24px", height: "24px" , color  }} />
         </FavoriteContainer>
       </RentalFeatures>
     </PropertyCard>
