@@ -17,7 +17,7 @@ const ListSeeker = () => {
   useEffect(() => {
     getProperties().then(setProperties).catch(console.log);
     getProperties().then(setStaticProperties).catch(console.log);
-  }, []);
+  }, [properties]);
 
   let filterProperties = properties ? properties.filter(product => product.price >= parseInt(min) && product.price <= parseInt(max)) : [];
 
