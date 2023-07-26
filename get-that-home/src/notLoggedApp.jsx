@@ -21,7 +21,7 @@ const NotLoggedApp = () => {
       <Route path="/login-page" element={<LoginPage />} />
       <Route path="home" element={<HomePageNoLogin />} />
       <Route path="/" element={<NoLogedLanding />} />
-      <Route path="/detail-property" element={<DetailProperty />} />
+      <Route path="/detail-property/:id" element={<DetailProperty />} />
       {/* <Route path="/landlord-landing" element={<LandlordLanding />} /> */}
     </Routes>
   );
