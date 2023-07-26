@@ -3,14 +3,12 @@ import { typography } from "../styles/typography";
 import { RiBuildingLine } from "react-icons/ri";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 
-import { AiFillHeart } from "react-icons/ai"
+import { AiFillHeart } from "react-icons/ai";
 import { BiBed, BiBath, BiArea } from "react-icons/bi";
 import { MdOutlinePets } from "react-icons/md";
 import PhotoDeparment from "../assets/home-img/home-1.svg";
 import { Link } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
-import { BASE_URI } from "../config";
-
+import { useEffect, useState } from "react";
 
 const PropertyCard = styled.div`
   border-radius: 8px;
@@ -141,45 +139,45 @@ const FavoriteContainer = styled.div`
   flex-direction: row;
   align-items: center;
   align-items: end;
-`
+`;
 
 function SeekerRentalCard(property) {
-  
-    // Estado para almacenar el color del ícono de like
-    const [color, setColor] = useState("#616161");
+  // Estado para almacenar el color del ícono de like
+  const [color, setColor] = useState("#616161");
 
-    // Función para manejar el clic en el botón de "like"
-    const handleFavoriteClick = () => {
-      // Obtener los favoritos actuales del LocalStorage
-      const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-  
-      // Verificar si el ID de la propiedad ya está en los favoritos
-      const propertyId = property.id;
-      const isFavorite = favorites.includes(propertyId);
-  
-      // Actualizar el arreglo de favoritos en el LocalStorage según el estado actual
-      if (isFavorite) {
-        // Si ya es favorito, lo eliminamos del arreglo
-        const updatedFavorites = favorites.filter((id) => id !== propertyId);
-        localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-      } else {
-        // Si no es favorito, lo agregamos al arreglo
-        favorites.push(propertyId);
-        localStorage.setItem("favorites", JSON.stringify(favorites));
-      }
-  
-      // Cambiar el color del ícono de "like" según el estado actual
-      setColor(isFavorite ? "#616161" : "#bf5f82");
-    };
-  
-    // Efecto para verificar si la propiedad es favorita al cargar el componente
-    useEffect(() => {
-      const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-      const propertyId = property.id;
-      const isFavorite = favorites.includes(propertyId);
-      setColor(isFavorite ? "#bf5f82" : "#616161");
-    }, [property.id]);
-  
+  // Función para manejar el clic en el botón de "like"
+  const handleFavoriteClick = () => {
+    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+    const propertyId = property.id;
+    const isFavorite = favorites.some(
+      (favProperty) => favProperty.id === propertyId
+    );
+
+    if (isFavorite) {
+      // Eliminar la propiedad del arreglo de favoritos
+      const updatedFavorites = favorites.filter(
+        (favProperty) => favProperty.id !== propertyId
+      );
+      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+    } else {
+      // Agregar la propiedad al arreglo de favoritos
+      favorites.push(property);
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+    }
+
+    // Cambiar el color del ícono de "like" según el estado actual
+    setColor(isFavorite ? "#616161" : "#bf5f82");
+  };
+
+  useEffect(() => {
+    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    const propertyId = property.id;
+    const isFavorite = favorites.some(
+      (favProperty) => favProperty.id === propertyId
+    );
+    setColor(isFavorite ? "#bf5f82" : "#616161");
+  }, [property.id]);
 
   return (
     <PropertyCard>
@@ -190,7 +188,9 @@ function SeekerRentalCard(property) {
         <RiMoneyDollarCircleLine
           style={{ width: "32px", height: "26.67px", color: "#373737" }}
         />
-        <RentPrice>{property.price? property.price : property.montly_rent}</RentPrice>
+        <RentPrice>
+          {property.price ? property.price : property.montly_rent}
+        </RentPrice>
         <ZCont>
           <RiBuildingLine
             style={{ width: "24px", height: "32px", color: "#616161" }}
@@ -214,12 +214,13 @@ function SeekerRentalCard(property) {
           <BiArea style={{ width: "24px", height: "24px", color: "#616161" }} />
           <Area>{property.area}</Area>
         </CCont>
-        {property.pets ? ( 
-        <MdOutlinePets
-          style={{ width: "24px", height: "24px", color: "#616161" }} />
+        {property.pets ? (
+          <MdOutlinePets
+            style={{ width: "24px", height: "24px", color: "#616161" }}
+          />
         ) : null}
         <FavoriteContainer onClick={handleFavoriteClick}>
-          <AiFillHeart style={{ width: "24px", height: "24px" , color  }} />
+          <AiFillHeart style={{ width: "24px", height: "24px", color }} />
         </FavoriteContainer>
       </RentalFeatures>
     </PropertyCard>
