@@ -167,9 +167,10 @@ function RentalCard(property) {
           <BiArea style={{ width: "24px", height: "24px", color: "#616161" }} />
           <Area>{property.area}</Area>
         </CCont>
+        {property.pets ? ( 
         <MdOutlinePets
-          style={{ width: "24px", height: "24px", color: "#616161" }}
-        />
+          style={{ width: "24px", height: "24px", color: "#616161" }} />
+        ) : null}
       </RentalFeatures>
     </PropertyCard>
   );

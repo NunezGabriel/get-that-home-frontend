@@ -243,7 +243,7 @@ const BoxFavorites = styled.div`
 function PropertShowLogged(){
 
     const {id} = useParams();
-    console.log(id)
+    // console.log(id)
   
     const [property, setProperty] = useState(null)
   
@@ -311,8 +311,13 @@ function PropertShowLogged(){
                     </Info>
 
                     <Info>
-                        <FaPaw />
-                        <h4>Pets allowed</h4>
+                    {property?.pets ? ( 
+                    <>
+                    <FaPaw
+                    style={{ width: "32px", height: "32px", color: "#616161" }} />
+                    <h4>Pets allowed</h4>
+                    </>
+                    ) : null}
                     </Info>
 
                 </DetailsProperty>

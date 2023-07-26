@@ -7,7 +7,7 @@ import { AiFillHeart } from "react-icons/ai"
 import { BiBed, BiBath, BiArea } from "react-icons/bi";
 import { MdOutlinePets } from "react-icons/md";
 import PhotoDeparment from "../assets/home-img/home-1.svg";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const PropertyCard = styled.div`
   border-radius: 8px;
@@ -169,9 +169,10 @@ function SeekerRentalCard(property) {
           <BiArea style={{ width: "24px", height: "24px", color: "#616161" }} />
           <Area>{property.area}</Area>
         </CCont>
+        {property.pets ? ( 
         <MdOutlinePets
-          style={{ width: "24px", height: "24px", color: "#616161" }}
-        />
+          style={{ width: "24px", height: "24px", color: "#616161" }} />
+        ) : null}
         <AiFillHeart style={{ width: "24px", height: "24px", color: "gray" }} />
       </RentalFeatures>
     </PropertyCard>

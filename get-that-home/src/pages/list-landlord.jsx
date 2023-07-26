@@ -28,8 +28,8 @@ const ListLandLord = () => {
     isCheckedApartment,
     word,
     beds,
-    setBeds,
-    setBaths,
+    // setBeds,
+    // setBaths,
     baths,
     type,
   } = useContext(filterContext);
@@ -64,7 +64,7 @@ const ListLandLord = () => {
     } else {
       setProperties(staticProperties);
     }
-  }, [isChecked, isCheckedApartment]);
+  }, [filterProperties, isChecked, isCheckedApartment, staticProperties]);
 
   useEffect(() => {
     // let filteredAddress = filterProperties ? filterProperties.filter(product => product.address.toLowerCase().includes(word.toLowerCase())) : [];
@@ -87,10 +87,9 @@ const ListLandLord = () => {
       (product) => product.bedrooms >= beds && product.bathrooms >= baths
     );
     setProperties(filteredRooms);
-  }, [beds, baths]);
+  }, [beds, baths, staticProperties]);
 
   useEffect(() => {
-    let x;
     if (type == "Sale") {
       setProperties(
         staticProperties.filter((product) => product.operation_type == "Sale")
@@ -102,8 +101,7 @@ const ListLandLord = () => {
     } else {
       setProperties(staticProperties);
     }
-    console.log(x);
-  }, [type]);
+  }, [staticProperties, type]);
 
   return (
     <div>
