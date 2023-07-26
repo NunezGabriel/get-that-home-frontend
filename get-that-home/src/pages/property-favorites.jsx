@@ -93,13 +93,9 @@ function PropertyFavorites() {
             <ButtomOff>CONTACTED</ButtomOff>
           </Link>
         </BoxButtons>
-
         <h4>
-          {userProperties
-            ? `${userProperties.length} Properties found`
-            : "Loading..."}
+          {favorites ? `${favorites.length} Properties found` : "Loading..."}
         </h4>
-
         <ContainerCards>
           {favorites?.map((favorite) => (
             <SeekerRentalCard
