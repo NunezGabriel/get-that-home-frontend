@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import LandingImage from "../assets/landing-cover.svg";
 import { typography } from "../styles/typography";
+import { Link } from "react-router-dom";
 
 import TeamMemberCard from "../components/team-card";
 import gabrielpic from "../assets/prov-1.jpg";
@@ -8,8 +9,6 @@ import danielpic from "../assets/prov-2.jpg";
 import pedropic from "../assets/prov-3.jpg";
 import diegopic from "../assets/prov-4.jpg";
 import jorgepic from "../assets/prov-5.jpg";
-import RentalCard from "../components/rental-card";
-import rentalImage from "../assets/home-img/home-1.svg";
 import FooterContent from "../components/footer";
 import CardLanding from "../components/card-landing";
 
@@ -274,9 +273,11 @@ function LandingPage() {
                 </Selector>
               </FilterBox>
               <ButtonDiv>
-                <SearchButton>
+              <Link to={"/find-home"} style={{ textDecoration: "none" }}>
+                <SearchButton style={{ cursor: "pointer" }}>
                   <ButtonText>SEARCH</ButtonText>
                 </SearchButton>
+              </Link>
               </ButtonDiv>
             </SearchContainer>
           </FirstSection>
