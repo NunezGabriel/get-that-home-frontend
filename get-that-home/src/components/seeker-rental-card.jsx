@@ -8,7 +8,7 @@ import { BiBed, BiBath, BiArea } from "react-icons/bi";
 import { MdOutlinePets } from "react-icons/md";
 import PhotoDeparment from "../assets/home-img/home-1.svg";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BASE_URI } from "../config";
 
 
@@ -145,27 +145,28 @@ const FavoriteContainer = styled.div`
 
 function SeekerRentalCard(property) {
   const [color, setColor] = useState("#616161");
-  const [isFavorite, setIsFavorite] = useState(property.favorite);
+  const [favorites, setFavorites] = useState([]);
 
-  const handleFavoriteClick = async () => {
-    try {
-      const newFavoriteStatus = !isFavorite;
-      const response = await fetch(`${BASE_URI}/properties/${property.id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ favorite: newFavoriteStatus }),
-      });
+  useEffect(() => {
+    // Obtener el arreglo de favoritos de LocalStorage al cargar el componente
+    const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    setFavorites(storedFavorites); // Actualizar el estado con los favoritos almacenados
+  }, []);
 
-      if (!response.ok) {
-        throw new Error("Error");
-      } else {
-        setIsFavorite(newFavoriteStatus);
-        setColor(newFavoriteStatus ? "red" : "#616161");
-      }
-    } catch (error) {
-      console.error(error);
+  const handleFavoriteClick = () => {
+    // Verificar si la propiedad ya está en la lista de favoritos
+    const propertyId = property.id;
+    const isFavorite = favorites.some(favorite => favorite.id === propertyId);
+
+    // Agregar o quitar la propiedad del arreglo de favoritos
+    if (isFavorite) {
+      const updatedFavorites = favorites.filter(favorite => favorite.id !== propertyId);
+      setFavorites(updatedFavorites);
+      localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+    } else {
+      const updatedFavorites = [...favorites, property];
+      setFavorites(updatedFavorites);
+      localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
     }
   };
 
@@ -207,7 +208,7 @@ function SeekerRentalCard(property) {
           style={{ width: "24px", height: "24px", color: "#616161" }} />
         ) : null}
         <FavoriteContainer onClick={handleFavoriteClick}>
-          <AiFillHeart style={{ width: "24px", height: "24px" , color }} />
+          <AiFillHeart style={{ width: "24px", height: "24px" , color: favorites.some(favorite => favorite.id === property.id) ? "red" : color  }} />
         </FavoriteContainer>
       </RentalFeatures>
     </PropertyCard>
