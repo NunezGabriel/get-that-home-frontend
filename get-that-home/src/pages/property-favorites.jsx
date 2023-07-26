@@ -71,8 +71,8 @@ function PropertyFavorites(){
             </BoxButtons>
 
             <h4>
-                {userProperties
-                  ? `${userProperties.length} Properties found`
+                {favorites
+                  ? `${favorites.length} Properties found`
                   : "Loading..."}
             </h4>
 
