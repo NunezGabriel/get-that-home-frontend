@@ -2,6 +2,8 @@ import styled from "@emotion/styled";
 import { typography } from "../styles/typography";
 import { RiBuildingLine } from "react-icons/ri";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
+import { RiCoinsLine } from "react-icons/ri";
+
 
 import { AiFillHeart } from "react-icons/ai";
 import { BiBed, BiBath, BiArea } from "react-icons/bi";
@@ -15,7 +17,6 @@ const PropertyCard = styled.div`
   display: flex;
   flex-direction: column;
   width: 300px;
-  height: 353px;
   font-family: "Inter";
   font-weight: 400;
   font-size: 16px;
@@ -140,6 +141,21 @@ const FavoriteContainer = styled.div`
   align-items: center;
   align-items: end;
 `;
+const ConteinerIcon = styled.div`
+  display: flex;
+  position: relative;
+  gap: 4px;
+  padding: 4px 8px;
+  justify-content: center;
+  align-items: center;
+  height: 28px;
+  top: -207px;
+  left: 174px;
+  width: 110px;
+  background: #f48fb1;
+  border-top-right-radius: 8px;
+`;
+
 
 function SeekerRentalCard(property) {
   // Estado para almacenar el color del ícono de like
@@ -181,8 +197,19 @@ function SeekerRentalCard(property) {
 
   return (
     <PropertyCard>
-      <Link to={`/property-show-logged/${property.id}`}>
+      <Link to={`/property-show-logged/${property.id}`} style={{ textDecoration: "none", color: "white" }}>
         <RentalImg src={PhotoDeparment} alt="Home Pic" />
+        {property.operation_type === "Rent" ? (
+          <ConteinerIcon>
+            <RiCoinsLine size={"20px"} color="white" />
+            <p>For Rental</p>
+          </ConteinerIcon>
+        ) : (
+          <ConteinerIcon style={{ background: " #BF5F82" }}>
+            <RiMoneyDollarCircleLine size={"20px"} color="white" />
+            <p>For Sale </p>
+          </ConteinerIcon>
+        )}
       </Link>
       <RentalChar>
         <RiMoneyDollarCircleLine
