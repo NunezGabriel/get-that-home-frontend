@@ -34,6 +34,7 @@ const ContainerCards = styled.div`
 
 function PropertyFavorites(){
 
+    let favorites = JSON.parse(localStorage.getItem("favorites"));
     const { user } = useAuth();
     const [userProperties, setUserProperties] = useState([]);
 
@@ -76,11 +77,11 @@ function PropertyFavorites(){
             </h4>
 
         <ContainerCards>
-        {userProperties?.map((property) => (
+        {favorites?.map((favorite) => (
             <SeekerRentalCard
-              key={property.id}
-              props={property}
-              {...property}
+              key={favorite.id}
+              props={favorite}
+              {...favorite}
               style={{ textDecoration: "none" }}
             />
           ))}

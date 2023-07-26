@@ -42,10 +42,13 @@ const SeekerNavBar = () => {
           <LuArrowUpLeftFromCircle fontSize={20} color="#616161" />
           logout
         </JoinButton>
+
+        <Link to={"/property-favorites"} style={{ textDecoration: "none" }}>     
         <LoginButton>
           <AiFillHeart fontSize={20} color="white" />
           Saved Properties
         </LoginButton>
+        </Link>
         <LoginButton>
           <GoPerson fontSize={20} color="white" />
           profile
