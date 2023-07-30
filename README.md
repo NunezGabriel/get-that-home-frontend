@@ -1,2 +1,2 @@
-# get-a-job-frontend-team2
+# get-a-job-frontend
 
